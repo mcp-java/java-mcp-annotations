@@ -25,10 +25,21 @@ import java.lang.annotation.Target;
  * Marks a method as providing an MCP prompt template.
  * <p>
  * Prompts are reusable message templates that can be used by MCP clients.
- * The method should return a list of messages or a prompt result object.
+ * The annotated method can return various types that will be converted to prompt responses:
+ * </p>
+ * <ul>
+ * <li>PromptMessage - Single message in the response</li>
+ * <li>List of PromptMessage - Multiple messages in the response</li>
+ * <li>PromptResponse - Full response with description and messages</li>
+ * <li>Other types - Encoded according to framework-specific rules</li>
+ * </ul>
+ * <p>
+ * Method parameters can be configured using {@link PromptArg} annotations to define
+ * the prompt's argument schema.
  * </p>
  *
  * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/prompts/">MCP Specification - Prompts</a>
+ * @see PromptArg
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
@@ -36,14 +47,23 @@ import java.lang.annotation.Target;
 public @interface Prompt {
 
     /**
-     * The name of the prompt.
+     * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
+     */
+    String ELEMENT_NAME = "<<element name>>";
+
+    /**
+     * The unique name of the prompt.
      * <p>
-     * If not specified, the method name will be used.
+     * Each prompt must have a unique name. This is intended for programmatic or logical use,
+     * but may be used for UI display as a fallback if {@link #title()} is not present.
+     * </p>
+     * <p>
+     * By default, the name is derived from the annotated method name.
      * </p>
      *
      * @return the prompt name
      */
-    String name() default "";
+    String name() default ELEMENT_NAME;
 
     /**
      * A human-readable title for the prompt.
@@ -57,43 +77,12 @@ public @interface Prompt {
 
     /**
      * A human-readable description of what this prompt does.
+     * <p>
+     * This description will be sent to MCP clients to help them understand
+     * when and how to use this prompt.
+     * </p>
      *
      * @return the prompt description
      */
     String description() default "";
-
-    /**
-     * Icon for the prompt.
-     *
-     * @return the icon configuration
-     */
-    PromptIcon icon() default @PromptIcon;
-
-    /**
-     * Nested annotation for prompt icons.
-     */
-    @Target({})
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface PromptIcon {
-        /**
-         * The icon source (URI).
-         *
-         * @return the icon source
-         */
-        String src() default "";
-
-        /**
-         * The MIME type of the icon.
-         *
-         * @return the MIME type
-         */
-        String mimeType() default "";
-
-        /**
-         * Theme for the icon (light or dark).
-         *
-         * @return the theme
-         */
-        String theme() default "";
-    }
 }

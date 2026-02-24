@@ -38,25 +38,20 @@ import java.lang.annotation.Target;
 public @interface ToolArg {
 
     /**
+     * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
+     */
+    String ELEMENT_NAME = "<<element name>>";
+
+    /**
      * The name of the parameter as it appears in the tool's JSON Schema.
      * <p>
-     * If not specified, the parameter name from the method signature will be used
+     * By default, the parameter name from the method signature will be used
      * (requires compilation with the {@code -parameters} flag).
      * </p>
      *
      * @return the parameter name
      */
-    String name() default "";
-
-    /**
-     * A human-readable title for the parameter.
-     * <p>
-     * This is a short, user-friendly display name for the parameter.
-     * </p>
-     *
-     * @return the parameter title
-     */
-    String title() default "";
+    String name() default ELEMENT_NAME;
 
     /**
      * A human-readable description of the parameter.
@@ -72,8 +67,9 @@ public @interface ToolArg {
     /**
      * Whether this parameter is required.
      * <p>
-     * By default, parameters are considered required unless they have a default
-     * value or are annotated with framework-specific optional annotations.
+     * An argument is required by default unless no annotation value is set explicitly and
+     * the type of the annotated parameter is Optional, or the default value is set with
+     * {@link #defaultValue()}.
      * </p>
      *
      * @return true if the parameter is required
@@ -84,7 +80,9 @@ public @interface ToolArg {
      * Default value for this parameter when not provided by the client.
      * <p>
      * The value should be provided as a string and will be converted to the
-     * appropriate type by the framework implementation.
+     * appropriate type by the framework implementation. String, primitive types and
+     * their wrappers, and enums are typically converted automatically. For other
+     * parameter types, framework-specific converters may be required.
      * </p>
      *
      * @return the default value as a string

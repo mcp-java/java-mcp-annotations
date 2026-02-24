@@ -22,27 +22,54 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a class as an MCP server component.
+ * Binds features (tools, prompts, resources) to a specific MCP server configuration.
  * <p>
- * Classes annotated with {@code @McpServer} will be scanned for
- * {@link Tool}, {@link Resource}, and {@link Prompt} annotations by
- * framework implementations.
+ * When declared on a class, all feature methods that do not declare this annotation
+ * share the specified server configuration.
  * </p>
  * <p>
- * This is a marker annotation that can be used by frameworks to identify
- * which classes should be processed for MCP functionality.
+ * When declared on a method, it overrides any class-level server binding for that
+ * specific feature.
  * </p>
+ * <p>
+ * Classes annotated with {@code @McpServer} will be scanned for MCP feature annotations
+ * by framework implementations.
+ * </p>
+ *
+ * @see org.mcp_java.annotations.tools.Tool
+ * @see org.mcp_java.annotations.prompts.Prompt
+ * @see org.mcp_java.annotations.resources.Resource
+ * @see org.mcp_java.annotations.resources.ResourceTemplate
  */
-@Target(ElementType.TYPE)
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface McpServer {
 
     /**
+     * Constant value for the name of the default server.
+     */
+    String DEFAULT = "<default>";
+
+    /**
+     * The name of the server.
+     * <p>
+     * This is an alias for {@link #name()}. If both are specified, {@code value()} takes precedence.
+     * </p>
+     * <p>
+     * If not specified, a name will be derived from the class name or framework configuration,
+     * or {@link #DEFAULT} will be used.
+     * </p>
+     *
+     * @return the server name
+     */
+    String value() default DEFAULT;
+
+    /**
      * The name of the server.
      * <p>
      * If not specified, a name will be derived from the class name or
-     * framework configuration.
+     * framework configuration, or {@link #DEFAULT} will be used.
      * </p>
      *
      * @return the server name

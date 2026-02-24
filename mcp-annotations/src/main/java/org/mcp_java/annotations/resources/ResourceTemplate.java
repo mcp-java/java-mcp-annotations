@@ -21,14 +21,32 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.mcp_java.model.common.Role;
+
 /**
  * Marks a method as providing dynamic MCP resources via URI templates.
  * <p>
- * Resource templates use RFC 6570 URI template syntax to support dynamic
- * resources where parts of the URI are variable (e.g., {@code "file:///{path}"}).
+ * The result of a "resource read" operation is represented as a resource response.
+ * The annotated method can return various types that will be converted according to
+ * framework-specific rules:
+ * </p>
+ * <ul>
+ * <li>String - Converted to text resource contents</li>
+ * <li>byte[] - Converted to blob resource contents</li>
+ * <li>ResourceContents implementations - Used directly in the response</li>
+ * <li>List of ResourceContents - Multiple content items in the response</li>
+ * <li>Other types - Encoded according to framework-specific rules (typically as JSON)</li>
+ * </ul>
+ * <p>
+ * Resource templates use Level 1 RFC 6570 URI template syntax to support dynamic
+ * resources where parts of the URI are variable.
+ * Method parameters can be configured using {@link ResourceTemplateArg} annotations.
  * </p>
  *
  * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#resource-templates">MCP Specification - Resource Templates</a>
+ * @see <a href="https://datatracker.ietf.org/doc/html/rfc6570#section-1.2">RFC 6570 - URI Template</a>
+ * @see Resource
+ * @see ResourceTemplateArg
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
@@ -36,11 +54,23 @@ import java.lang.annotation.Target;
 public @interface ResourceTemplate {
 
     /**
-     * A human-readable name for the resource template.
+     * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
+     */
+    String ELEMENT_NAME = "<<element name>>";
+
+    /**
+     * The unique name of the resource template.
+     * <p>
+     * Each resource template must have a unique name. This is intended for programmatic or logical use,
+     * but may be used for UI display as a fallback if {@link #title()} is not present.
+     * </p>
+     * <p>
+     * By default, the name is derived from the annotated method name.
+     * </p>
      *
      * @return the template name
      */
-    String name();
+    String name() default ELEMENT_NAME;
 
     /**
      * A human-readable title for the resource template.
@@ -53,14 +83,14 @@ public @interface ResourceTemplate {
     String title() default "";
 
     /**
-     * A description of what resources matching this template contain.
+     * A description of what this resource template represents.
      *
      * @return the template description
      */
     String description() default "";
 
     /**
-     * The URI template using RFC 6570 syntax.
+     * The Level 1 URI template that can be used to construct resource URIs.
      * <p>
      * Examples:
      * </p>
@@ -71,11 +101,12 @@ public @interface ResourceTemplate {
      * </ul>
      *
      * @return the URI template
+     * @see <a href="https://datatracker.ietf.org/doc/html/rfc6570#section-1.2">RFC 6570</a>
      */
     String uriTemplate();
 
     /**
-     * The MIME type for resources matching this template.
+     * The MIME type of this resource template.
      * <p>
      * Examples: {@code "text/plain"}, {@code "application/json"}, {@code "image/png"}
      * </p>
@@ -85,65 +116,45 @@ public @interface ResourceTemplate {
     String mimeType() default "";
 
     /**
-     * Icon for the resource template.
-     *
-     * @return the icon configuration
-     */
-    ResourceTemplateIcon icon() default @ResourceTemplateIcon;
-
-    /**
-     * Operational annotations providing metadata about resources from this template.
+     * Optional annotations for the client.
+     * <p>
+     * These provide additional hints to clients about the resource template's metadata.
+     * Note that annotations must be declared explicitly to be included in resource metadata.
+     * </p>
      *
      * @return the template annotations
      */
-    ResourceTemplateAnnotations annotations() default @ResourceTemplateAnnotations;
+    Annotations annotations() default @Annotations(audience = Role.USER, lastModified = "", priority = 0.5);
 
     /**
-     * Nested annotation for resource template icons.
+     * Nested annotation for resource template metadata annotations.
+     * <p>
+     * These provide hints to clients about resources from this template.
+     * </p>
      */
-    @Target({})
+    @Target(ElementType.ANNOTATION_TYPE)
     @Retention(RetentionPolicy.RUNTIME)
-    @interface ResourceTemplateIcon {
-        /**
-         * The icon source (URI).
-         *
-         * @return the icon source
-         */
-        String src() default "";
-
-        /**
-         * The MIME type of the icon.
-         *
-         * @return the MIME type
-         */
-        String mimeType() default "";
-
-        /**
-         * Theme for the icon (light or dark).
-         *
-         * @return the theme
-         */
-        String theme() default "";
-    }
-
-    /**
-     * Nested annotation for resource template metadata.
-     */
-    @Target({})
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface ResourceTemplateAnnotations {
+    @interface Annotations {
         /**
          * The intended audience for resources from this template.
-         *
-         * @return the audience
          */
-        String audience() default "";
+        Role audience();
+
+        /**
+         * The last modification timestamp in ISO 8601 format.
+         *
+         * @return the last modified timestamp
+         */
+        String lastModified() default "";
 
         /**
          * The priority of resources from this template.
+         * <p>
+         * Higher values indicate higher priority.
+         * </p>
          *
          * @return the priority value
          */
-        double priority() default 0.0;
+        double priority() default 0.5;
     }
 }

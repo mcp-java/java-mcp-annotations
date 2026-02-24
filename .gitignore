@@ -33,3 +33,5 @@ Thumbs.db
 *.bak
 *.swp
 *~
+/.bob/config.json
+/.bob/notes/pending-notes.txt

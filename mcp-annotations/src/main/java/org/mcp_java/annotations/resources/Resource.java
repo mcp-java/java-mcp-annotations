@@ -21,38 +21,49 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.mcp_java.model.common.Role;
+
 /**
- * Marks a method or class as providing MCP resources.
+ * Marks a method as providing an MCP resource.
  * <p>
- * Resources are data sources that can be read by MCP clients. This annotation
- * can be applied to methods that return resource data, or to classes that
- * provide multiple resources.
+ * The result of a "resource read" operation is represented as a resource response.
+ * The annotated method can return various types that will be converted according to
+ * framework-specific rules:
  * </p>
+ * <ul>
+ * <li>String - Converted to text resource contents</li>
+ * <li>byte[] - Converted to blob resource contents</li>
+ * <li>ResourceContents implementations - Used directly in the response</li>
+ * <li>List of ResourceContents - Multiple content items in the response</li>
+ * <li>Other types - Encoded according to framework-specific rules (typically as JSON)</li>
+ * </ul>
  *
  * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/">MCP Specification - Resources</a>
+ * @see ResourceTemplate
  */
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Resource {
 
     /**
-     * The URI or URI template for the resource.
-     * <p>
-     * Can use RFC 6570 URI template syntax for dynamic resources (e.g.,
-     * {@code "file:///{path}"}).
-     * </p>
-     *
-     * @return the resource URI or template
+     * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
      */
-    String uri();
+    String ELEMENT_NAME = "<<element name>>";
 
     /**
-     * A human-readable name for the resource.
+     * The unique name of the resource.
+     * <p>
+     * Each resource must have a unique name. This is intended for programmatic or logical use,
+     * but may be used for UI display as a fallback if {@link #title()} is not present.
+     * </p>
+     * <p>
+     * By default, the name is derived from the annotated method name.
+     * </p>
      *
      * @return the resource name
      */
-    String name();
+    String name() default ELEMENT_NAME;
 
     /**
      * A human-readable title for the resource.
@@ -65,14 +76,24 @@ public @interface Resource {
     String title() default "";
 
     /**
-     * A description of what this resource contains.
+     * A description of what this resource represents.
      *
      * @return the resource description
      */
     String description() default "";
 
     /**
-     * The MIME type of the resource content.
+     * The URI of this resource.
+     * <p>
+     * This is a required field that uniquely identifies the resource.
+     * </p>
+     *
+     * @return the resource URI
+     */
+    String uri();
+
+    /**
+     * The MIME type of this resource, if known.
      * <p>
      * Examples: {@code "text/plain"}, {@code "application/json"}, {@code "image/png"}
      * </p>
@@ -82,79 +103,53 @@ public @interface Resource {
     String mimeType() default "";
 
     /**
-     * The size of the resource in bytes.
+     * The size of the raw resource content, in bytes (before base64 encoding or any
+     * tokenization), if known.
      *
      * @return the resource size, or -1 if unknown
      */
-    long size() default -1;
+    int size() default -1;
 
     /**
-     * Icon for the resource.
-     *
-     * @return the icon configuration
-     */
-    ResourceIcon icon() default @ResourceIcon;
-
-    /**
-     * Operational annotations providing metadata about this resource.
+     * Optional annotations for the client.
+     * <p>
+     * These provide additional hints to clients about the resource's metadata.
+     * Note that annotations must be declared explicitly to be included in resource metadata.
+     * </p>
      *
      * @return the resource annotations
      */
-    ResourceAnnotations annotations() default @ResourceAnnotations;
+    Annotations annotations() default @Annotations(audience = Role.USER, lastModified = "", priority = 0.5);
 
     /**
-     * Nested annotation for resource icons.
+     * Nested annotation for resource metadata annotations.
+     * <p>
+     * These provide hints to clients about the resource's audience, modification time, and priority.
+     * </p>
      */
-    @Target({})
+    @Target(ElementType.ANNOTATION_TYPE)
     @Retention(RetentionPolicy.RUNTIME)
-    @interface ResourceIcon {
+    @interface Annotations {
         /**
-         * The icon source (URI).
-         *
-         * @return the icon source
+         * The intended audience for this resource.
          */
-        String src() default "";
+        Role audience();
 
         /**
-         * The MIME type of the icon.
+         * The last modification timestamp in ISO 8601 format.
          *
-         * @return the MIME type
+         * @return the last modified timestamp
          */
-        String mimeType() default "";
+        String lastModified() default "";
 
         /**
-         * Theme for the icon (light or dark).
-         *
-         * @return the theme
-         */
-        String theme() default "";
-    }
-
-    /**
-     * Nested annotation for resource metadata.
-     */
-    @Target({})
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface ResourceAnnotations {
-        /**
-         * The intended audience for this resource (e.g., "user", "assistant").
-         *
-         * @return the audience
-         */
-        String audience() default "";
-
-        /**
-         * The last modification date in ISO 8601 format.
-         *
-         * @return the modification date
-         */
-        String modificationDate() default "";
-
-        /**
-         * The priority of this resource (higher is more important).
+         * The priority of this resource.
+         * <p>
+         * Higher values indicate higher priority.
+         * </p>
          *
          * @return the priority value
          */
-        double priority() default 0.0;
+        double priority() default 0.5;
     }
 }

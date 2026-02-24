@@ -32,7 +32,25 @@ import java.lang.annotation.Target;
  * Method parameters can be further configured using {@link ToolArg} annotations.
  * </p>
  *
+ * <h2>Return Type Handling</h2>
+ * <p>
+ * The annotated method can return various types that will be converted to MCP tool responses:
+ * </p>
+ * <ul>
+ * <li>String - Converted to a text content response</li>
+ * <li>Content implementations - Used directly in the response</li>
+ * <li>List of Content or String - Multiple content items in the response</li>
+ * <li>Other types - Encoded according to framework-specific rules (typically as JSON)</li>
+ * </ul>
+ *
+ * <h2>Schema Generation</h2>
+ * <p>
+ * Input and output schemas can be automatically generated from method signatures or
+ * explicitly configured using {@link #inputSchema()} and {@link #outputSchema()}.
+ * </p>
+ *
  * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/tools/">MCP Specification - Tools</a>
+ * @see ToolArg
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
@@ -40,14 +58,23 @@ import java.lang.annotation.Target;
 public @interface Tool {
 
     /**
-     * The name of the tool.
+     * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
+     */
+    String ELEMENT_NAME = "<<element name>>";
+
+    /**
+     * The unique name of the tool.
      * <p>
-     * If not specified, the method name will be used.
+     * Each tool must have a unique name. This is intended for programmatic or logical use,
+     * but may be used for UI display as a fallback if {@link #title()} is not present.
+     * </p>
+     * <p>
+     * By default, the name is derived from the annotated method name.
      * </p>
      *
      * @return the tool name
      */
-    String name() default "";
+    String name() default ELEMENT_NAME;
 
     /**
      * A human-readable title for the tool.
@@ -63,7 +90,7 @@ public @interface Tool {
      * A human-readable description of what the tool does.
      * <p>
      * This description will be sent to MCP clients to help them understand
-     * when and how to use this tool.
+     * when and how to use this tool. It serves as a hint to the model.
      * </p>
      *
      * @return the tool description
@@ -75,21 +102,60 @@ public @interface Tool {
      *
      * @return the icon configuration
      */
-    ToolIcon icon() default @ToolIcon;
+    Icon icon() default @Icon;
 
     /**
-     * Operational annotations providing hints about this tool's behavior.
+     * Behavioral hints and annotations for this tool.
+     * <p>
+     * These provide additional hints to clients about the tool's behavior and characteristics.
+     * Note that annotations must be declared explicitly to be included in tool metadata.
+     * </p>
      *
      * @return the tool annotations
      */
-    ToolAnnotations annotations() default @ToolAnnotations;
+    Annotations annotations() default @Annotations;
+
+    /**
+     * If set to {@code true}, the method return value is converted to JSON and used as
+     * structured content in the result.
+     * <p>
+     * When enabled, the output schema is also generated automatically from the return type.
+     * </p>
+     *
+     * @return true if structured content should be used
+     * @see #outputSchema()
+     */
+    boolean structuredContent() default false;
+
+    /**
+     * Configuration for input schema generation and validation.
+     * <p>
+     * The input schema defines the expected structure of tool arguments and can be used
+     * for validation by clients.
+     * </p>
+     *
+     * @return the input schema configuration
+     */
+    InputSchema inputSchema() default @InputSchema;
+
+    /**
+     * Configuration for output schema generation and validation.
+     * <p>
+     * The output schema defines the structure of tool results with structured content.
+     * This is particularly useful when a tool method returns complex objects directly.
+     * </p>
+     *
+     * @return the output schema configuration
+     * @see #structuredContent()
+     */
+    OutputSchema outputSchema() default @OutputSchema;
 
     /**
      * Nested annotation for tool icons.
      */
-    @Target({})
+    @Target(ElementType.ANNOTATION_TYPE)
     @Retention(RetentionPolicy.RUNTIME)
-    @interface ToolIcon {
+    @interface Icon {
         /**
          * The icon source (URI).
          *
@@ -113,37 +179,102 @@ public @interface Tool {
     }
 
     /**
-     * Nested annotation for tool behavior hints.
+     * Nested annotation for tool behavioral hints.
+     * <p>
+     * These hints help clients understand the tool's behavior and side effects.
+     * </p>
      */
-    @Target({})
+    @Target(ElementType.ANNOTATION_TYPE)
     @Retention(RetentionPolicy.RUNTIME)
-    @interface ToolAnnotations {
+    @interface Annotations {
         /**
-         * Hint that this tool only reads data and does not modify state.
+         * A human-readable title for the tool.
+         */
+        String title() default "";
+
+        /**
+         * If true, this tool only reads data and does not modify its environment.
+         * <p>
+         * Default is false, assuming tools may have side effects.
+         * </p>
          *
          * @return true if read-only
          */
         boolean readOnlyHint() default false;
 
         /**
-         * Hint that this tool performs destructive operations.
+         * If true, this tool may perform destructive updates to its environment.
+         * If false, the tool performs only additive updates.
+         * <p>
+         * Default is true to err on the side of caution.
+         * </p>
          *
-         * @return true if destructive
+         * @return true if potentially destructive
          */
-        boolean destructiveHint() default false;
+        boolean destructiveHint() default true;
 
         /**
-         * Hint that this tool is idempotent (safe to retry).
+         * If true, calling the tool repeatedly with the same arguments will have no
+         * additional effect on its environment (safe to retry).
+         * <p>
+         * Default is false.
+         * </p>
          *
          * @return true if idempotent
          */
         boolean idempotentHint() default false;
 
         /**
-         * Hint that this tool operates in an open world (may have side effects).
+         * If true, this tool may interact with an "open world" of external entities.
+         * If false, the tool's domain of interaction is closed.
+         * <p>
+         * Default is true, assuming tools may interact with external systems.
+         * </p>
          *
          * @return true if open world
          */
-        boolean openWorldHint() default false;
+        boolean openWorldHint() default true;
+    }
+
+    /**
+     * Configuration for input schema generation.
+     * <p>
+     * The input schema is generated from the tool method's parameter types
+     * and can be customized using this annotation.
+     * </p>
+     */
+    @Target(ElementType.ANNOTATION_TYPE)
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface InputSchema {
+        /**
+         * The generator class. Implementation classes must be CDI beans. Qualifiers are ignored.
+         * <p>
+         * By default, the built-in generator is used.
+         */
+        String generator() default "";
+    }
+
+    /**
+     * Configuration for output schema generation.
+     * <p>
+     * The output schema defines the structure of structured content returned by the tool.
+     * </p>
+     */
+    @Target(ElementType.ANNOTATION_TYPE)
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface OutputSchema {
+        /**
+         * The class from which the schema is generated.
+         * <p>
+         * If {@link Tool#structuredContent()} is set to {@code true} then the return type may be used for schema generation.
+         */
+        Class<?> from() default OutputSchema.class;
+
+        /**
+         * The generator class. Implementation classes must be CDI beans. Qualifiers are ignored.
+         * <p>
+         * By default, the built-in generator is used.
+         */
+        String generator() default "";
     }
 }

@@ -37,13 +37,18 @@ import java.lang.annotation.Target;
 public @interface CompleteArg {
 
     /**
+     * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
+     */
+    String ELEMENT_NAME = "<<element name>>";
+
+    /**
      * The name of the completed argument.
      * <p>
-     * If not specified, the parameter name from the method signature will be used
+     * By default, the parameter name from the method signature will be used
      * (requires compilation with the {@code -parameters} flag).
      * </p>
      *
      * @return the argument name
      */
-    String name() default "";
+    String name() default ELEMENT_NAME;
 }

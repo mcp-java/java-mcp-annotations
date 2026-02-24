@@ -36,20 +36,18 @@ import java.lang.annotation.Target;
 public @interface ResourceTemplateArg {
 
     /**
+     * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
+     */
+    String ELEMENT_NAME = "<<element name>>";
+
+    /**
      * The name of the URI template variable.
      * <p>
-     * If not specified, the parameter name from the method signature will be used
+     * By default, the parameter name from the method signature will be used
      * (requires compilation with the {@code -parameters} flag).
      * </p>
      *
      * @return the template variable name
      */
-    String name() default "";
-
-    /**
-     * A human-readable description of this template argument.
-     *
-     * @return the argument description
-     */
-    String description() default "";
+    String name() default ELEMENT_NAME;
 }

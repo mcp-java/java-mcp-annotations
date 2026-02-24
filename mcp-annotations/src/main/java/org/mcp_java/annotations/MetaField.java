@@ -52,8 +52,16 @@ public @interface MetaField {
     /**
      * Optional prefix for the metadata key.
      * <p>
-     * The prefix should follow the pattern of dot-separated labels ending with a slash.
-     * For example: {@code "modelcontextprotocol.io/"} or {@code "myapp.io/"}
+     * Must be a series of labels separated by dots ({@code .}), followed by a slash ({@code /}).
+     * Labels must start with a letter and end with a letter or digit; interior characters can be
+     * letters, digits, or hyphens ({@code -}).
+     * </p>
+     * <p>
+     * Some prefixes are reserved for the MCP spec, e.g. {@code modelcontextprotocol.io/} or
+     * {@code tools.mcp.com/}.
+     * </p>
+     * <p>
+     * Examples: {@code "modelcontextprotocol.io/"}, {@code "myapp.io/"}
      * </p>
      *
      * @return the key prefix
@@ -63,8 +71,9 @@ public @interface MetaField {
     /**
      * The name of the metadata field.
      * <p>
-     * The name must start and end with an alphanumeric character and may contain
-     * hyphens, underscores, and dots in between.
+     * Must begin and end with an alphanumeric character ({@code [a-z0-9A-Z]}).
+     * May contain hyphens ({@code -}), underscores ({@code _}), dots ({@code .}), and
+     * alphanumerics in between.
      * </p>
      *
      * @return the field name

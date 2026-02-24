@@ -37,15 +37,20 @@ import java.lang.annotation.Target;
 public @interface PromptArg {
 
     /**
+     * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
+     */
+    String ELEMENT_NAME = "<<element name>>";
+
+    /**
      * The name of the argument.
      * <p>
-     * If not specified, the parameter name from the method signature will be used
+     * By default, the parameter name from the method signature will be used
      * (requires compilation with the {@code -parameters} flag).
      * </p>
      *
      * @return the argument name
      */
-    String name() default "";
+    String name() default ELEMENT_NAME;
 
     /**
      * A human-readable title for the argument.
@@ -66,6 +71,11 @@ public @interface PromptArg {
 
     /**
      * Whether this argument is required.
+     * <p>
+     * An argument is required by default. However, if the annotated parameter type is
+     * Optional and no annotation value is set explicitly, the argument may be treated
+     * as not required by some framework implementations.
+     * </p>
      *
      * @return true if the argument is required
      */
