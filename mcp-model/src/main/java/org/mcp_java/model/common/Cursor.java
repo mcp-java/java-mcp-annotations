@@ -19,7 +19,7 @@ package org.mcp_java.model.common;
  * An opaque token used for pagination.
  *
  * @param value the cursor value
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/utilities/#cursor">MCP Specification - Cursor</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/pagination">MCP Specification - Pagination</a>
  */
 public record Cursor(String value) {
     public Cursor {

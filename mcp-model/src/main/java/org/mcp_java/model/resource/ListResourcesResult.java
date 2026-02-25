@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @param resources  the list of available resources
  * @param nextCursor optional cursor for pagination
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#list-resources-result">MCP Specification - List Resources Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources#listing-resources">MCP Specification - Listing Resources</a>
  */
 public record ListResourcesResult(
     List<Resource> resources,

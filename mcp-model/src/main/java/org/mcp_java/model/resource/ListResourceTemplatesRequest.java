@@ -21,7 +21,7 @@ import org.mcp_java.model.common.Cursor;
  * Request to list available resource templates.
  *
  * @param cursor optional cursor for pagination
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#list-resource-templates-request">MCP Specification - List Resource Templates Request</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources#resource-templates">MCP Specification - Resource Templates</a>
  */
 public record ListResourceTemplatesRequest(
     Cursor cursor

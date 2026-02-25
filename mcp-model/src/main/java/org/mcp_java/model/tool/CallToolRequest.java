@@ -22,7 +22,7 @@ import java.util.Map;
  *
  * @param name      the name of the tool to call
  * @param arguments the arguments to pass to the tool (optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/tools/#call-tool-request">MCP Specification - Call Tool Request</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools#calling-tools">MCP Specification - Calling Tools</a>
  */
 public record CallToolRequest(
     String name,

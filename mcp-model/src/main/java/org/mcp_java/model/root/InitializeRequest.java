@@ -21,7 +21,7 @@ package org.mcp_java.model.root;
  * @param protocolVersion the version of the MCP protocol
  * @param capabilities    the capabilities of the client
  * @param clientInfo      information about the client implementation
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/lifecycle/#initialize-request">MCP Specification - Initialize Request</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle#initialization">MCP Specification - Initialization</a>
  */
 public record InitializeRequest(
     String protocolVersion,

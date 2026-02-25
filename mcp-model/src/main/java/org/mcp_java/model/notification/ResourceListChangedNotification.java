@@ -19,7 +19,7 @@ package org.mcp_java.model.notification;
  * Notification that the list of available resources has changed.
  * Clients should re-fetch the resource list.
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#resource-list-changed">MCP Specification - Resource List Changed</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources#list-changed-notification">MCP Specification - Resource List Changed Notification</a>
  */
 public record ResourceListChangedNotification() {
 

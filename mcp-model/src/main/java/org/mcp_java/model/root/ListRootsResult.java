@@ -21,7 +21,7 @@ import java.util.List;
  * Result of listing roots.
  *
  * @param roots the list of roots
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/client/roots/#list-roots-result">MCP Specification - List Roots Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/roots#listing-roots">MCP Specification - Listing Roots</a>
  */
 public record ListRootsResult(
     List<Root> roots

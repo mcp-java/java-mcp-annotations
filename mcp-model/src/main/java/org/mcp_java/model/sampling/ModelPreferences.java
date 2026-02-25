@@ -24,7 +24,7 @@ import java.util.List;
  * @param costPriority      priority for cost optimization (0-1, optional)
  * @param speedPriority     priority for speed (0-1, optional)
  * @param intelligencePriority priority for intelligence/capability (0-1, optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/client/sampling/#model-preferences">MCP Specification - Model Preferences</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/sampling#model-preferences">MCP Specification - Sampling Model Preferences</a>
  */
 public record ModelPreferences(
     List<String> hints,

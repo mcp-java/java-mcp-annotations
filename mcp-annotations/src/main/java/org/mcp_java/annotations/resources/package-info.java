@@ -23,6 +23,6 @@
  * resources with URI templates.
  * </p>
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/">MCP Specification - Resources</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources">MCP Specification - Resources</a>
  */
 package org.mcp_java.annotations.resources;

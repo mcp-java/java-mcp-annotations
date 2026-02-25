@@ -21,7 +21,7 @@ import org.mcp_java.model.common.Cursor;
  * Request to list available resources.
  *
  * @param cursor optional cursor for pagination
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#list-resources-request">MCP Specification - List Resources Request</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources#listing-resources">MCP Specification - Listing Resources</a>
  */
 public record ListResourcesRequest(
     Cursor cursor

@@ -25,7 +25,7 @@ import java.util.Map;
  * access client-provided metadata.
  * </p>
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/utilities/#metadata">MCP Specification - Metadata</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic#_meta">MCP Specification - Metadata</a>
  */
 public interface Meta {
 

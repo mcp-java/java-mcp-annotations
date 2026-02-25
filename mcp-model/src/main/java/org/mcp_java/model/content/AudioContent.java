@@ -24,7 +24,7 @@ import org.mcp_java.model.common.Annotations;
  * @param data        the base64-encoded audio data
  * @param mimeType    the MIME type of the audio
  * @param annotations optional annotations
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/messages/#audio-content">MCP Specification - Audio Content</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools#audio-content">MCP Specification - Audio Content</a>
  */
 public record AudioContent(
     String type,

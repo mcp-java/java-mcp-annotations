@@ -21,7 +21,7 @@ import org.mcp_java.model.common.Annotations;
  * Base interface for all content blocks.
  * Content blocks represent different types of content that can be exchanged in MCP.
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/messages/#content">MCP Specification - Content</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools#tool-result">MCP Specification - Tool Result</a>
  */
 public sealed interface ContentBlock permits TextContent, ImageContent, AudioContent, EmbeddedResource {
 

@@ -21,7 +21,7 @@ import java.util.Map;
  * Result of an elicitation request containing the user's responses.
  *
  * @param values the field values provided by the user (field name to value)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/utilities/elicitation/#elicitation-result">MCP Specification - Elicitation Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/elicitation/#elicitation-result">MCP Specification - Elicitation Result</a>
  */
 public record CreateElicitationResult(
     Map<String, String> values

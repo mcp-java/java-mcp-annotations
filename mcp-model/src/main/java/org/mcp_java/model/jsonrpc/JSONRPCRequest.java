@@ -25,7 +25,7 @@ import org.mcp_java.model.common.RequestId;
  * @param method  the method to invoke
  * @param params  the method parameters (optional)
  * @see <a href="https://www.jsonrpc.org/specification#request_object">JSON-RPC 2.0 Request</a>
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/protocol/">MCP Specification - Protocol</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic">MCP Specification - Protocol</a>
  */
 public record JSONRPCRequest(
     String jsonrpc,

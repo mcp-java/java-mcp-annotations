@@ -21,7 +21,7 @@ package org.mcp_java.model.prompt;
  * @param name        the name of the argument
  * @param description a description of the argument (optional)
  * @param required    whether this argument is required
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/prompts/#prompt-arguments">MCP Specification - Prompt Arguments</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts#getting-a-prompt">MCP Specification - Getting a Prompt</a>
  */
 public record PromptArgument(
     String name,

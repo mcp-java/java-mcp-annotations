@@ -22,6 +22,6 @@
  * and {@link dev.mcp_java.annotations.prompts.PromptArg @PromptArg} to configure their arguments.
  * </p>
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/prompts/">MCP Specification - Prompts</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts">MCP Specification - Prompts</a>
  */
 package org.mcp_java.annotations.prompts;

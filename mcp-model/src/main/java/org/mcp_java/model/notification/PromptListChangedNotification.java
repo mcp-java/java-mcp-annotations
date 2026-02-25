@@ -19,7 +19,7 @@ package org.mcp_java.model.notification;
  * Notification that the list of available prompts has changed.
  * Clients should re-fetch the prompt list.
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/prompts/#prompt-list-changed">MCP Specification - Prompt List Changed</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts#list-changed-notification">MCP Specification - Prompt List Changed Notification</a>
  */
 public record PromptListChangedNotification() {
 

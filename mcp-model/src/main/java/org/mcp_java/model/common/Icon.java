@@ -24,7 +24,7 @@ import java.util.List;
  * @param mimeType the MIME type of the icon (optional)
  * @param sizes    list of sizes available for this icon (optional)
  * @param theme    the theme for this icon (optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/utilities/#icons">MCP Specification - Icons</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic#icons">MCP Specification - Icons</a>
  */
 public record Icon(
     String src,

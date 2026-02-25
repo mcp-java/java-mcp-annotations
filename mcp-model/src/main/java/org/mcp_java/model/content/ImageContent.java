@@ -24,7 +24,7 @@ import org.mcp_java.model.common.Annotations;
  * @param data        the base64-encoded image data
  * @param mimeType    the MIME type of the image
  * @param annotations optional annotations
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/messages/#image-content">MCP Specification - Image Content</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools#image-content">MCP Specification - Image Content</a>
  */
 public record ImageContent(
     String type,

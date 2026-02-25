@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @param resourceTemplates the list of available resource templates
  * @param nextCursor        optional cursor for pagination
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#list-resource-templates-result">MCP Specification - List Resource Templates Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources#resource-templates">MCP Specification - Resource Templates</a>
  */
 public record ListResourceTemplatesResult(
     List<ResourceTemplate> resourceTemplates,

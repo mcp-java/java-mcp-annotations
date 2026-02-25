@@ -21,7 +21,7 @@ import org.mcp_java.model.common.Cursor;
  * Request to list available tools.
  *
  * @param cursor optional cursor for pagination
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/tools/#list-tools-request">MCP Specification - List Tools Request</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools#listing-tools">MCP Specification - Listing Tools</a>
  */
 public record ListToolsRequest(
     Cursor cursor

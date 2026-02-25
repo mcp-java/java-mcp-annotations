@@ -43,7 +43,7 @@ package org.mcp_java.server;
  *
  * @see SamplingRequest
  * @see org.mcp_java.model.sampling.SamplingMessage
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/sampling/">MCP Specification - Sampling</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/sampling">MCP Specification - Sampling</a>
  */
 public interface Sampling {
 

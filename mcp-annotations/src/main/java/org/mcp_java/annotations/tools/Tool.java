@@ -49,7 +49,7 @@ import java.lang.annotation.Target;
  * explicitly configured using {@link #inputSchema()} and {@link #outputSchema()}.
  * </p>
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/tools/">MCP Specification - Tools</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools">MCP Specification - Tools</a>
  * @see ToolArg
  */
 @Target(ElementType.METHOD)

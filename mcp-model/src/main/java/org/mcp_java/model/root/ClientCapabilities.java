@@ -20,7 +20,7 @@ package org.mcp_java.model.root;
  *
  * @param roots    root-related capabilities (optional)
  * @param sampling sampling-related capabilities (optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/lifecycle/#client-capabilities">MCP Specification - Client Capabilities</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle#capability-negotiation">MCP Specification - Capability Negotiation</a>
  */
 public record ClientCapabilities(
     RootsCapability roots,
