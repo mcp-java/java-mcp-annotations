@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.model.root;
+package org.mcp_java.model.roots;
 
 /**
  * A root that defines where the server can operate.

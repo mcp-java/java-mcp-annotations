@@ -15,7 +15,7 @@
  */
 package org.mcp_java.server;
 
-import org.mcp_java.model.root.InitializeRequest;
+import org.mcp_java.model.lifecycle.InitializeRequest;
 
 /**
  * Represents a connection from an MCP client to the server.
