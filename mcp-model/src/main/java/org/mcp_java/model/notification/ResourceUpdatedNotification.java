@@ -19,7 +19,7 @@ package org.mcp_java.model.notification;
  * Notification that a subscribed resource has been updated.
  *
  * @param uri the URI of the resource that was updated
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#resource-updated">MCP Specification - Resource Updated</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources#subscriptions">MCP Specification - Resource Subscriptions</a>
  */
 public record ResourceUpdatedNotification(
     String uri

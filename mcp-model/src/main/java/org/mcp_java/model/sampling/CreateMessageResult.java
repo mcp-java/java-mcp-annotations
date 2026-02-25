@@ -24,7 +24,7 @@ import java.util.List;
  * @param content     the generated content
  * @param model       the model that was used
  * @param stopReason  why generation stopped (e.g., "endTurn", "maxTokens")
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/client/sampling/#create-message-result">MCP Specification - Create Message Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/sampling#creating-messages">MCP Specification - Creating Messages</a>
  */
 public record CreateMessageResult(
     List<ContentBlock> content,

@@ -24,7 +24,7 @@ package org.mcp_java.model.elicitation;
  * @param description optional description or help text
  * @param required    whether this field is required
  * @param defaultValue optional default value
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/utilities/elicitation/#elicitation-field">MCP Specification - Elicitation Field</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/elicitation/#elicitation-field">MCP Specification - Elicitation Field</a>
  */
 public record ElicitationField(
     String name,

@@ -24,7 +24,7 @@ import org.mcp_java.model.resource.ResourceContents;
  * @param type        the content type (always "resource")
  * @param resource    the embedded resource contents
  * @param annotations optional annotations
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/messages/#embedded-resource">MCP Specification - Embedded Resource</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools#embedded-resources">MCP Specification - Embedded Resources</a>
  */
 public record EmbeddedResource(
     String type,

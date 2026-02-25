@@ -19,7 +19,7 @@ package org.mcp_java.model.notification;
  * Notification that the list of roots has changed.
  * Servers should re-fetch the root list.
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/client/roots/#root-list-changed">MCP Specification - Root List Changed</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/roots#root-list-changes">MCP Specification - Root List Changes</a>
  */
 public record RootListChangedNotification() {
 

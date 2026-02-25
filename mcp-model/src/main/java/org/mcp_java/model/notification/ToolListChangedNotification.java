@@ -19,7 +19,7 @@ package org.mcp_java.model.notification;
  * Notification that the list of available tools has changed.
  * Clients should re-fetch the tool list.
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/tools/#tool-list-changed">MCP Specification - Tool List Changed</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools#list-changed-notification">MCP Specification - Tool List Changed Notification</a>
  */
 public record ToolListChangedNotification() {
 

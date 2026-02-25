@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @param prompts    the list of available prompts
  * @param nextCursor optional cursor for pagination
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/prompts/#list-prompts-result">MCP Specification - List Prompts Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts#listing-prompts">MCP Specification - Listing Prompts</a>
  */
 public record ListPromptsResult(
     List<Prompt> prompts,

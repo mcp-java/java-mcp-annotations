@@ -23,7 +23,7 @@ import org.mcp_java.model.common.ProgressToken;
  * @param progressToken the token identifying the operation
  * @param progress      current progress value
  * @param total         total expected progress value (optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/utilities/#progress-notifications">MCP Specification - Progress Notifications</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/progress">MCP Specification - Progress Notifications</a>
  */
 public record ProgressNotification(
     ProgressToken progressToken,

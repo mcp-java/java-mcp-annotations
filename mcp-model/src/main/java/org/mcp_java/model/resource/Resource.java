@@ -22,7 +22,7 @@ package org.mcp_java.model.resource;
  * @param name        a human-readable name for the resource
  * @param description a description of what this resource contains (optional)
  * @param mimeType    the MIME type of this resource (optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/">MCP Specification - Resources</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources">MCP Specification - Resources</a>
  */
 public record Resource(
     String uri,

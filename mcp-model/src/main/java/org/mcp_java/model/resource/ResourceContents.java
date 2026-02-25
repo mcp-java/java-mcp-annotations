@@ -24,7 +24,7 @@ import java.util.List;
  * @param mimeType the MIME type of the resource (optional)
  * @param text     text contents (for text resources)
  * @param blob     binary contents as base64 (for binary resources)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#resource-contents">MCP Specification - Resource Contents</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources/#resource-contents">MCP Specification - Resource Contents</a>
  */
 public record ResourceContents(
     String uri,

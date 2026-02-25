@@ -22,6 +22,6 @@
  * and {@link dev.mcp_java.annotations.tools.ToolArg @ToolArg} to configure their parameters.
  * </p>
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/tools/">MCP Specification - Tools</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools">MCP Specification - Tools</a>
  */
 package org.mcp_java.annotations.tools;

@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @param content the result content blocks
  * @param isError whether the tool call resulted in an error
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/tools/#call-tool-result">MCP Specification - Call Tool Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools#calling-tools">MCP Specification - Calling Tools</a>
  */
 public record CallToolResult(
     List<ContentBlock> content,

@@ -36,7 +36,7 @@ package org.mcp_java.server;
  * }
  * </pre>
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/utilities/#logging">MCP Specification - Logging</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/logging">MCP Specification - Logging</a>
  */
 public interface McpLog {
 

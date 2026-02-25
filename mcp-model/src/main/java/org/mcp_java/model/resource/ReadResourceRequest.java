@@ -19,7 +19,7 @@ package org.mcp_java.model.resource;
  * Request to read a resource.
  *
  * @param uri the URI of the resource to read
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#read-resource-request">MCP Specification - Read Resource Request</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources#reading-resources">MCP Specification - Reading Resources</a>
  */
 public record ReadResourceRequest(
     String uri

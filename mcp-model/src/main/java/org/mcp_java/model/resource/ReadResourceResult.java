@@ -21,7 +21,7 @@ import java.util.List;
  * Result of reading a resource.
  *
  * @param contents the resource contents
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#read-resource-result">MCP Specification - Read Resource Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources#reading-resources">MCP Specification - Reading Resources</a>
  */
 public record ReadResourceResult(
     List<ResourceContents> contents

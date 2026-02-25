@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.model.root;
+package org.mcp_java.model.lifecycle;
 
 /**
  * Capabilities that a server supports.
@@ -22,7 +22,7 @@ package org.mcp_java.model.root;
  * @param resources resource-related capabilities (optional)
  * @param prompts   prompt-related capabilities (optional)
  * @param logging   logging capabilities (optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/lifecycle/#server-capabilities">MCP Specification - Server Capabilities</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle#capability-negotiation">MCP Specification - Capability Negotiation</a>
  */
 public record ServerCapabilities(
     ToolsCapability tools,

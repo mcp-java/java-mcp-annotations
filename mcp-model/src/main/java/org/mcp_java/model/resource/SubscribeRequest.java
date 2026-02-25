@@ -19,7 +19,7 @@ package org.mcp_java.model.resource;
  * Request to subscribe to updates for a resource.
  *
  * @param uri the URI of the resource to subscribe to
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#subscribe">MCP Specification - Subscribe</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources#subscriptions">MCP Specification - Resource Subscriptions</a>
  */
 public record SubscribeRequest(
     String uri

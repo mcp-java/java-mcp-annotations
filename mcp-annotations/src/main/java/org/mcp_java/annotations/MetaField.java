@@ -41,7 +41,7 @@ import java.lang.annotation.Target;
  * }
  * </pre>
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/utilities/#metadata">MCP Specification - Metadata</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic#_meta">MCP Specification - Metadata</a>
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

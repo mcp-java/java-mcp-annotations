@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @param prompt  the prompt to show to the user
  * @param fields  the fields to collect from the user
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/utilities/elicitation/">MCP Specification - Elicitation</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/elicitation">MCP Specification - Elicitation</a>
  */
 public record CreateElicitationRequest(
     String prompt,

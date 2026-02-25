@@ -24,6 +24,6 @@
  * for resource template completions.
  * </p>
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/utilities/completion/">MCP Specification - Completion</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/completion">MCP Specification - Completion</a>
  */
 package org.mcp_java.annotations.completion;

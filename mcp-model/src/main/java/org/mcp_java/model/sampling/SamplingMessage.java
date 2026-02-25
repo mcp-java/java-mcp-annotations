@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @param role    the role of the message sender
  * @param content the content blocks of the message
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/client/sampling/">MCP Specification - Sampling</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/sampling#messages">MCP Specification - Sampling Messages</a>
  */
 public record SamplingMessage(
     Role role,

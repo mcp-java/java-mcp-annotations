@@ -21,7 +21,7 @@ import java.util.List;
  * Result of a completion request.
  *
  * @param completion the completion result
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/client/completion/#completion-result">MCP Specification - Completion Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/completion#completion-results">MCP Specification - Completion Results</a>
  */
 public record CompleteResult(
     Completion completion

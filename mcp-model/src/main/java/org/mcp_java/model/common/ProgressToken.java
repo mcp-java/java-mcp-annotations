@@ -19,7 +19,7 @@ package org.mcp_java.model.common;
  * A token used to track progress of long-running operations.
  * Can be either a string or a number.
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/utilities/#progress-token">MCP Specification - Progress Token</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/progress">MCP Specification - Progress Token</a>
  */
 public sealed interface ProgressToken permits ProgressToken.StringToken, ProgressToken.NumberToken {
 

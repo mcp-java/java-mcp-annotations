@@ -19,7 +19,7 @@ package org.mcp_java.model.common;
  * A unique identifier for a request in JSON-RPC.
  * Can be either a string or a number.
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/utilities/#request-id">MCP Specification - Request ID</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/schema#requestid">MCP Specification - Request ID</a>
  */
 public sealed interface RequestId permits RequestId.StringId, RequestId.NumberId {
 

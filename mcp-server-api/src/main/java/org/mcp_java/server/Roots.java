@@ -17,7 +17,7 @@ package org.mcp_java.server;
 
 import java.util.List;
 
-import org.mcp_java.model.root.Root;
+import org.mcp_java.model.roots.Root;
 
 /**
  * Provides access to the client's root directories.
@@ -42,7 +42,7 @@ import org.mcp_java.model.root.Root;
  * </pre>
  *
  * @see Root
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/roots/">MCP Specification - Roots</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/roots">MCP Specification - Roots</a>
  */
 public interface Roots {
 

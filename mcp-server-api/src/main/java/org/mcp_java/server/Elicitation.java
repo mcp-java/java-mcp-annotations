@@ -45,7 +45,7 @@ package org.mcp_java.server;
  * </pre>
  *
  * @see ElicitationRequest
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/elicitation/">MCP Specification - Elicitation</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/elicitation">MCP Specification - Elicitation</a>
  */
 public interface Elicitation {
 
