@@ -24,6 +24,7 @@ import java.util.List;
  * @param tools      the list of available tools
  * @param nextCursor optional cursor for pagination
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools#listing-tools">MCP Specification - Listing Tools</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/schema#listtoolsresult">MCP Schema Reference - ListToolsResult</a>
  */
 public record ListToolsResult(
     List<Tool> tools,
