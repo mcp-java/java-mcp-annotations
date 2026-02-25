@@ -17,16 +17,21 @@ package org.mcp_java.model.tool;
 
 import java.util.Map;
 
+import org.mcp_java.model.common.MetaKey;
+
 /**
  * Request to call a tool.
  *
  * @param name      the name of the tool to call
  * @param arguments the arguments to pass to the tool (optional)
+ * @param _meta     additional metadata sent with the call tool request
  * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/tools/#call-tool-request">MCP Specification - Call Tool Request</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/schema#calltoolrequest">MCP Schema Reference - CallToolRequest</a>
  */
 public record CallToolRequest(
     String name,
-    Map<String, Object> arguments
+    Map<String, Object> arguments,
+    Map<MetaKey, Object> _meta
 ) {
 
     /**
@@ -46,7 +51,7 @@ public record CallToolRequest(
      * @return new request
      */
     public static CallToolRequest of(String name, Map<String, Object> arguments) {
-        return new CallToolRequest(name, arguments);
+        return new CallToolRequest(name, arguments, null);
     }
 
     /**
@@ -56,6 +61,6 @@ public record CallToolRequest(
      * @return new request
      */
     public static CallToolRequest of(String name) {
-        return new CallToolRequest(name, null);
+        return new CallToolRequest(name, null, null);
     }
 }

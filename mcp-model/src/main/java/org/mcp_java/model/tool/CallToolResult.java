@@ -15,19 +15,26 @@
  */
 package org.mcp_java.model.tool;
 
+import org.mcp_java.model.common.MetaKey;
 import org.mcp_java.model.content.ContentBlock;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Result of calling a tool.
  *
  * @param content the result content blocks
+ * @param structuredContent the structured content of the tool result
  * @param isError whether the tool call resulted in an error
+ * @param _meta additional metadata sent with the tool result
  * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/tools/#call-tool-result">MCP Specification - Call Tool Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/schema#calltoolresult">MCP Schema Reference - CallToolResult</a>
  */
 public record CallToolResult(
     List<ContentBlock> content,
-    Boolean isError
+    Object structuredContent,
+    Boolean isError,
+    Map<MetaKey, Object> _meta
 ) {
 
     /**
@@ -46,9 +53,19 @@ public record CallToolResult(
      * @return a new success result
      */
     public static CallToolResult success(List<ContentBlock> content) {
-        return new CallToolResult(content, false);
+        return new CallToolResult(content, null, false, null);
     }
 
+    /**
+     * Creates a successful tool result with structured content
+     * 
+     * @param structuredContent the structured content
+     * @return a new success result
+     */
+    public static CallToolResult structuredSuccess(Object structuredContent) {
+    	return new CallToolResult(null, structuredContent, false, null);
+    }
+    
     /**
      * Creates an error tool result.
      *
@@ -56,6 +73,6 @@ public record CallToolResult(
      * @return a new error result
      */
     public static CallToolResult error(List<ContentBlock> content) {
-        return new CallToolResult(content, true);
+        return new CallToolResult(content, null, true, null);
     }
 }

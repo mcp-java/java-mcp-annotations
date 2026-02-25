@@ -17,18 +17,29 @@ package org.mcp_java.model.tool;
 
 import java.util.Map;
 
+import org.mcp_java.model.common.MetaKey;
+
 /**
  * A tool that can be invoked by the client.
  *
  * @param name        the unique name of the tool
- * @param description a human-readable description of what the tool does
+ * @param title       optional human-readable name for the tool
+ * @param description optional human-readable description of what the tool does
  * @param inputSchema JSON Schema for the tool's parameters
+ * @param outputSchema JSON Schema for the structured content part of the tool's output. {@code null} if the tool does not output structured content.
+ * @param annotations optional additional information about the tool
+ * @param _meta       optional additional metadata attached to this tool
  * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/tools/">MCP Specification - Tools</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/schema#tool">MCP Schema Reference - Tool</a>
  */
 public record Tool(
     String name,
+    String title,
     String description,
-    Map<String, Object> inputSchema
+    Object inputSchema,
+    Object outputSchema,
+    ToolAnnotations annotations,
+    Map<MetaKey, Object> _meta
 ) {
 
     /**
@@ -52,7 +63,7 @@ public record Tool(
      * @return a new tool
      */
     public static Tool of(String name, String description, Map<String, Object> inputSchema) {
-        return new Tool(name, description, inputSchema);
+        return new Tool(name, null, description, inputSchema, null, null, null);
     }
 
     /**
@@ -63,6 +74,6 @@ public record Tool(
      * @return a new tool
      */
     public static Tool of(String name, Map<String, Object> inputSchema) {
-        return new Tool(name, null, inputSchema);
+        return new Tool(name, null, null, inputSchema, null, null, null);
     }
 }
