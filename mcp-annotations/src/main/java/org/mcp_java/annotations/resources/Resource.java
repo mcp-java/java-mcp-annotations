@@ -38,7 +38,7 @@ import org.mcp_java.model.common.Role;
  * <li>Other types - Encoded according to framework-specific rules (typically as JSON)</li>
  * </ul>
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/">MCP Specification - Resources</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources">MCP Specification - Resources</a>
  * @see ResourceTemplate
  */
 @Target(ElementType.METHOD)

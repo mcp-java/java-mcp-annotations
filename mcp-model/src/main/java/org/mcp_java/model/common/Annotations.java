@@ -20,7 +20,7 @@ package org.mcp_java.model.common;
  *
  * @param audience The intended audience for this content (e.g., "user", "assistant")
  * @param priority A hint at the priority of this content (higher is more important)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/messages/#annotations">MCP Specification - Annotations</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources#annotations">MCP Specification - Annotations</a>
  */
 public record Annotations(
     String audience,

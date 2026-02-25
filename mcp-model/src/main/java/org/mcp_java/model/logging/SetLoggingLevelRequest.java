@@ -19,7 +19,7 @@ package org.mcp_java.model.logging;
  * Request to set the logging level.
  *
  * @param level the logging level to set
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/utilities/logging/#set-logging-level">MCP Specification - Set Logging Level</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/logging#setting-log-level">MCP Specification - Set Logging Level</a>
  */
 public record SetLoggingLevelRequest(
     LoggingLevel level

@@ -18,7 +18,7 @@ package org.mcp_java.model.common;
 /**
  * The role of a message sender in a conversation.
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/messages/#role">MCP Specification - Role</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/schema#role">MCP Specification - Role</a>
  */
 public enum Role {
     /**

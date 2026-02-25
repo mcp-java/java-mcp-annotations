@@ -22,7 +22,7 @@ package org.mcp_java.model.resource;
  * @param name        a human-readable name for resources matching this template
  * @param description a description of what resources matching this template contain (optional)
  * @param mimeType    the MIME type for resources matching this template (optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#resource-templates">MCP Specification - Resource Templates</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources/#resource-templates">MCP Specification - Resource Templates</a>
  */
 public record ResourceTemplate(
     String uriTemplate,

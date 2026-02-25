@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @param description a description of the prompt (optional)
  * @param messages    the messages in the prompt
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/prompts/#get-prompt-result">MCP Specification - Get Prompt Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts#getting-a-prompt">MCP Specification - Getting a Prompt</a>
  */
 public record GetPromptResult(
     String description,

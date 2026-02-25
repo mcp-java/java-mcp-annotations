@@ -22,7 +22,7 @@ import java.util.Map;
  *
  * @param name      the name of the prompt
  * @param arguments the arguments to pass to the prompt (optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/prompts/#get-prompt-request">MCP Specification - Get Prompt Request</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts#getting-a-prompt">MCP Specification - Getting a Prompt</a>
  */
 public record GetPromptRequest(
     String name,

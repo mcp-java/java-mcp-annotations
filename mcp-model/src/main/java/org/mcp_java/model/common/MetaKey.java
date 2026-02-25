@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  *
  * @param prefix the optional prefix (e.g., "modelcontextprotocol.io/")
  * @param name   the name segment
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/utilities/#metadata">MCP Specification - Metadata</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic#_meta">MCP Specification - Metadata</a>
  */
 public record MetaKey(String prefix, String name) {
 

@@ -23,7 +23,7 @@ import java.util.List;
  * @param name        the unique name of the prompt
  * @param description a description of what this prompt does (optional)
  * @param arguments   the arguments this prompt accepts (optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/prompts/">MCP Specification - Prompts</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts">MCP Specification - Prompts</a>
  */
 public record Prompt(
     String name,

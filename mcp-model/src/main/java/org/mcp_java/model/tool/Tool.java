@@ -23,7 +23,7 @@ import java.util.Map;
  * @param name        the unique name of the tool
  * @param description a human-readable description of what the tool does
  * @param inputSchema JSON Schema for the tool's parameters
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/tools/">MCP Specification - Tools</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools#tool">MCP Specification - Tool</a>
  */
 public record Tool(
     String name,

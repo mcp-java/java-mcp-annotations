@@ -18,7 +18,7 @@ package org.mcp_java.model.logging;
 /**
  * The severity level of a log message.
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/utilities/logging/">MCP Specification - Logging</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/logging#setting-log-level">MCP Specification - Log Levels</a>
  */
 public enum LoggingLevel {
     /**

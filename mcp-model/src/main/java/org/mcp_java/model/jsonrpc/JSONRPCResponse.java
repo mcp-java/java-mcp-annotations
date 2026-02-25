@@ -26,7 +26,7 @@ import org.mcp_java.model.common.RequestId;
  * @param result  the result of the method invocation (present if successful)
  * @param error   the error object (present if failed)
  * @see <a href="https://www.jsonrpc.org/specification#response_object">JSON-RPC 2.0 Response</a>
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/protocol/">MCP Specification - Protocol</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic">MCP Specification - Protocol</a>
  */
 public record JSONRPCResponse(
     String jsonrpc,

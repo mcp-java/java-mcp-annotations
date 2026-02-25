@@ -22,7 +22,7 @@ package org.mcp_java.model.root;
  * @param capabilities    the capabilities of the server
  * @param serverInfo      information about the server implementation
  * @param instructions    optional instructions for using this server
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/lifecycle/#initialize-result">MCP Specification - Initialize Result</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle#initialization">MCP Specification - Initialization</a>
  */
 public record InitializeResult(
     String protocolVersion,

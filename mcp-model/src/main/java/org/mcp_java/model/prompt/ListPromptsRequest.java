@@ -21,7 +21,7 @@ import org.mcp_java.model.common.Cursor;
  * Request to list available prompts.
  *
  * @param cursor optional cursor for pagination
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/prompts/#list-prompts-request">MCP Specification - List Prompts Request</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts#listing-prompts">MCP Specification - Listing Prompts</a>
  */
 public record ListPromptsRequest(
     Cursor cursor

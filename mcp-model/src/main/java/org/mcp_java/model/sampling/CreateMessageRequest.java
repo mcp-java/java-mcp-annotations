@@ -28,7 +28,7 @@ import java.util.List;
  * @param maxTokens        maximum tokens to generate
  * @param stopSequences    sequences that stop generation (optional)
  * @param metadata         additional metadata (optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/client/sampling/">MCP Specification - Sampling</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/sampling#creating-messages">MCP Specification - Creating Messages</a>
  */
 public record CreateMessageRequest(
     List<SamplingMessage> messages,

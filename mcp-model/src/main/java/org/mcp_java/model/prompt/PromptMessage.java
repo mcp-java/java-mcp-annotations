@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @param role    the role of the message sender
  * @param content the content blocks of the message
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/prompts/#prompt-messages">MCP Specification - Prompt Messages</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts#promptmessage">MCP Specification - Prompt Message</a>
  */
 public record PromptMessage(
     Role role,

@@ -20,7 +20,7 @@ package org.mcp_java.model.root;
  *
  * @param name    the name of the implementation
  * @param version the version of the implementation
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/lifecycle/#implementation-info">MCP Specification - Implementation Info</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle#initialization">MCP Specification - Initialization</a>
  */
 public record Implementation(
     String name,

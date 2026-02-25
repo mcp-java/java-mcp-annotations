@@ -20,7 +20,7 @@ package org.mcp_java.model.jsonrpc;
  * All messages must include the JSON-RPC version field.
  *
  * @see <a href="https://www.jsonrpc.org/specification">JSON-RPC 2.0 Specification</a>
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/protocol/">MCP Specification - Protocol</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic">MCP Specification - Protocol</a>
  */
 public interface JSONRPCMessage {
 

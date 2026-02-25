@@ -23,7 +23,7 @@ import org.mcp_java.model.common.Annotations;
  * @param type        the content type (always "text")
  * @param text        the text content
  * @param annotations optional annotations
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/messages/#text-content">MCP Specification - Text Content</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools#text-content">MCP Specification - Text Content</a>
  */
 public record TextContent(
     String type,

@@ -43,7 +43,7 @@ import org.mcp_java.model.common.Role;
  * Method parameters can be configured using {@link ResourceTemplateArg} annotations.
  * </p>
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/resources/#resource-templates">MCP Specification - Resource Templates</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources/#resource-templates">MCP Specification - Resource Templates</a>
  * @see <a href="https://datatracker.ietf.org/doc/html/rfc6570#section-1.2">RFC 6570 - URI Template</a>
  * @see Resource
  * @see ResourceTemplateArg

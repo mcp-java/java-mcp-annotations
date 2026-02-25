@@ -31,7 +31,7 @@ import org.mcp_java.model.content.ContentBlock;
  * @param stopReason the reason why sampling stopped, if known
  *
  * @see SamplingRequest
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/sampling/">MCP Specification - Sampling</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/sampling">MCP Specification - Sampling</a>
  */
 public record SamplingResponse(ContentBlock content, String model, Role role, String stopReason) {
 

@@ -20,7 +20,7 @@ package org.mcp_java.model.root;
  *
  * @param uri  the URI of the root
  * @param name a human-readable name for the root (optional)
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/client/roots/">MCP Specification - Roots</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/roots">MCP Specification - Roots</a>
  */
 public record Root(
     String uri,

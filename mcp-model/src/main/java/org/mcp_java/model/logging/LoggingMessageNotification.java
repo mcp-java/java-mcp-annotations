@@ -23,7 +23,7 @@ import java.util.Map;
  * @param level  the severity level of the message
  * @param logger the name of the logger (optional)
  * @param data   the log message data
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/utilities/logging/#logging-message">MCP Specification - Logging Message</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/logging#log-message-notifications">MCP Specification - Logging Message</a>
  */
 public record LoggingMessageNotification(
     LoggingLevel level,

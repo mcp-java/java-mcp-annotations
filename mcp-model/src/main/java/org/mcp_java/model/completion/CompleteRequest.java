@@ -20,7 +20,7 @@ package org.mcp_java.model.completion;
  *
  * @param ref      reference to what is being completed
  * @param argument the argument being completed
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/client/completion/">MCP Specification - Completion</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/completion#requesting-completions">MCP Specification - Requesting Completions</a>
  */
 public record CompleteRequest(
     CompletionRef ref,

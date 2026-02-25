@@ -24,7 +24,7 @@ import java.math.BigDecimal;
  * </p>
  *
  * @see Progress
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/utilities/#progress">MCP Specification - Progress</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/progress">MCP Specification - Progress</a>
  */
 public interface ProgressNotification {
 

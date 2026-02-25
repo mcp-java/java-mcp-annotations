@@ -22,7 +22,7 @@ package org.mcp_java.model.jsonrpc;
  * @param message a short description of the error
  * @param data    additional information about the error (optional)
  * @see <a href="https://www.jsonrpc.org/specification#error_object">JSON-RPC 2.0 Error Object</a>
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/basic/protocol/">MCP Specification - Protocol</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic">MCP Specification - Protocol</a>
  */
 public record JSONRPCError(
     int code,

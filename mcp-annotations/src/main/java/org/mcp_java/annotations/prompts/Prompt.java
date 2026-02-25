@@ -38,7 +38,7 @@ import java.lang.annotation.Target;
  * the prompt's argument schema.
  * </p>
  *
- * @see <a href="https://spec.modelcontextprotocol.io/specification/2025-11-05/server/prompts/">MCP Specification - Prompts</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts">MCP Specification - Prompts</a>
  * @see PromptArg
  */
 @Target(ElementType.METHOD)
