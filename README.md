@@ -4,7 +4,7 @@ A framework-agnostic Java library providing core annotations and APIs for implem
 
 ## Overview
 
-This repository provides common Java building blocks for MCP implementations without tying you to any specific runtime framework (Spring, Quarkus, Micronaut, Wildfly, Open Liberty, etc.). It enables developers to create portable MCP integrations that can work across different Java ecosystems.
+This repository provides common Java building blocks for MCP implementations without tying you to any specific runtime framework (Spring, Quarkus, Micronaut, WildFly, Open Liberty, etc.). It enables developers to create portable MCP integrations that can work across different Java ecosystems.
 
 ### What is MCP?
 
@@ -14,7 +14,7 @@ The Model Context Protocol (MCP) is an open protocol that standardizes how appli
 
 This repository is organized into three core modules:
 
-### `mcp-model` (72 classes)
+### `mcp-model`
 Complete Java model representing the MCP protocol specification:
 - **JSON-RPC**: Request, response, notification, and error types
 - **Tools**: Tool definitions, call requests/results, schemas
@@ -27,32 +27,42 @@ Complete Java model representing the MCP protocol specification:
 
 Package: `org.mcp_java.model.*`
 
-### `mcp-annotations` (17 classes)
+### `mcp-annotations`
 Framework-agnostic annotations for declaratively building MCP servers:
 
-**Tools** (`org.mcp_java.annotations.tools`):
+**Tools**:
 - `@Tool` - Mark methods as MCP tools
 - `@ToolArg` - Configure tool parameters
 
-**Resources** (`org.mcp_java.annotations.resources`):
+Package: `org.mcp_java.annotations.tools`
+
+**Resources**:
 - `@Resource` - Expose static resources
 - `@ResourceTemplate` - Expose dynamic resources with URI templates
 - `@ResourceTemplateArg` - Configure template URI variables
 
-**Prompts** (`org.mcp_java.annotations.prompts`):
+Package: `org.mcp_java.annotations.resources`
+
+**Prompts**:
 - `@Prompt` - Define reusable prompt templates
 - `@PromptArg` - Configure prompt arguments
 
-**Completion** (`org.mcp_java.annotations.completion`):
+Package: `org.mcp_java.annotations.prompts`
+
+**Completion**:
 - `@CompleteArg` - Customize completion argument names
 - `@CompletePrompt` - Provide completion for prompt arguments
 - `@CompleteResourceTemplate` - Provide completion for resource template URIs
 
-**Core** (`org.mcp_java.annotations`):
+Package: `org.mcp_java.annotations.completion`
+
+**Core**:
 - `@McpServer` - Mark classes as MCP server components
 - `@MetaField` - Add custom metadata to definitions
 
-### `mcp-server-api` (5 classes)
+Package: `org.mcp_java.annotations`
+
+### `mcp-server-api`
 Basic framework-agnostic runtime APIs for MCP server implementations:
 - `Cancellation` - Interface for handling request cancellation
 - `ClientCapability` - Representation of client capabilities
