@@ -34,29 +34,29 @@
  *
  * <h2>Progress Tracking</h2>
  * <ul>
- * <li>{@link org.mcp_java.server.Progress} - Progress reporting for long-running operations</li>
- * <li>{@link org.mcp_java.server.ProgressToken} - Progress token from client requests</li>
- * <li>{@link org.mcp_java.server.ProgressNotification} - Individual progress notifications</li>
- * <li>{@link org.mcp_java.server.ProgressTracker} - Stateful progress tracking</li>
+ * <li>{@link org.mcp_java.server.progress.Progress} - Progress reporting for long-running operations</li>
+ * <li>{@link org.mcp_java.server.progress.ProgressToken} - Progress token from client requests</li>
+ * <li>{@link org.mcp_java.server.progress.ProgressNotification} - Individual progress notifications</li>
+ * <li>{@link org.mcp_java.server.progress.ProgressTracker} - Stateful progress tracking</li>
  * </ul>
  *
  * <h2>LLM Sampling</h2>
  * <ul>
- * <li>{@link org.mcp_java.server.Sampling} - Request LLM sampling from client</li>
- * <li>{@link org.mcp_java.server.SamplingRequest} - Sampling request builder and sender</li>
- * <li>{@link org.mcp_java.server.SamplingResponse} - Sampling result from client</li>
+ * <li>{@link org.mcp_java.server.sampling.Sampling} - Request LLM sampling from client</li>
+ * <li>{@link org.mcp_java.server.sampling.SamplingRequest} - Sampling request builder and sender</li>
+ * <li>{@link org.mcp_java.server.sampling.SamplingResponse} - Sampling result from client</li>
  * </ul>
  *
  * <h2>User Elicitation</h2>
  * <ul>
- * <li>{@link org.mcp_java.server.Elicitation} - Request additional information from user</li>
- * <li>{@link org.mcp_java.server.ElicitationRequest} - Elicitation request with schema</li>
- * <li>{@link org.mcp_java.server.ElicitationResponse} - User-provided information</li>
+ * <li>{@link org.mcp_java.server.elicitation.Elicitation} - Request additional information from user</li>
+ * <li>{@link org.mcp_java.server.elicitation.ElicitationRequest} - Elicitation request with schema</li>
+ * <li>{@link org.mcp_java.server.elicitation.ElicitationResponse} - User-provided information</li>
  * </ul>
  *
  * <h2>Roots Access</h2>
  * <ul>
- * <li>{@link org.mcp_java.server.Roots} - Access to client's root directories</li>
+ * <li>{@link org.mcp_java.server.roots.Roots} - Access to client's root directories</li>
  * </ul>
  *
  * <h2>Framework-Agnostic Design</h2>
