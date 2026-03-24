@@ -8,9 +8,11 @@
         <groupId>org.mcp-java</groupId>
         <artifactId>mcp-java-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>mcp-server-api</artifactId>
+    <packaging>jar</packaging>
 
     <name>MCP Server API</name>
     <description>Framework-agnostic server APIs for building MCP servers</description>
