@@ -16,16 +16,6 @@
     <description>Framework-agnostic server APIs for building MCP servers</description>
 
     <dependencies>
-        <!-- Internal dependencies -->
-        <dependency>
-            <groupId>org.mcp-java</groupId>
-            <artifactId>mcp-model</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mcp-java</groupId>
-            <artifactId>mcp-annotations</artifactId>
-        </dependency>
-
         <!-- Test dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>

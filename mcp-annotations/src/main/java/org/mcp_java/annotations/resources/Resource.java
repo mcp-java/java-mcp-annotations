@@ -21,7 +21,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.mcp_java.model.common.Role;
+import org.mcp_java.server.Role;
 
 /**
  * Marks a method as providing an MCP resource.

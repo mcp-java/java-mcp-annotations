@@ -15,8 +15,12 @@
  */
 package org.mcp_java.server.sampling;
 
-import org.mcp_java.model.common.Role;
-import org.mcp_java.model.content.ContentBlock;
+import java.util.List;
+import java.util.Optional;
+
+import org.mcp_java.server.MetaCarrier;
+import org.mcp_java.server.Role;
+import org.mcp_java.server.content.SamplingMessageContentBlock;
 
 /**
  * A response to a {@link SamplingRequest}.
@@ -25,26 +29,36 @@ import org.mcp_java.model.content.ContentBlock;
  * the model used and why sampling stopped.
  * </p>
  *
- * @param content the sampled content (never null)
- * @param model the name of the model that generated the response (never null)
- * @param role the role of the message sender (never null)
- * @param stopReason the reason why sampling stopped, if known
- *
  * @see SamplingRequest
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/sampling">MCP Specification - Sampling</a>
  */
-public record SamplingResponse(ContentBlock content, String model, Role role, String stopReason) {
+public interface SamplingResponse extends MetaCarrier {
 
-    /** Creates a new sampling response, validating that content, model, and role are not null. */
-    public SamplingResponse {
-        if (content == null) {
-            throw new IllegalArgumentException("content must not be null");
-        }
-        if (model == null) {
-            throw new IllegalArgumentException("model must not be null");
-        }
-        if (role == null) {
-            throw new IllegalArgumentException("role must not be null");
-        }
-    }
+    /**
+     * Gets the sampled content
+     * 
+     * @return the sampled content (never null, never empty)
+     */
+    List<SamplingMessageContentBlock> content();
+
+    /**
+     * Gets the name of the model that generated the response
+     * 
+     * @return the name of the model that generated the response (never null)
+     */
+    String model();
+
+    /**
+     * Gets the role of the message sender
+     * 
+     * @return the role of the message sender (never null)
+     */
+    Role role();
+
+    /**
+     * Gets the reason why sampling stopped.
+     * 
+     * @return the reason why sampling stopped, or an empty {@code Optional} if not known
+     */
+    Optional<String> stopReason();
 }

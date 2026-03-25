@@ -28,13 +28,13 @@ package org.mcp_java.server.sampling;
  * &#64;Tool(description = "Generate text using client's LLM")
  * public String generateText(
  *         &#64;ToolArg(name = "prompt") String prompt,
- *         Sampling sampling) {
+ *         Sampling sampling,
+ *         Contents contents) {
  *     if (sampling.isSupported()) {
  *         SamplingRequest request = sampling.requestBuilder()
- *             .addMessage(SamplingMessage.withUserRole(prompt))
+ *             .addMessage(Role.USER, contents.textContentBuilder(prompt).build())
  *             .setMaxTokens(1000)
  *             .build();
- *         // Framework-specific: cast to Uni/Mono/CompletableFuture
  *         return request.sendAndAwait().content().text();
  *     }
  *     return "Sampling not supported";
@@ -42,7 +42,7 @@ package org.mcp_java.server.sampling;
  * </pre>
  *
  * @see SamplingRequest
- * @see org.mcp_java.model.sampling.SamplingMessage
+ * @see SamplingMessage
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/sampling">MCP Specification - Sampling</a>
  */
 public interface Sampling {
@@ -61,4 +61,11 @@ public interface Sampling {
      * @throws IllegalStateException if the client does not support sampling
      */
     SamplingRequest.Builder requestBuilder();
+    
+    /**
+     * Creates a new model preferences builder.
+     * 
+     * @return a new model preferences builder
+     */
+    ModelPreferences.Builder modelPreferenceBuilder();
 }

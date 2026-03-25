@@ -15,62 +15,16 @@
  */
 
 /**
- * Framework-agnostic server APIs for building MCP servers.
- * <p>
- * This package provides runtime interfaces and utilities that can be used by MCP server
- * implementations. These APIs are designed to be framework-independent and can be
- * implemented by any Java-based MCP server framework.
- * </p>
+ * Core APIs for writing MCP servers.
  *
- * <h2>Core APIs</h2>
  * <ul>
  * <li>{@link org.mcp_java.server.Cancellation} - Request cancellation handling</li>
- * <li>{@link org.mcp_java.server.ClientCapability} - Client capability representation</li>
  * <li>{@link org.mcp_java.server.ContentEncoder} - Custom content encoding</li>
  * <li>{@link org.mcp_java.server.McpException} - Base MCP exception</li>
- * <li>{@link org.mcp_java.server.McpConnection} - Connection metadata and status</li>
+ * <li>{@link org.mcp_java.server.McpConnection} - Connection metadata and status, including client capabilities</li>
  * <li>{@link org.mcp_java.server.McpLog} - Client-side logging</li>
+ * <li>{@link org.mcp_java.server.progress.Progress} - Progress reporting for long-running
+ * operations</li>
  * </ul>
- *
- * <h2>Progress Tracking</h2>
- * <ul>
- * <li>{@link org.mcp_java.server.progress.Progress} - Progress reporting for long-running operations</li>
- * <li>{@link org.mcp_java.server.progress.ProgressToken} - Progress token from client requests</li>
- * <li>{@link org.mcp_java.server.progress.ProgressNotification} - Individual progress notifications</li>
- * <li>{@link org.mcp_java.server.progress.ProgressTracker} - Stateful progress tracking</li>
- * </ul>
- *
- * <h2>LLM Sampling</h2>
- * <ul>
- * <li>{@link org.mcp_java.server.sampling.Sampling} - Request LLM sampling from client</li>
- * <li>{@link org.mcp_java.server.sampling.SamplingRequest} - Sampling request builder and sender</li>
- * <li>{@link org.mcp_java.server.sampling.SamplingResponse} - Sampling result from client</li>
- * </ul>
- *
- * <h2>User Elicitation</h2>
- * <ul>
- * <li>{@link org.mcp_java.server.elicitation.Elicitation} - Request additional information from user</li>
- * <li>{@link org.mcp_java.server.elicitation.ElicitationRequest} - Elicitation request with schema</li>
- * <li>{@link org.mcp_java.server.elicitation.ElicitationResponse} - User-provided information</li>
- * </ul>
- *
- * <h2>Roots Access</h2>
- * <ul>
- * <li>{@link org.mcp_java.server.roots.Roots} - Access to client's root directories</li>
- * </ul>
- *
- * <h2>Framework-Agnostic Design</h2>
- * <p>
- * These interfaces use generic types for reactive returns (e.g., {@code <T> T send()}).
- * Framework implementations should return their native reactive types:
- * </p>
- * <ul>
- * <li><strong>Quarkus</strong>: {@code Uni<T>} from SmallRye Mutiny</li>
- * <li><strong>Spring</strong>: {@code Mono<T>} from Project Reactor</li>
- * <li><strong>Standard Java</strong>: {@code CompletableFuture<T>}</li>
- * </ul>
- *
- * @see <a href="https://modelcontextprotocol.io">Model Context Protocol</a>
- * @see <a href="https://spec.modelcontextprotocol.io">MCP Specification</a>
  */
 package org.mcp_java.server;

@@ -18,7 +18,7 @@
         <!-- Internal dependencies -->
         <dependency>
             <groupId>org.mcp-java</groupId>
-            <artifactId>mcp-model</artifactId>
+            <artifactId>mcp-server-api</artifactId>
         </dependency>
 
         <!-- Test dependencies -->

@@ -147,7 +147,7 @@ public interface McpLog {
          * Parses a log level from a string value.
          *
          * @param value the string value
-         * @return the log level, or null if invalid
+         * @return the log level, or {@code null} if invalid
          */
         public static LogLevel from(String value) {
             if (value == null || value.isBlank()) {

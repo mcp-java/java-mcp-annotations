@@ -53,11 +53,21 @@ public interface Cancellation {
 
     /**
      * Result of a cancellation check.
-     *
-     * @param isRequested {@code true} if a client wants to cancel an in-progress request
-     * @param reason      an optional reason for cancellation
      */
-    record Result(boolean isRequested, Optional<String> reason) {
+    interface Result {
+        /**
+         * Gets whether the client wants to cancel an in-progress request
+         * 
+         * @return {@code true} if a client wants to cancel an in-progress request, {@code false} otherwise
+         */
+        boolean isRequested();
+
+        /**
+         * Gets the cancellation reason
+         * 
+         * @return an optional reason for cancellation
+         */
+        Optional<String> reason();
     }
 
     /**

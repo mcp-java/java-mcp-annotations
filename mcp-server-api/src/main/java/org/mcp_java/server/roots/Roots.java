@@ -17,8 +17,6 @@ package org.mcp_java.server.roots;
 
 import java.util.List;
 
-import org.mcp_java.model.roots.Root;
-
 /**
  * Provides access to the client's root directories.
  * <p>
