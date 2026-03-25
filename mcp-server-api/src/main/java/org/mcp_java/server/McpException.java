@@ -21,18 +21,35 @@ package org.mcp_java.server;
 public class McpException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
+    /** Creates a new exception with no detail message. */
     public McpException() {
         super();
     }
 
+    /**
+     * Creates a new exception with the given detail message.
+     *
+     * @param message the detail message
+     */
     public McpException(String message) {
         super(message);
     }
 
+    /**
+     * Creates a new exception with the given detail message and cause.
+     *
+     * @param message the detail message
+     * @param cause   the cause
+     */
     public McpException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * Creates a new exception with the given cause.
+     *
+     * @param cause the cause
+     */
     public McpException(Throwable cause) {
         super(cause);
     }

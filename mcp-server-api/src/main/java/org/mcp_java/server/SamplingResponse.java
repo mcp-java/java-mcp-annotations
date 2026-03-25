@@ -35,6 +35,7 @@ import org.mcp_java.model.content.ContentBlock;
  */
 public record SamplingResponse(ContentBlock content, String model, Role role, String stopReason) {
 
+    /** Creates a new sampling response, validating that content, model, and role are not null. */
     public SamplingResponse {
         if (content == null) {
             throw new IllegalArgumentException("content must not be null");

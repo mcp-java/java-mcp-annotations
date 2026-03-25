@@ -3,9 +3,9 @@ package org.mcp_java.model.common;
 /**
  * An execution model of a feature method.
  *
- * @see Tool
- * @see Prompt
- * @see Resource
+ * @see org.mcp_java.model.tool.Tool
+ * @see org.mcp_java.model.prompt.Prompt
+ * @see org.mcp_java.model.resource.Resource
  */
 public enum ExecutionModel {
 

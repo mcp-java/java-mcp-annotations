@@ -132,6 +132,8 @@ public @interface Resource {
     @interface Annotations {
         /**
          * The intended audience for this resource.
+         *
+         * @return the intended audience role
          */
         Role audience();
 

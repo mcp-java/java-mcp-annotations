@@ -37,6 +37,8 @@ public interface ContentEncoder<T> {
     ContentBlock encode(T object);
 
     /**
+     * Returns the type this encoder handles.
+     *
      * @return the type this encoder handles
      */
     Class<T> getType();

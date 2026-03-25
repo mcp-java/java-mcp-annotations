@@ -46,6 +46,7 @@ public record CompleteRequest(
      * @param name the name of the referenced item
      */
     public record CompletionRef(String type, String name) {
+        /** Creates a new completion reference, validating type and name are not blank. */
         public CompletionRef {
             if (type == null || type.isBlank()) {
                 throw new IllegalArgumentException("Type cannot be null or blank");
@@ -63,6 +64,7 @@ public record CompleteRequest(
      * @param value the current partial value
      */
     public record CompleteArgument(String name, String value) {
+        /** Creates a new complete argument, validating name is not blank and value is not null. */
         public CompleteArgument {
             if (name == null || name.isBlank()) {
                 throw new IllegalArgumentException("Name cannot be null or blank");

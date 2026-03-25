@@ -22,6 +22,7 @@ package org.mcp_java.model.common;
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/pagination">MCP Specification - Pagination</a>
  */
 public record Cursor(String value) {
+    /** Creates a new cursor, validating the value is not null or blank. */
     public Cursor {
         if (value == null || value.isBlank()) {
             throw new IllegalArgumentException("Cursor value cannot be null or blank");

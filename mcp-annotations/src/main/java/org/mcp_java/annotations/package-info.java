@@ -24,16 +24,16 @@
  *
  * <h2>Core Annotations</h2>
  * <ul>
- * <li>{@link dev.mcp_java.annotations.McpServer @McpServer} - Marks a class as an MCP server component</li>
- * <li>{@link dev.mcp_java.annotations.MetaField @MetaField} - Adds custom metadata fields to MCP definitions</li>
+ * <li>{@link org.mcp_java.annotations.McpServer @McpServer} - Marks a class as an MCP server component</li>
+ * <li>{@link org.mcp_java.annotations.MetaField @MetaField} - Adds custom metadata fields to MCP definitions</li>
  * </ul>
  *
  * <h2>Sub-packages</h2>
  * <ul>
- * <li>{@link dev.mcp_java.annotations.tools} - Annotations for defining MCP tools</li>
- * <li>{@link dev.mcp_java.annotations.resources} - Annotations for defining MCP resources</li>
- * <li>{@link dev.mcp_java.annotations.prompts} - Annotations for defining MCP prompts</li>
- * <li>{@link dev.mcp_java.annotations.completion} - Annotations for auto-completion functionality</li>
+ * <li>{@link org.mcp_java.annotations.tools} - Annotations for defining MCP tools</li>
+ * <li>{@link org.mcp_java.annotations.resources} - Annotations for defining MCP resources</li>
+ * <li>{@link org.mcp_java.annotations.prompts} - Annotations for defining MCP prompts</li>
+ * <li>{@link org.mcp_java.annotations.completion} - Annotations for auto-completion functionality</li>
  * </ul>
  *
  * @see <a href="https://modelcontextprotocol.io">Model Context Protocol</a>

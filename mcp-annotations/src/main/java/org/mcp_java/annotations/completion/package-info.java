@@ -19,8 +19,8 @@
  * <p>
  * Completion annotations allow you to define methods that provide completion
  * suggestions for prompt arguments and resource template URI expressions.
- * Use {@link dev.mcp_java.annotations.completion.CompletePrompt @CompletePrompt} for prompt
- * completions and {@link dev.mcp_java.annotations.completion.CompleteResourceTemplate @CompleteResourceTemplate}
+ * Use {@link org.mcp_java.annotations.completion.CompletePrompt @CompletePrompt} for prompt
+ * completions and {@link org.mcp_java.annotations.completion.CompleteResourceTemplate @CompleteResourceTemplate}
  * for resource template completions.
  * </p>
  *

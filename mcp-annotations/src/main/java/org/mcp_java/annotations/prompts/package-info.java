@@ -18,8 +18,8 @@
  * Annotations for defining MCP prompts.
  * <p>
  * Prompts are reusable message templates that can be used by MCP clients.
- * Use {@link dev.mcp_java.annotations.prompts.Prompt @Prompt} to mark methods as prompts
- * and {@link dev.mcp_java.annotations.prompts.PromptArg @PromptArg} to configure their arguments.
+ * Use {@link org.mcp_java.annotations.prompts.Prompt @Prompt} to mark methods as prompts
+ * and {@link org.mcp_java.annotations.prompts.PromptArg @PromptArg} to configure their arguments.
  * </p>
  *
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts">MCP Specification - Prompts</a>

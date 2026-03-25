@@ -29,6 +29,7 @@ public sealed interface ProgressToken permits ProgressToken.StringToken, Progres
      * @param value the string value
      */
     record StringToken(String value) implements ProgressToken {
+        /** Creates a new string-based progress token, validating the value is not null. */
         public StringToken {
             if (value == null) {
                 throw new IllegalArgumentException("Progress token value cannot be null");

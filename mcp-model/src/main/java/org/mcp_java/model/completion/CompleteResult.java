@@ -48,6 +48,7 @@ public record CompleteResult(
         Integer total,
         Boolean hasMore
     ) {
+        /** Creates a new completion, validating values is not null. */
         public Completion {
             if (values == null) {
                 throw new IllegalArgumentException("Values cannot be null");

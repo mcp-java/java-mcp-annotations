@@ -189,6 +189,8 @@ public @interface Tool {
     @interface Annotations {
         /**
          * A human-readable title for the tool.
+         *
+         * @return the tool title
          */
         String title() default "";
 
@@ -250,6 +252,9 @@ public @interface Tool {
          * The generator class. Implementation classes must be CDI beans. Qualifiers are ignored.
          * <p>
          * By default, the built-in generator is used.
+         * </p>
+         *
+         * @return the generator class name
          */
         String generator() default "";
     }
@@ -267,6 +272,9 @@ public @interface Tool {
          * The class from which the schema is generated.
          * <p>
          * If {@link Tool#structuredContent()} is set to {@code true} then the return type may be used for schema generation.
+         * </p>
+         *
+         * @return the class to use for schema generation
          */
         Class<?> from() default OutputSchema.class;
 
@@ -274,6 +282,9 @@ public @interface Tool {
          * The generator class. Implementation classes must be CDI beans. Qualifiers are ignored.
          * <p>
          * By default, the built-in generator is used.
+         * </p>
+         *
+         * @return the generator class name
          */
         String generator() default "";
     }

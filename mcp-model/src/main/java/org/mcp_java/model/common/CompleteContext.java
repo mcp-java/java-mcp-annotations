@@ -3,11 +3,8 @@ package org.mcp_java.model.common;
 import java.util.Map;
 
 /**
- * A {@link CompletePrompt} or {@link CompleteResourceTemplate} method may accept this class as a parameter. It will be
+ * A {@code @CompletePrompt} or {@code @CompleteResourceTemplate} method may accept this class as a parameter. It will be
  * automatically injected before the method is invoked.
- *
- * @see CompletePrompt
- * @see CompleteResourceTemplate
  */
 public interface CompleteContext {
 

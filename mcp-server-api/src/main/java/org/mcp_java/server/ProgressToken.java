@@ -21,10 +21,12 @@ package org.mcp_java.server;
  * Progress tokens can be either strings or numbers, as defined by the MCP specification.
  * </p>
  *
+ * @param value the token value, which must be a {@link String} or a {@link Number}
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/progress">MCP Specification - Progress</a>
  */
 public record ProgressToken(Object value) {
 
+    /** Creates a new progress token, validating the value is a string or number. */
     public ProgressToken {
         if (!(value instanceof String) && !(value instanceof Number)) {
             throw new IllegalArgumentException("Token must be a string or a number");

@@ -66,10 +66,16 @@ public interface Cancellation {
     class OperationCancelledException extends RuntimeException {
         private static final long serialVersionUID = 1L;
 
+        /** Creates a new exception with no detail message. */
         public OperationCancelledException() {
             super();
         }
 
+        /**
+         * Creates a new exception with the given detail message.
+         *
+         * @param message the detail message
+         */
         public OperationCancelledException(String message) {
             super(message);
         }

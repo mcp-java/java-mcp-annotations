@@ -29,6 +29,7 @@ public sealed interface RequestId permits RequestId.StringId, RequestId.NumberId
      * @param value the string value
      */
     record StringId(String value) implements RequestId {
+        /** Creates a new string-based request ID, validating the value is not null. */
         public StringId {
             if (value == null) {
                 throw new IllegalArgumentException("Request ID value cannot be null");

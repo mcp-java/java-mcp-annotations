@@ -19,6 +19,9 @@ import java.util.Map;
 
 /**
  * Represents a capability supported by an MCP client.
+ *
+ * @param name       the capability name (e.g., {@link #ROOTS}, {@link #SAMPLING})
+ * @param properties additional properties of the capability, or {@code null} if none
  */
 public record ClientCapability(String name, Map<String, Object> properties) {
 
