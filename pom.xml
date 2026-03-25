@@ -143,10 +143,12 @@
                     <version>${maven-release-plugin.version}</version>
                     <configuration>
                         <tagNameFormat>@{project.version}</tagNameFormat>
+                        <localCheckout>true</localCheckout>
+                        <pushChanges>false</pushChanges>
+                        <remoteTagging>false</remoteTagging>
                         <preparationGoals>clean install</preparationGoals>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <releaseProfiles>release</releaseProfiles>
-                        <useReleaseProfile>true</useReleaseProfile>
                     </configuration>
                 </plugin>
                 <plugin>
