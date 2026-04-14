@@ -13,11 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.server;
+package org.mcp_java.server.roots;
 
 import java.util.List;
-
-import org.mcp_java.model.roots.Root;
 
 /**
  * Provides access to the client's root directories.

@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.server;
+package org.mcp_java.server.sampling;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
-import org.mcp_java.model.sampling.ModelPreferences;
-import org.mcp_java.model.sampling.SamplingMessage;
+import org.mcp_java.server.MetaCarrier;
+import org.mcp_java.server.Role;
+import org.mcp_java.server.content.SamplingMessageContentBlock;
 
 /**
  * A request from the server to sample an LLM via the client.
@@ -34,7 +36,7 @@ import org.mcp_java.model.sampling.SamplingMessage;
  * @see Sampling
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/sampling">MCP Specification - Sampling</a>
  */
-public interface SamplingRequest {
+public interface SamplingRequest extends MetaCarrier {
 
     /**
      * Gets the maximum number of tokens to sample.
@@ -46,51 +48,44 @@ public interface SamplingRequest {
     /**
      * Gets the sampling messages (conversation history).
      *
-     * @return the messages (never null)
+     * @return the messages
      */
     List<SamplingMessage> messages();
 
     /**
      * Gets the stop sequences.
      *
-     * @return the stop sequences, or null if not set
+     * @return the stop sequences, may be empty
      */
     List<String> stopSequences();
 
     /**
      * Gets the system prompt.
      *
-     * @return the system prompt, or null if not set
+     * @return the system prompt, or an empty {@code Optional} if not set
      */
-    String systemPrompt();
+    Optional<String> systemPrompt();
 
     /**
      * Gets the temperature parameter for sampling.
      *
-     * @return the temperature, or null if not set
+     * @return the temperature, or an empty {@code Optional} if not set
      */
-    BigDecimal temperature();
+    Optional<BigDecimal> temperature();
 
     /**
      * Gets the context inclusion setting.
      *
-     * @return the context inclusion setting, or null if not set
+     * @return the context inclusion setting, or an empty {@code Optional} if not set
      */
-    IncludeContext includeContext();
+    Optional<IncludeContext> includeContext();
 
     /**
      * Gets the model preferences.
      *
-     * @return the model preferences, or null if not set
+     * @return the model preferences, or an empty {@code Optional} if not set
      */
-    ModelPreferences modelPreferences();
-
-    /**
-     * Gets the optional metadata.
-     *
-     * @return the metadata map (never null, but may be empty)
-     */
-    Map<String, Object> metadata();
+    Optional<ModelPreferences> modelPreferences();
 
     /**
      * Sends the sampling request to the client asynchronously.
@@ -164,15 +159,16 @@ public interface SamplingRequest {
     /**
      * Builder for creating sampling requests.
      */
-    interface Builder {
+    interface Builder extends MetaCarrier.Builder<Builder> {
 
         /**
          * Adds a message to the conversation.
          *
-         * @param message the message to add
+         * @param role the sender of the message
+         * @param contents the contents of the message
          * @return this builder
          */
-        Builder addMessage(SamplingMessage message);
+        Builder addMessage(Role role, SamplingMessageContentBlock... contents);
 
         /**
          * Sets the maximum number of tokens to sample.
@@ -213,14 +209,6 @@ public interface SamplingRequest {
          * @return this builder
          */
         Builder setModelPreferences(ModelPreferences modelPreferences);
-
-        /**
-         * Sets the metadata.
-         *
-         * @param metadata the metadata map
-         * @return this builder
-         */
-        Builder setMetadata(Map<String, Object> metadata);
 
         /**
          * Sets the stop sequences.

@@ -15,7 +15,11 @@
  */
 package org.mcp_java.server;
 
-import org.mcp_java.model.lifecycle.InitializeRequest;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.mcp_java.server.sampling.Sampling;
 
 /**
  * Represents a connection from an MCP client to the server.
@@ -26,17 +30,17 @@ import org.mcp_java.model.lifecycle.InitializeRequest;
  * <p>
  * Example usage:
  * </p>
+ * 
  * <pre>
  * &#64;Tool(description = "Get connection info")
  * public String getConnectionInfo(McpConnection connection) {
  *     return String.format("Client: %s, Protocol: %s, Status: %s",
- *         connection.initialRequest().clientInfo().name(),
- *         connection.initialRequest().protocolVersion(),
- *         connection.status());
+ *                          connection.clientInfo().name(),
+ *                          connection.protocolVersion(),
+ *                          connection.status());
  * }
  * </pre>
  *
- * @see InitializeRequest
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle">MCP Specification - Lifecycle</a>
  */
 public interface McpConnection {
@@ -56,11 +60,27 @@ public interface McpConnection {
     Status status();
 
     /**
-     * Gets the initial request sent by the client during initialization.
-     *
-     * @return the initial request (never null)
+     * Gets the protocol version in use for this connection.
+     * 
+     * @return the protocol version
      */
-    InitializeRequest initialRequest();
+    String protocolVersion();
+
+    /**
+     * Gets the capabilities which the client supports.
+     * <p>
+     * Usually the information in this map should be queried via other mechanisms. E.g. {@link Sampling#isSupported()}
+     * 
+     * @return the raw map of supported capabilities reported by the client
+     */
+    Map<String, Object> rawClientCapabilities();
+
+    /**
+     * Gets the description of the client, as reported during initialization
+     * 
+     * @return the client information
+     */
+    ImplementationInfo clientInfo();
 
     /**
      * Gets the current log level for this connection.
@@ -103,5 +123,52 @@ public interface McpConnection {
         public boolean isClientInitialized() {
             return this == IN_OPERATION;
         }
+    }
+
+    /**
+     * Provides information about a client implementation
+     */
+    public interface ImplementationInfo {
+        /**
+         * Returns a list of icons for this client, may be empty
+         * 
+         * @return the list of icons
+         */
+        List<Icon> icons();
+
+        /**
+         * Returns the client name
+         * 
+         * @return the name
+         */
+        String name();
+
+        /**
+         * Returns a human-readable name for the client
+         * 
+         * @return the human readable name, may be the same as {@code name}
+         */
+        String title();
+
+        /**
+         * Returns the client version
+         *
+         * @return the client version
+         */
+        String version();
+
+        /**
+         * Returns a human readable description of the client
+         * 
+         * @return the description
+         */
+        Optional<String> description();
+
+        /**
+         * Returns the URL of the client's website
+         * 
+         * @return the client's URL
+         */
+        Optional<String> websiteUrl();
     }
 }

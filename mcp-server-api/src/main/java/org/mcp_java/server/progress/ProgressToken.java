@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.server;
+package org.mcp_java.server.progress;
 
 /**
  * The progress token sent by the client in a request.
@@ -21,26 +21,16 @@ package org.mcp_java.server;
  * Progress tokens can be either strings or numbers, as defined by the MCP specification.
  * </p>
  *
- * @param value the token value, which must be a {@link String} or a {@link Number}
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/progress">MCP Specification - Progress</a>
  */
-public record ProgressToken(Object value) {
-
-    /** Creates a new progress token, validating the value is a string or number. */
-    public ProgressToken {
-        if (!(value instanceof String) && !(value instanceof Number)) {
-            throw new IllegalArgumentException("Token must be a string or a number");
-        }
-    }
+public interface ProgressToken {
 
     /**
      * Gets the type of this progress token.
      *
      * @return the token type
      */
-    public Type type() {
-        return value instanceof String ? Type.STRING : Type.INTEGER;
-    }
+    Type type();
 
     /**
      * Gets the token value as a number.
@@ -48,22 +38,14 @@ public record ProgressToken(Object value) {
      * @return the numeric value
      * @throws IllegalArgumentException if the token is not a number
      */
-    public Number asInteger() {
-        if (value instanceof Number number) {
-            return number;
-        } else {
-            throw new IllegalArgumentException("Token is not a number");
-        }
-    }
+    Number asInteger();
 
     /**
      * Gets the token value as a string.
      *
      * @return the string representation
      */
-    public String asString() {
-        return value.toString();
-    }
+    String asString();
 
     /**
      * The type of progress token.

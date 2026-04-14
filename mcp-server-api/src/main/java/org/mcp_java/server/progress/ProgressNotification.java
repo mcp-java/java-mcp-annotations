@@ -13,9 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.server;
+package org.mcp_java.server.progress;
 
 import java.math.BigDecimal;
+import java.util.Optional;
+
+import org.mcp_java.server.MetaCarrier;
 
 /**
  * Represents a {@code notifications/progress} message to send to the client.
@@ -24,9 +27,10 @@ import java.math.BigDecimal;
  * </p>
  *
  * @see Progress
- * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/progress">MCP Specification - Progress</a>
+ * @see <a
+ * href="https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/progress">MCP Specification - Progress</a>
  */
-public interface ProgressNotification {
+public interface ProgressNotification extends MetaCarrier {
 
     /**
      * Gets the original progress token from the request.
@@ -38,9 +42,9 @@ public interface ProgressNotification {
     /**
      * Gets the total expected value for the operation.
      *
-     * @return the total value, or null if not set
+     * @return the total value, or an empty {@code Optional} if not set
      */
-    BigDecimal total();
+    Optional<BigDecimal> total();
 
     /**
      * Gets the current progress value.
@@ -52,9 +56,9 @@ public interface ProgressNotification {
     /**
      * Gets the progress message.
      *
-     * @return the message, or null if not set
+     * @return the message, or an empty {@code Optional} if not set
      */
-    String message();
+    Optional<String> message();
 
     /**
      * Sends the progress notification to the client without waiting for acknowledgment.
@@ -84,7 +88,7 @@ public interface ProgressNotification {
     /**
      * Builder for creating progress notifications.
      */
-    interface Builder {
+    interface Builder extends MetaCarrier.Builder<Builder> {
 
         /**
          * Sets the current progress value.

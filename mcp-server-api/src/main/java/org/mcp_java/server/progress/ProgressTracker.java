@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.server;
+package org.mcp_java.server.progress;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 import java.util.function.Function;
 
 /**
@@ -103,21 +104,21 @@ public interface ProgressTracker {
     /**
      * Gets the current progress value.
      *
-     * @return the current progress (never null)
+     * @return the current progress
      */
     BigDecimal progress();
 
     /**
      * Gets the expected total value.
      *
-     * @return the total value, or null if not set
+     * @return the total value, or an empty {@code Optional} if not set
      */
-    BigDecimal total();
+    Optional<BigDecimal> total();
 
     /**
      * Gets the default step value used by {@link #advanceAndForget()}.
      *
-     * @return the default step (never null)
+     * @return the default step
      */
     BigDecimal step();
 

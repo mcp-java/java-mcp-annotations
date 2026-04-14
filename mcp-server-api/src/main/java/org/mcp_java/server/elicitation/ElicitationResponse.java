@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.server;
+package org.mcp_java.server.elicitation;
 
 import java.util.List;
 import java.util.Map;
+
+import org.mcp_java.server.MetaCarrier;
 
 /**
  * A response to an {@link ElicitationRequest}.
@@ -28,19 +30,19 @@ import java.util.Map;
  * @see ElicitationRequest
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/elicitation">MCP Specification - Elicitation</a>
  */
-public interface ElicitationResponse {
+public interface ElicitationResponse extends MetaCarrier {
 
     /**
      * Gets the action taken by the user.
      *
-     * @return the action (never null)
+     * @return the action
      */
     Action action();
 
     /**
      * Gets the elicited content.
      *
-     * @return the content (never null)
+     * @return the content
      */
     Content content();
 
@@ -82,7 +84,7 @@ public interface ElicitationResponse {
          * Gets a boolean value from the elicited content.
          *
          * @param key the field name
-         * @return the boolean value, or null if not present
+         * @return the boolean value, or {@code null} if not present
          */
         Boolean getBoolean(String key);
 
@@ -90,7 +92,7 @@ public interface ElicitationResponse {
          * Gets a string value from the elicited content.
          *
          * @param key the field name
-         * @return the string value, or null if not present
+         * @return the string value, or {@code null} if not present
          */
         String getString(String key);
 
@@ -98,7 +100,7 @@ public interface ElicitationResponse {
          * Gets a list of string values from the elicited content.
          *
          * @param key the field name
-         * @return the list of strings, or null if not present
+         * @return the list of strings, or {@code null} if not present
          */
         List<String> getStrings(String key);
 
@@ -106,7 +108,7 @@ public interface ElicitationResponse {
          * Gets an integer value from the elicited content.
          *
          * @param key the field name
-         * @return the integer value, or null if not present
+         * @return the integer value, or {@code null} if not present
          */
         Integer getInteger(String key);
 
@@ -114,7 +116,7 @@ public interface ElicitationResponse {
          * Gets a numeric value from the elicited content.
          *
          * @param key the field name
-         * @return the number value, or null if not present
+         * @return the number value, or {@code null} if not present
          */
         Number getNumber(String key);
 

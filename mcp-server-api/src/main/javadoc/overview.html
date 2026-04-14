@@ -1,0 +1,71 @@
+<!--
+Copyright 2026 the original author or authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html>
+
+<body>
+    Framework-agnostic server APIs for building MCP servers.
+    <p>
+        This package provides runtime interfaces and utilities that can be used by MCP server
+        implementations. These APIs are designed to be framework-independent and can be
+        implemented by any Java-based MCP server framework.
+    </p>
+
+    <h1>Core APIs</h1>
+    <ul>
+        <li>{@link org.mcp_java.server.Cancellation} - Request cancellation handling</li>
+        <li>{@link org.mcp_java.server.ContentEncoder} - Custom content encoding</li>
+        <li>{@link org.mcp_java.server.McpException} - Base MCP exception</li>
+        <li>{@link org.mcp_java.server.McpConnection} - Connection metadata and status, including client capabilities
+        </li>
+        <li>{@link org.mcp_java.server.McpLog} - Client-side logging</li>
+        <li>{@link org.mcp_java.server.progress.Progress} - Progress reporting for long-running
+            operations</li>
+    </ul>
+
+    <h1>Access to client features</h1>
+    <ul>
+        <li>{@link org.mcp_java.server.sampling.Sampling} - Request LLM sampling from client</li>
+        <li>{@link org.mcp_java.server.elicitation.Elicitation} - Request additional information from user</li>
+        <li>{@link org.mcp_java.server.roots.Roots} - Access to client's root directories</li>
+    </ul>
+
+    <h1>Responses for server features</h1>
+    <p>These APIs are intended for use with the corresponding annotations.
+    <ul>
+        <li>{@link org.mcp_java.server.prompts.Prompts} - Build responses to prompt requests</li>
+        <li>{@link org.mcp_java.server.resources.Resources} - Build responses to resource requests</li>
+        <li>{@link org.mcp_java.server.tools.Tools} - Build responses to tool calls</li>
+        <li>{@link org.mcp_java.server.content.Contents} - Build content blocks for inclusion in resources and tool call
+            responses</li>
+        <li>{@link org.mcp_java.server.completion.Completions} - Build responses to completion requests</li>
+    </ul>
+
+    <h1>Framework-Agnostic Design</h1>
+    <p>
+        These interfaces use generic types for reactive returns (e.g., {@code <T> T send()}).
+            Framework implementations should return their native reactive types:
+    </p>
+    <ul>
+        <li><strong>Quarkus</strong>: {@code Uni<T>} from SmallRye Mutiny</li>
+        <li><strong>Spring</strong>: {@code Mono<T>} from Project Reactor</li>
+        <li><strong>Standard Java</strong>: {@code CompletableFuture<T>}</li>
+    </ul>
+
+    @see <a href="https://modelcontextprotocol.io">Model Context Protocol</a>
+    @see <a href="https://spec.modelcontextprotocol.io">MCP Specification</a>
+</body>
+
+</html>

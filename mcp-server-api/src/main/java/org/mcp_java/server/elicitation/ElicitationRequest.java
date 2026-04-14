@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.server;
+package org.mcp_java.server.elicitation;
 
 import java.time.Duration;
 import java.util.Map;
+
+import org.mcp_java.server.MetaCarrier;
 
 /**
  * A request from the server to obtain additional information from the client.
@@ -28,7 +30,7 @@ import java.util.Map;
  * @see Elicitation
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/client/elicitation">MCP Specification - Elicitation</a>
  */
-public interface ElicitationRequest {
+public interface ElicitationRequest extends MetaCarrier {
 
     /**
      * Gets the message to display to the user.
@@ -73,7 +75,7 @@ public interface ElicitationRequest {
     /**
      * Builder for creating elicitation requests.
      */
-    interface Builder {
+    interface Builder extends MetaCarrier.Builder<Builder> {
 
         /**
          * Sets the message to display to the user.
