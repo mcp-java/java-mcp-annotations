@@ -18,10 +18,10 @@
  * Annotations for defining MCP tools.
  * <p>
  * Tools are executable functions that can be invoked by MCP clients.
- * Use {@link org.mcp_java.annotations.tools.Tool @Tool} to mark methods as tools
- * and {@link org.mcp_java.annotations.tools.ToolArg @ToolArg} to configure their parameters.
+ * Use {@link org.mcp_java.server.tools.annotations.Tool @Tool} to mark methods as tools
+ * and {@link org.mcp_java.server.tools.annotations.ToolArg @ToolArg} to configure their parameters.
  * </p>
  *
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools">MCP Specification - Tools</a>
  */
-package org.mcp_java.annotations.tools;
+package org.mcp_java.server.tools.annotations;

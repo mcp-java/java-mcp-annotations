@@ -19,6 +19,7 @@
  * <p>
  * Use {@link org.mcp_java.server.resources.Resources Resources} to start building
  * {@link org.mcp_java.server.resources.ResourceResponse ResourceResponses} which can be returned
- * from {@code @Resource} or {@code @ResourceTemplate} annotated methods.
+ * from {@link org.mcp_java.server.resources.annotations.Resource @Resource} or
+ * {@link org.mcp_java.server.resources.annotations.ResourceTemplate @ResourceTemplate}-annotated methods.
  */
 package org.mcp_java.server.resources;

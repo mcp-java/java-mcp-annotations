@@ -13,13 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations.tools;
+package org.mcp_java.server.tools.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import org.mcp_java.server.content.ContentBlock;
+import org.mcp_java.server.tools.ToolResponse;
 
 /**
  * Marks a method as an MCP tool that can be invoked by clients.
@@ -37,9 +40,10 @@ import java.lang.annotation.Target;
  * The annotated method can return various types that will be converted to MCP tool responses:
  * </p>
  * <ul>
- * <li>String - Converted to a text content response</li>
- * <li>Content implementations - Used directly in the response</li>
- * <li>List of Content or String - Multiple content items in the response</li>
+ * <li>{@code String} - Converted to a text content response</li>
+ * <li>{@link ContentBlock} implementations - Used directly in the response</li>
+ * <li>List of {@link ContentBlock} or String - Multiple content items in the response</li>
+ * <li>{@link ToolResponse} - Used directly as the response</li>
  * <li>Other types - Encoded according to framework-specific rules (typically as JSON)</li>
  * </ul>
  *

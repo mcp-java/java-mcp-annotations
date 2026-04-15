@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations.resources;
+package org.mcp_java.server.resources.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -22,6 +22,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.mcp_java.server.Role;
+import org.mcp_java.server.resources.ResourceContents;
+import org.mcp_java.server.resources.ResourceResponse;
 
 /**
  * Marks a method as providing an MCP resource.
@@ -31,10 +33,11 @@ import org.mcp_java.server.Role;
  * framework-specific rules:
  * </p>
  * <ul>
- * <li>String - Converted to text resource contents</li>
- * <li>byte[] - Converted to blob resource contents</li>
- * <li>ResourceContents implementations - Used directly in the response</li>
- * <li>List of ResourceContents - Multiple content items in the response</li>
+ * <li>{@code String} - Converted to text resource contents</li>
+ * <li>{@code byte[]} - Converted to blob resource contents</li>
+ * <li>{@link ResourceContents} implementations - Used directly in the response</li>
+ * <li>List of {@link ResourceContents} - Multiple content items in the response</li>
+ * <li>{@link ResourceResponse} - Used directly as the response</li>
  * <li>Other types - Encoded according to framework-specific rules (typically as JSON)</li>
  * </ul>
  *
@@ -47,7 +50,8 @@ import org.mcp_java.server.Role;
 public @interface Resource {
 
     /**
-     * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
+     * Constant value for {@link #name()} indicating that the annotated element's name should be
+     * used as-is.
      */
     String ELEMENT_NAME = "<<element name>>";
 
@@ -124,7 +128,8 @@ public @interface Resource {
     /**
      * Nested annotation for resource metadata annotations.
      * <p>
-     * These provide hints to clients about the resource's audience, modification time, and priority.
+     * These provide hints to clients about the resource's audience, modification time, and
+     * priority.
      * </p>
      */
     @Target(ElementType.ANNOTATION_TYPE)

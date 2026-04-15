@@ -18,11 +18,11 @@
  * Annotations for defining MCP resources and resource templates.
  * <p>
  * Resources are data sources that can be read by MCP clients. Use
- * {@link org.mcp_java.annotations.resources.Resource @Resource} for static resources and
- * {@link org.mcp_java.annotations.resources.ResourceTemplate @ResourceTemplate} for dynamic
+ * {@link org.mcp_java.server.resources.annotations.Resource @Resource} for static resources and
+ * {@link org.mcp_java.server.resources.annotations.ResourceTemplate @ResourceTemplate} for dynamic
  * resources with URI templates.
  * </p>
  *
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources">MCP Specification - Resources</a>
  */
-package org.mcp_java.annotations.resources;
+package org.mcp_java.server.resources.annotations;

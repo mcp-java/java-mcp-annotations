@@ -19,11 +19,11 @@
  * <p>
  * Completion annotations allow you to define methods that provide completion
  * suggestions for prompt arguments and resource template URI expressions.
- * Use {@link org.mcp_java.annotations.completion.CompletePrompt @CompletePrompt} for prompt
- * completions and {@link org.mcp_java.annotations.completion.CompleteResourceTemplate @CompleteResourceTemplate}
+ * Use {@link org.mcp_java.server.completion.annotations.CompletePrompt @CompletePrompt} for prompt
+ * completions and {@link org.mcp_java.server.completion.annotations.CompleteResourceTemplate @CompleteResourceTemplate}
  * for resource template completions.
  * </p>
  *
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/completion">MCP Specification - Completion</a>
  */
-package org.mcp_java.annotations.completion;
+package org.mcp_java.server.completion.annotations;

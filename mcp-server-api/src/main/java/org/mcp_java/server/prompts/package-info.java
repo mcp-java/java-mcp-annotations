@@ -17,8 +17,8 @@
 /**
  * Build responses to prompt requests.
  * <p>
- * Use {@link org.mcp_java.server.prompts.Prompts Prompts} to start building responses to
+ * Use {@link org.mcp_java.server.prompts.Prompts Prompts} to start building
  * {@link org.mcp_java.server.prompts.PromptResponse PromptResponses} which can be returned from
- * {@code @Prompt} annotated methods.
+ * {@link org.mcp_java.server.prompts.annotations.Prompt @Prompt}-annotated methods.
  */
 package org.mcp_java.server.prompts;

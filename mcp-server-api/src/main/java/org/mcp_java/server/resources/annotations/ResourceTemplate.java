@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations.resources;
+package org.mcp_java.server.resources.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -22,6 +22,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.mcp_java.server.Role;
+import org.mcp_java.server.resources.ResourceContents;
+import org.mcp_java.server.resources.ResourceResponse;
 
 /**
  * Marks a method as providing dynamic MCP resources via URI templates.
@@ -31,10 +33,11 @@ import org.mcp_java.server.Role;
  * framework-specific rules:
  * </p>
  * <ul>
- * <li>String - Converted to text resource contents</li>
- * <li>byte[] - Converted to blob resource contents</li>
- * <li>ResourceContents implementations - Used directly in the response</li>
- * <li>List of ResourceContents - Multiple content items in the response</li>
+ * <li>{@code String} - Converted to text resource contents</li>
+ * <li>{@code byte[]} - Converted to blob resource contents</li>
+ * <li>{@link ResourceContents} implementations - Used directly in the response</li>
+ * <li>List of {@link ResourceContents} - Multiple content items in the response</li>
+ * <li>{@link ResourceResponse} - Used directly as the response</li>
  * <li>Other types - Encoded according to framework-specific rules (typically as JSON)</li>
  * </ul>
  * <p>
@@ -43,7 +46,8 @@ import org.mcp_java.server.Role;
  * Method parameters can be configured using {@link ResourceTemplateArg} annotations.
  * </p>
  *
- * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources/#resource-templates">MCP Specification - Resource Templates</a>
+ * @see <a
+ * href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources/#resource-templates">MCP Specification - Resource Templates</a>
  * @see <a href="https://datatracker.ietf.org/doc/html/rfc6570#section-1.2">RFC 6570 - URI Template</a>
  * @see Resource
  * @see ResourceTemplateArg
@@ -54,14 +58,16 @@ import org.mcp_java.server.Role;
 public @interface ResourceTemplate {
 
     /**
-     * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
+     * Constant value for {@link #name()} indicating that the annotated element's name should be
+     * used as-is.
      */
     String ELEMENT_NAME = "<<element name>>";
 
     /**
      * The unique name of the resource template.
      * <p>
-     * Each resource template must have a unique name. This is intended for programmatic or logical use,
+     * Each resource template must have a unique name. This is intended for programmatic or logical
+     * use,
      * but may be used for UI display as a fallback if {@link #title()} is not present.
      * </p>
      * <p>

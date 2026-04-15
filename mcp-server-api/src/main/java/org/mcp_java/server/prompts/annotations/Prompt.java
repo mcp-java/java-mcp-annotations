@@ -13,13 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations.prompts;
+package org.mcp_java.server.prompts.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import org.mcp_java.server.prompts.PromptMessage;
+import org.mcp_java.server.prompts.PromptResponse;
 
 /**
  * Marks a method as providing an MCP prompt template.
@@ -28,9 +31,9 @@ import java.lang.annotation.Target;
  * The annotated method can return various types that will be converted to prompt responses:
  * </p>
  * <ul>
- * <li>PromptMessage - Single message in the response</li>
- * <li>List of PromptMessage - Multiple messages in the response</li>
- * <li>PromptResponse - Full response with description and messages</li>
+ * <li>{@link PromptMessage} - Single message in the response</li>
+ * <li>List of {@link PromptMessage} - Multiple messages in the response</li>
+ * <li>{@link PromptResponse} - Full response with description and messages</li>
  * <li>Other types - Encoded according to framework-specific rules</li>
  * </ul>
  * <p>

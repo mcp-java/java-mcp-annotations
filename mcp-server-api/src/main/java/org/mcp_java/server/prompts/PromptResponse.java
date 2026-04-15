@@ -21,11 +21,15 @@ import java.util.Optional;
 import org.mcp_java.server.MetaCarrier;
 import org.mcp_java.server.Role;
 import org.mcp_java.server.content.ContentBlock;
+import org.mcp_java.server.prompts.annotations.Prompt;
 
 /**
  * Represents the result of a {@code prompts/get} call.
  * <p>
  * The result contains a list of messages which should be used to prompt the LLM.
+ * <p>
+ * Returning a {@code PromptResponse} from a {@link Prompt}-annotated method gives more control over
+ * the response that's returned to the client.
  */
 public interface PromptResponse extends MetaCarrier {
 

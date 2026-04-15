@@ -17,10 +17,13 @@ package org.mcp_java.server.completion;
 
 import java.util.List;
 
+import org.mcp_java.server.completion.annotations.CompletePrompt;
+import org.mcp_java.server.completion.annotations.CompleteResourceTemplate;
+
 /**
  * Provides access to builders for Completion responses.
  * <p>
- * This class can be injected as a parameter to a {@code @CompletePrompt} or {@code @CompleteResourceTemplate}-annotated method, or using framework-specific mechanisms.
+ * This class can be injected as a parameter to a {@link CompletePrompt} or {@link CompleteResourceTemplate}-annotated method, or using framework-specific mechanisms.
  */
 public interface Completions {
 

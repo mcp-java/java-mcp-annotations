@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations.completion;
+package org.mcp_java.server.resources.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -22,19 +22,18 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Customizes the name of a completed argument in a completion method.
+ * Configures a parameter of a {@link ResourceTemplate} method.
  * <p>
- * A completion method must consume exactly one {@link String} argument representing
- * the partial value that needs to be completed.
+ * This annotation allows you to customize the name of parameters that
+ * correspond to URI template variables in resource templates.
  * </p>
  *
- * @see CompletePrompt
- * @see CompleteResourceTemplate
+ * @see ResourceTemplate
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface CompleteArg {
+public @interface ResourceTemplateArg {
 
     /**
      * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
@@ -42,13 +41,13 @@ public @interface CompleteArg {
     String ELEMENT_NAME = "<<element name>>";
 
     /**
-     * The name of the completed argument.
+     * The name of the URI template variable.
      * <p>
      * By default, the parameter name from the method signature will be used
      * (requires compilation with the {@code -parameters} flag).
      * </p>
      *
-     * @return the argument name
+     * @return the template variable name
      */
     String name() default ELEMENT_NAME;
 }

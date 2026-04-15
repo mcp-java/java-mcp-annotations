@@ -18,9 +18,15 @@ package org.mcp_java.server.resources;
 import java.util.List;
 
 import org.mcp_java.server.MetaCarrier;
+import org.mcp_java.server.resources.annotations.Resource;
+import org.mcp_java.server.resources.annotations.ResourceTemplate;
 
 /**
  * The result of a {@code resources/read} request.
+ * <p>
+ * Returning a {@code ResourceResponse} from a {@link Resource} or
+ * {@link ResourceTemplate}-annotated method gives more control over the response that's
+ * returned to the client.
  * <p>
  * Instances of this interface can be created using {@link Resources}.
  */
@@ -38,7 +44,8 @@ public interface ResourceResponse extends MetaCarrier {
      */
     interface Builder extends MetaCarrier.Builder<Builder> {
         /**
-         * Add a content object to the response. Usually a response will contain a single content object.
+         * Add a content object to the response. Usually a response will contain a single content
+         * object.
          * 
          * @param contents the content object
          * @return this builder
