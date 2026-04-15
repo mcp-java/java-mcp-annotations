@@ -81,6 +81,15 @@ public non-sealed interface ResourceLink extends ContentBlock {
     OptionalLong size();
 
     /**
+     * Creates a new builder for a {@link ResourceLink}
+     * 
+     * @param name the name of the link
+     * @param uri the URI of the target resource
+     * @return the resource link builder
+     */
+    ResourceLink.Builder builder(String name, String uri);
+
+    /**
      * A builder for creating resource link contents
      */
     interface Builder extends MetaCarrier.Builder<Builder> {

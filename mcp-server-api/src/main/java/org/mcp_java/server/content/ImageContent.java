@@ -15,6 +15,8 @@
  */
 package org.mcp_java.server.content;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import java.util.Optional;
 
 import org.mcp_java.server.MetaCarrier;
@@ -44,6 +46,28 @@ public non-sealed interface ImageContent extends ContentBlock, SamplingMessageCo
      * @return the annotations
      */
     Optional<Annotations> annotations();
+
+    /**
+     * Creates a new builder for an {@link ImageContent}
+     * 
+     * @param data the image data
+     * @param mimeType the MIME type of the image data
+     * @return the image content builder
+     */
+    static ImageContent.Builder builder(byte[] data, String mimeType) {
+        return getSPI().imageContentBuilder(data, mimeType);
+    }
+
+    /**
+     * Creates a new {@code ImageContent}
+     * 
+     * @param data the image data
+     * @param mimeType the MIME type of the image data
+     * @return the new image content
+     */
+    static ImageContent of(byte[] data, String mimeType) {
+        return getSPI().newImageContent(data, mimeType);
+    }
 
     /**
      * Builder for creating image contents

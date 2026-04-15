@@ -23,9 +23,10 @@
  * completions and {@link org.mcp_java.server.completion.CompleteResourceTemplate @CompleteResourceTemplate}
  * for resource template completions.
  * <p>
- * Use {@link org.mcp_java.server.completion.Completions Completions} to start building
- * {@link org.mcp_java.server.completion.CompletionResult CompletionResults} which can be returned
- * from {@code @CompletePrompt} or {@code @CompleteResourceTemplate} annotated methods.
+ * A {@link org.mcp_java.server.completion.CompletionResult CompletionResult} can be returned
+ * from {@link org.mcp_java.server.completion.annotations.CompletePrompt @CompletePrompt} or
+ * {@link org.mcp_java.server.completion.annotations.CompleteResourceTemplate @CompleteResourceTemplate}-annotated
+ * methods.
  * 
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/completion">MCP Specification - Completion</a>
  */

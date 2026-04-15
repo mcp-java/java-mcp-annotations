@@ -15,6 +15,8 @@
  */
 package org.mcp_java.server.completion;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -52,6 +54,48 @@ public interface CompletionResult extends MetaCarrier {
      */
     Optional<Boolean> hasMore();
 
+    /**
+     * Create a new builder for a {@link CompletionResult}.
+     * 
+     * @return the new {@code CompletionResult} builder
+     */
+    static CompletionResult.Builder builder() {
+        return getSPI().completeResultBuilder();
+    }
+
+    /**
+     * Creates a new {@code CompletionResult} with a list of suggestions that is the complete set of available suggestions.
+     * 
+     * @param values the list of suggestions
+     * @return the new completion result
+     */
+    static CompletionResult newCompleteResult(List<String> values) {
+        return getSPI().newCompleteResult(values);
+    }
+
+    /**
+     * Creates a new {@code CompletionResult} with a list of suggestions that is not the complete set of available suggestions.
+     * 
+     * @param values the list of suggestions
+     * @return the new completion result
+     */
+    static CompletionResult newIncompleteResult(List<String> values) {
+        return getSPI().newIncompleteResult(values);
+    }
+
+    /**
+     * Creates a new {@code CompletionResult} which includes a list of suggestions and the total number of available suggestions.
+     * 
+     * @param values the list of suggestions
+     * @param total the total number of available suggestions
+     * @return the new completion result
+     * @throws IllegalArgumentException if {@code total} is less than {@code values.size()}
+     */
+    static CompletionResult newResult(List<String> values, int total) {
+        return getSPI().newResult(values, total);
+    }
+
+    
     /**
      * Builder for creation completion responses.
      */

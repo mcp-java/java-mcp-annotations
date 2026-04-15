@@ -15,6 +15,8 @@
  */
 package org.mcp_java.server.content;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import java.util.Optional;
 
 import org.mcp_java.server.MetaCarrier;
@@ -37,6 +39,24 @@ public non-sealed interface TextContent extends ContentBlock, SamplingMessageCon
      * @return the annotations
      */
     Optional<Annotations> annotations();
+
+    /**
+     * Creates a new builder for a {@code TextContent}
+     * 
+     * @param text the text
+     * @return the text content builder
+     */
+    TextContent.Builder builder(String text);
+
+    /**
+     * Creates a new {@code TextContent}
+     * 
+     * @param text the text
+     * @return the new text content object
+     */
+    static TextContent of(String text) {
+        return getSPI().newTextContent(text);
+    }
 
     /**
      * Builder for creating text contents

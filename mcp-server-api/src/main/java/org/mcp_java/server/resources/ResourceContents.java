@@ -21,8 +21,6 @@ import org.mcp_java.server.MetaCarrier;
 
 /**
  * The content of a resource, which can be {@link TextResourceContents text} or {@link BlobResourceContents binary} data.
- * <p>
- * Sub-types of this interface can be created using {@link Resources}.
  */
 public sealed interface ResourceContents extends MetaCarrier permits TextResourceContents, BlobResourceContents {
 

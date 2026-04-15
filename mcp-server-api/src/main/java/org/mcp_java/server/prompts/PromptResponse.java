@@ -15,6 +15,8 @@
  */
 package org.mcp_java.server.prompts;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +47,26 @@ public interface PromptResponse extends MetaCarrier {
      * @return the messages
      */
     List<PromptMessage> messages();
+
+    /**
+     * Create a builder for a new {cide PromptResponse}
+     * 
+     * @return the new {@code PromptResponse} builder
+     */
+    static PromptResponse.Builder builder() {
+        return getSPI().promptResponseBuilder();
+    }
+
+    /**
+     * Create a new {@code PromptResponse} with a single message
+     * 
+     * @param role the role for the message
+     * @param content the content of the message
+     * @return the new prompt response
+     */
+    static PromptResponse of(Role role, ContentBlock content) {
+        return getSPI().newPromptResponse(role, content);
+    }
 
     /**
      * Builder for creating a prompt response
