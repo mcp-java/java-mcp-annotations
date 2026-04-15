@@ -15,15 +15,11 @@
  */
 
 /**
- * Define MCP tools.
+ * Mechanism for providing the implementation of the API.
  * <p>
- * Tools are executable functions that can be invoked by MCP clients.
- * Use {@link org.mcp_java.server.tools.Tool @Tool} to mark methods as tools
- * and {@link org.mcp_java.server.tools.ToolArg @ToolArg} to configure their parameters.
+ * Implementations should implement {@link org.mcp_java.server.spi.McpServerSPI} and make it
+ * loadable via {@link java.util.ServiceLoader}.
  * <p>
- * {@link org.mcp_java.server.tools.ToolResponse ToolResponses} can be returned from
- * {@link org.mcp_java.server.tools.Tool @Tool}-annotated methods.
- * 
- * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools">MCP Specification - Tools</a>
+ * Users should not use this package.
  */
-package org.mcp_java.server.tools;
+package org.mcp_java.server.spi;

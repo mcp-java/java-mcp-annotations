@@ -15,6 +15,8 @@
  */
 package org.mcp_java.server.content;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import java.util.Optional;
 import java.util.OptionalLong;
 
@@ -79,6 +81,17 @@ public non-sealed interface ResourceLink extends ContentBlock {
      * @return the size of the resource content in bytes
      */
     OptionalLong size();
+
+    /**
+     * Creates a new builder for a {@link ResourceLink}
+     * 
+     * @param name the name of the link
+     * @param uri the URI of the target resource
+     * @return the resource link builder
+     */
+    static ResourceLink.Builder builder(String name, String uri) {
+        return getSPI().resourceLinkBuilder(name, uri);
+    }
 
     /**
      * A builder for creating resource link contents
