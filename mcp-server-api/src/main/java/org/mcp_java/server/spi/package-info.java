@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 the original author or authors.
+ * Copyright 2026 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,11 @@
  */
 
 /**
- * Annotations for defining MCP resources and resource templates.
+ * Mechanism for providing the implementation of the API.
  * <p>
- * Resources are data sources that can be read by MCP clients. Use
- * {@link org.mcp_java.annotations.resources.Resource @Resource} for static resources and
- * {@link org.mcp_java.annotations.resources.ResourceTemplate @ResourceTemplate} for dynamic
- * resources with URI templates.
- * </p>
- *
- * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources">MCP Specification - Resources</a>
+ * Implementations should implement {@link org.mcp_java.server.spi.McpServerSPI} and make it
+ * loadable via {@link java.util.ServiceLoader}.
+ * <p>
+ * Users should not use this package.
  */
-package org.mcp_java.annotations.resources;
+package org.mcp_java.server.spi;

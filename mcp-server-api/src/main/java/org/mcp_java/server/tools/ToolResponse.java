@@ -15,6 +15,8 @@
  */
 package org.mcp_java.server.tools;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -27,10 +29,8 @@ import org.mcp_java.server.content.ContentBlock;
  * The result can represent either success or an error. In both cases it can contain structured and
  * unstructured content.
  * <p>
- * Returning a {@code ToolResponse} from a {@code @Tool} annotated method gives more control over the
+ * Returning a {@code ToolResponse} from a {@link Tool}-annotated method gives more control over the
  * response that's returned to the client.
- * <p>
- * Instances can be created using {@link Tools}.
  */
 public interface ToolResponse extends MetaCarrier {
 
@@ -63,6 +63,45 @@ public interface ToolResponse extends MetaCarrier {
      * @return {@code true} if the response represents an error, {@code false} otherwise
      */
     boolean isError();
+
+    /**
+     * Create a builder for a new {@code ToolResponse}
+     *
+     * @return the new {@code ToolResponse} builder
+     */
+    static ToolResponse.Builder builder() {
+        return getSPI().toolResponseBuilder();
+    }
+
+    /**
+     * Creates a new successful {@code ToolResponse} with a single text content block.
+     *
+     * @param text the text content
+     * @return the new tool response
+     */
+    static ToolResponse ofText(String text) {
+        return getSPI().newTextToolResponse(text);
+    }
+
+    /**
+     * Creates a new error {@code ToolResponse} with a single text content block containing the error message.
+     *
+     * @param error the error message
+     * @return the new tool response
+     */
+    static ToolResponse ofError(String error) {
+        return getSPI().newErrorToolResponse(error);
+    }
+
+    /**
+     * Creates a new successful {@code ToolResponse} with structured content.
+     *
+     * @param structuredContent the structured content
+     * @return the new tool response
+     */
+    static ToolResponse ofStructured(Object structuredContent) {
+        return getSPI().newStructuredToolResponse(structuredContent);
+    }
 
     /**
      * Builder for creating tool responses

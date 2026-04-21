@@ -15,10 +15,17 @@
  */
 
 /**
- * Build responses to resource requests.
+ * Define MCP resources and resource templates.
  * <p>
- * Use {@link org.mcp_java.server.resources.Resources Resources} to start building
- * {@link org.mcp_java.server.resources.ResourceResponse ResourceResponses} which can be returned
- * from {@code @Resource} or {@code @ResourceTemplate} annotated methods.
+ * Resources are data sources that can be read by MCP clients. Use
+ * {@link org.mcp_java.server.resources.Resource @Resource} for static resources and
+ * {@link org.mcp_java.server.resources.ResourceTemplate @ResourceTemplate} for dynamic
+ * resources with URI templates.
+ * <p>
+ * A {@link org.mcp_java.server.resources.ResourceResponse ResourceResponse} can be returned
+ * from {@link org.mcp_java.server.resources.annotations.Resource @Resource} or
+ * {@link org.mcp_java.server.resources.annotations.ResourceTemplate @ResourceTemplate}-annotated methods.
+ * 
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources">MCP Specification - Resources</a>
  */
 package org.mcp_java.server.resources;

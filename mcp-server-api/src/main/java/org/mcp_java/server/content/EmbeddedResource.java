@@ -15,6 +15,8 @@
  */
 package org.mcp_java.server.content;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import java.util.Optional;
 
 import org.mcp_java.server.MetaCarrier;
@@ -44,6 +46,28 @@ public non-sealed interface EmbeddedResource extends ContentBlock {
      * @return the annotations
      */
     Optional<Annotations> annotations();
+    
+    /**
+     * Creates a new builder for an {@code EmbeddedResource} with {@link TextResourceContents}
+     * 
+     * @param text the text content for the embedded resource
+     * @param uri the URI of the resource
+     * @return the embedded resource builder
+     */
+    static EmbeddedResource.Builder builder(String text, String uri) {
+        return getSPI().textEmbeddedResourceBuilder(text, uri);
+    }
+
+    /**
+     * Creates a new builder for an {@code EmbeddedResource} with {@link BlobResourceContents}
+     * 
+     * @param data the data for the embedded resource
+     * @param uri the URI of the resource
+     * @return the embedded resource builder
+     */
+    static EmbeddedResource.Builder builder(byte[] data, String uri) {
+        return getSPI().blobEmbeddedResourceBuilder(data, uri);
+    }
 
     /**
      * Builder for an embedded resource

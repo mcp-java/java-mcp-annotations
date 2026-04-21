@@ -15,6 +15,8 @@
  */
 package org.mcp_java.server.content;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import java.time.Instant;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -37,7 +39,8 @@ public interface Annotations {
     /**
      * How important the data is.
      * <p>
-     * {@code 1.0} indicates the greatest importance, {@code 0.0} indicates the least importance
+     * {@code 1.0} indicates the greatest importance, {@code 0.0} indicates the
+     * least importance
      * 
      * @return the priority, between {@code 1.0} and {@code 0.0}
      */
@@ -49,6 +52,15 @@ public interface Annotations {
      * @return the last modified timestamp
      */
     Optional<Instant> lastModified();
+
+    /**
+     * Creates a new builder for {@code Annotations}
+     * 
+     * @return the new builder instance
+     */
+    static Builder builder() {
+        return getSPI().annotationsBuilder();
+    }
 
     /**
      * Builder for resource annotations
@@ -73,7 +85,8 @@ public interface Annotations {
         /**
          * Sets the priority of the content to indicate its importance.
          * <p>
-         * {@code 1.0} indicates the greatest importance, {@code 0.0} indicates the least importance
+         * {@code 1.0} indicates the greatest importance, {@code 0.0} indicates the
+         * least importance
          * 
          * @param priority the priority, between {@code 1.0} and {@code 0.0}
          * @return this builder

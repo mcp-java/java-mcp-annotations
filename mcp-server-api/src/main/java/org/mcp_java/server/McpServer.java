@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations;
+package org.mcp_java.server;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -36,10 +36,10 @@ import java.lang.annotation.Target;
  * by framework implementations.
  * </p>
  *
- * @see org.mcp_java.annotations.tools.Tool
- * @see org.mcp_java.annotations.prompts.Prompt
- * @see org.mcp_java.annotations.resources.Resource
- * @see org.mcp_java.annotations.resources.ResourceTemplate
+ * @see org.mcp_java.server.tools.Tool
+ * @see org.mcp_java.server.prompts.Prompt
+ * @see org.mcp_java.server.resources.Resource
+ * @see org.mcp_java.server.resources.ResourceTemplate
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

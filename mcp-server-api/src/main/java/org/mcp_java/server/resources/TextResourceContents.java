@@ -15,10 +15,10 @@
  */
 package org.mcp_java.server.resources;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 /**
  * The content of a resource which contains text data.
- * <p>
- * Instances of this interface can be created using {@link Resources}.
  */
 public non-sealed interface TextResourceContents extends ResourceContents {
 
@@ -28,6 +28,28 @@ public non-sealed interface TextResourceContents extends ResourceContents {
      * @return the data
      */
     String text();
+
+    /**
+     * Creates a new {@code TextResourceContents} with a URI and text.
+     * 
+     * @param uri the resource URI
+     * @param text the text content
+     * @return the new text resource
+     */
+    static TextResourceContents of(String uri, String text) {
+        return getSPI().newTextResourceContents(uri, text);
+    }
+
+    /**
+     * Creates a builder for a {@code TextResourceContents}
+     * 
+     * @param uri the resource URI
+     * @param text the text content
+     * @return the new text resource builder
+     */
+    static TextResourceContents.Builder builder(String uri, String text) {
+        return getSPI().textResourceContentsBuilder(uri, text);
+    }
 
     /**
      * Builder for creating text resource contents.

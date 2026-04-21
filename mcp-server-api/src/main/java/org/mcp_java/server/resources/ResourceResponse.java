@@ -15,6 +15,8 @@
  */
 package org.mcp_java.server.resources;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import java.util.List;
 
 import org.mcp_java.server.MetaCarrier;
@@ -22,7 +24,9 @@ import org.mcp_java.server.MetaCarrier;
 /**
  * The result of a {@code resources/read} request.
  * <p>
- * Instances of this interface can be created using {@link Resources}.
+ * Returning a {@code ResourceResponse} from a {@link Resource} or
+ * {@link ResourceTemplate}-annotated method gives more control over the response that's
+ * returned to the client.
  */
 public interface ResourceResponse extends MetaCarrier {
 
@@ -34,11 +38,67 @@ public interface ResourceResponse extends MetaCarrier {
     List<ResourceContents> getContents();
 
     /**
+     * Create a builder for a {@link ResourceResponse}
+     *
+     * @return the new {@code ResourceResponse} builder
+     */
+    static ResourceResponse.Builder builder() {
+        return getSPI().resourceResponseBuilder();
+    }
+
+    /**
+     * Creates a new {@code ResourceResponse} with text content and no MIME type
+     *
+     * @param uri the resource URI
+     * @param text the text content
+     * @return the new resource response
+     */
+    static ResourceResponse of(String uri, String text) {
+        return getSPI().resourceTextResponse(uri, text);
+    }
+
+    /**
+     * Creates a new {@code ResourceResponse} with text content and the given MIME type
+     *
+     * @param uri the resource URI
+     * @param text the text content
+     * @param mimeType the MIME type
+     * @return the new resource response
+     */
+    static ResourceResponse of(String uri, String text, String mimeType) {
+        return getSPI().resourceTextResponse(uri, text, mimeType);
+    }
+
+    /**
+     * Creates a new {@code ResourceResponse} with binary content and no MIME type
+     *
+     * @param uri the resource URI
+     * @param data the binary content
+     * @return the new resource response
+     */
+    static ResourceResponse of(String uri, byte[] data) {
+        return getSPI().resourceBlobResponse(uri, data);
+    }
+
+    /**
+     * Creates a new {@code ResourceResponse} with binary content and the given MIME type
+     *
+     * @param uri the resource URI
+     * @param data the binary content
+     * @param mimeType the MIME type
+     * @return the new resource response
+     */
+    static ResourceResponse of(String uri, byte[] data, String mimeType) {
+        return getSPI().resourceBlobResponse(uri, data, mimeType);
+    }
+
+    /**
      * Builder for creating resource read responses.
      */
     interface Builder extends MetaCarrier.Builder<Builder> {
         /**
-         * Add a content object to the response. Usually a response will contain a single content object.
+         * Add a content object to the response. Usually a response will contain a single content
+         * object.
          * 
          * @param contents the content object
          * @return this builder
