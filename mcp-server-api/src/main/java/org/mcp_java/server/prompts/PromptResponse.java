@@ -21,7 +21,6 @@ import java.util.Optional;
 import org.mcp_java.server.MetaCarrier;
 import org.mcp_java.server.Role;
 import org.mcp_java.server.content.ContentBlock;
-import org.mcp_java.server.prompts.annotations.Prompt;
 
 /**
  * Represents the result of a {@code prompts/get} call.

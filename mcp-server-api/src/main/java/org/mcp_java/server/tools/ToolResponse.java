@@ -20,7 +20,6 @@ import java.util.Optional;
 
 import org.mcp_java.server.MetaCarrier;
 import org.mcp_java.server.content.ContentBlock;
-import org.mcp_java.server.tools.annotations.Tool;
 
 /**
  * The response to a tool call

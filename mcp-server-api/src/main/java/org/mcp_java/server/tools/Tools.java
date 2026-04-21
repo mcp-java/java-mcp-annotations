@@ -16,7 +16,6 @@
 package org.mcp_java.server.tools;
 
 import org.mcp_java.server.content.TextContent;
-import org.mcp_java.server.tools.annotations.Tool;
 
 /**
  * Provides access to builders for Tool responses

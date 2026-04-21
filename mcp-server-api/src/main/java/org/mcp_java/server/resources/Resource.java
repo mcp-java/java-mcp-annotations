@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.server.resources.annotations;
+package org.mcp_java.server.resources;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -22,11 +22,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.mcp_java.server.Role;
-import org.mcp_java.server.resources.ResourceContents;
-import org.mcp_java.server.resources.ResourceResponse;
 
 /**
- * Marks a method as providing dynamic MCP resources via URI templates.
+ * Marks a method as providing an MCP resource.
  * <p>
  * The result of a "resource read" operation is represented as a resource response.
  * The annotated method can return various types that will be converted according to
@@ -40,22 +38,14 @@ import org.mcp_java.server.resources.ResourceResponse;
  * <li>{@link ResourceResponse} - Used directly as the response</li>
  * <li>Other types - Encoded according to framework-specific rules (typically as JSON)</li>
  * </ul>
- * <p>
- * Resource templates use Level 1 RFC 6570 URI template syntax to support dynamic
- * resources where parts of the URI are variable.
- * Method parameters can be configured using {@link ResourceTemplateArg} annotations.
- * </p>
  *
- * @see <a
- * href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources/#resource-templates">MCP Specification - Resource Templates</a>
- * @see <a href="https://datatracker.ietf.org/doc/html/rfc6570#section-1.2">RFC 6570 - URI Template</a>
- * @see Resource
- * @see ResourceTemplateArg
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources">MCP Specification - Resources</a>
+ * @see ResourceTemplate
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface ResourceTemplate {
+public @interface Resource {
 
     /**
      * Constant value for {@link #name()} indicating that the annotated element's name should be
@@ -64,55 +54,48 @@ public @interface ResourceTemplate {
     String ELEMENT_NAME = "<<element name>>";
 
     /**
-     * The unique name of the resource template.
+     * The unique name of the resource.
      * <p>
-     * Each resource template must have a unique name. This is intended for programmatic or logical
-     * use,
+     * Each resource must have a unique name. This is intended for programmatic or logical use,
      * but may be used for UI display as a fallback if {@link #title()} is not present.
      * </p>
      * <p>
      * By default, the name is derived from the annotated method name.
      * </p>
      *
-     * @return the template name
+     * @return the resource name
      */
     String name() default ELEMENT_NAME;
 
     /**
-     * A human-readable title for the resource template.
+     * A human-readable title for the resource.
      * <p>
-     * This is a short, user-friendly display name for the template.
+     * This is a short, user-friendly display name for the resource.
      * </p>
      *
-     * @return the template title
+     * @return the resource title
      */
     String title() default "";
 
     /**
-     * A description of what this resource template represents.
+     * A description of what this resource represents.
      *
-     * @return the template description
+     * @return the resource description
      */
     String description() default "";
 
     /**
-     * The Level 1 URI template that can be used to construct resource URIs.
+     * The URI of this resource.
      * <p>
-     * Examples:
+     * This is a required field that uniquely identifies the resource.
      * </p>
-     * <ul>
-     * <li>{@code "file:///{path}"}</li>
-     * <li>{@code "db:///{database}/tables/{table}"}</li>
-     * <li>{@code "api:///{version}/users/{userId}"}</li>
-     * </ul>
      *
-     * @return the URI template
-     * @see <a href="https://datatracker.ietf.org/doc/html/rfc6570#section-1.2">RFC 6570</a>
+     * @return the resource URI
      */
-    String uriTemplate();
+    String uri();
 
     /**
-     * The MIME type of this resource template.
+     * The MIME type of this resource, if known.
      * <p>
      * Examples: {@code "text/plain"}, {@code "application/json"}, {@code "image/png"}
      * </p>
@@ -122,27 +105,36 @@ public @interface ResourceTemplate {
     String mimeType() default "";
 
     /**
+     * The size of the raw resource content, in bytes (before base64 encoding or any
+     * tokenization), if known.
+     *
+     * @return the resource size, or -1 if unknown
+     */
+    int size() default -1;
+
+    /**
      * Optional annotations for the client.
      * <p>
-     * These provide additional hints to clients about the resource template's metadata.
+     * These provide additional hints to clients about the resource's metadata.
      * Note that annotations must be declared explicitly to be included in resource metadata.
      * </p>
      *
-     * @return the template annotations
+     * @return the resource annotations
      */
     Annotations annotations() default @Annotations(audience = Role.USER, lastModified = "", priority = 0.5);
 
     /**
-     * Nested annotation for resource template metadata annotations.
+     * Nested annotation for resource metadata annotations.
      * <p>
-     * These provide hints to clients about resources from this template.
+     * These provide hints to clients about the resource's audience, modification time, and
+     * priority.
      * </p>
      */
     @Target(ElementType.ANNOTATION_TYPE)
     @Retention(RetentionPolicy.RUNTIME)
     @interface Annotations {
         /**
-         * The intended audience for resources from this template.
+         * The intended audience for this resource.
          *
          * @return the intended audience role
          */
@@ -156,7 +148,7 @@ public @interface ResourceTemplate {
         String lastModified() default "";
 
         /**
-         * The priority of resources from this template.
+         * The priority of this resource.
          * <p>
          * Higher values indicate higher priority.
          * </p>

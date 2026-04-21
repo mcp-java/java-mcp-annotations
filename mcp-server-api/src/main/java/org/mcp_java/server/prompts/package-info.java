@@ -15,10 +15,16 @@
  */
 
 /**
- * Build responses to prompt requests.
+ * Define MCP prompts.
+ * <p>
+ * Prompts are reusable message templates that can be used by MCP clients.
+ * Use {@link org.mcp_java.server.prompts.Prompt @Prompt} to mark methods as prompts
+ * and {@link org.mcp_java.server.prompts.PromptArg @PromptArg} to configure their arguments.
  * <p>
  * Use {@link org.mcp_java.server.prompts.Prompts Prompts} to start building
  * {@link org.mcp_java.server.prompts.PromptResponse PromptResponses} which can be returned from
- * {@link org.mcp_java.server.prompts.annotations.Prompt @Prompt}-annotated methods.
+ * {@link org.mcp_java.server.prompts.Prompt @Prompt}-annotated methods.
+ *
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts">MCP Specification - Prompts</a>
  */
 package org.mcp_java.server.prompts;

@@ -17,9 +17,6 @@ package org.mcp_java.server.completion;
 
 import java.util.List;
 
-import org.mcp_java.server.completion.annotations.CompletePrompt;
-import org.mcp_java.server.completion.annotations.CompleteResourceTemplate;
-
 /**
  * Provides access to builders for Completion responses.
  * <p>

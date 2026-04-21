@@ -13,16 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.server.prompts.annotations;
+package org.mcp_java.server.prompts;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-import org.mcp_java.server.prompts.PromptMessage;
-import org.mcp_java.server.prompts.PromptResponse;
 
 /**
  * Marks a method as providing an MCP prompt template.

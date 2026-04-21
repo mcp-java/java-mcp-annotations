@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.server.completion.annotations;
+package org.mcp_java.server.completion;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -21,12 +21,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.mcp_java.server.completion.CompletionResult;
+import org.mcp_java.server.prompts.Prompt;
 
 /**
- * Marks a method as providing completion suggestions for a resource template URI expression.
+ * Marks a method as providing completion suggestions for a prompt argument.
  * <p>
- * The annotated method should return completion values for URI template variables.
+ * The annotated method should return completion values for a specific prompt argument.
  * The method must consume exactly one {@link String} argument representing the
  * partial value that needs to be completed.
  * </p>
@@ -42,25 +42,24 @@ import org.mcp_java.server.completion.CompletionResult;
  * Example:
  * </p>
  * <pre>
- * &#64;CompleteResourceTemplate("fileTemplate")
- * public List&lt;String&gt; completeFilePath(&#64;CompleteArg String partialPath) {
- *     // Return matching file paths
- *     return findMatchingPaths(partialPath);
+ * &#64;CompletePrompt("myPrompt")
+ * public List&lt;String&gt; completeMyPromptArg(&#64;CompleteArg String partialValue) {
+ *     return List.of("option1", "option2", "option3");
  * }
  * </pre>
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface CompleteResourceTemplate {
+public @interface CompletePrompt {
 
     /**
-     * The name of the resource template this completion method is for.
+     * The name of the prompt this completion method is for.
      * <p>
-     * This must reference an existing {@code @ResourceTemplate} annotation's name.
+     * This must reference an existing {@link Prompt @Prompt} annotation's name.
      * </p>
      *
-     * @return the resource template name
+     * @return the prompt name
      */
     String value();
 }

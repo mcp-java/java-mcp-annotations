@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.server.tools.annotations;
+package org.mcp_java.server.tools;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -22,7 +22,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.mcp_java.server.content.ContentBlock;
-import org.mcp_java.server.tools.ToolResponse;
 
 /**
  * Marks a method as an MCP tool that can be invoked by clients.

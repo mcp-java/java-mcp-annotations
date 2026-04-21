@@ -18,8 +18,6 @@ package org.mcp_java.server.resources;
 import java.util.List;
 
 import org.mcp_java.server.MetaCarrier;
-import org.mcp_java.server.resources.annotations.Resource;
-import org.mcp_java.server.resources.annotations.ResourceTemplate;
 
 /**
  * The result of a {@code resources/read} request.
