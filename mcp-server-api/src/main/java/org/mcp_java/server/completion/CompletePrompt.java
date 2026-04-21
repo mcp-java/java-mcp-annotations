@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations.completion;
+package org.mcp_java.server.completion;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import org.mcp_java.server.prompts.Prompt;
 
 /**
  * Marks a method as providing completion suggestions for a prompt argument.
@@ -34,7 +36,7 @@ import java.lang.annotation.Target;
  * <ul>
  * <li>{@code String} - single completion value</li>
  * <li>{@code List<String>} - multiple completion values</li>
- * <li>{@code CompletionResponse} - full completion response with metadata</li>
+ * <li>{@link CompletionResult} - full completion response with metadata</li>
  * </ul>
  * <p>
  * Example:
@@ -54,7 +56,7 @@ public @interface CompletePrompt {
     /**
      * The name of the prompt this completion method is for.
      * <p>
-     * This must reference an existing {@code @Prompt} annotation's name.
+     * This must reference an existing {@link Prompt @Prompt} annotation's name.
      * </p>
      *
      * @return the prompt name
