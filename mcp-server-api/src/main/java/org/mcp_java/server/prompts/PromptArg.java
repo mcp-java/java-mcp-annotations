@@ -13,13 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations.prompts;
+package org.mcp_java.server.prompts;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 /**
  * Configures a parameter of a {@link Prompt} method.
@@ -70,14 +74,19 @@ public @interface PromptArg {
     String description() default "";
 
     /**
-     * Whether this argument is required.
+     * Whether this parameter is required.
      * <p>
-     * An argument is required by default. However, if the annotated parameter type is
-     * Optional and no annotation value is set explicitly, the argument may be treated
-     * as not required by some framework implementations.
-     * </p>
+     * A parameter is not required if:
+     * <ul>
+     * <li>{@code required} is set to {@code false}, or
+     * <li>the parameter type is {@link Optional}, {@link OptionalDouble}, {@link OptionalInt} or
+     * {@link OptionalLong}, or
+     * <li>{@link #defaultValue()} is set to a non-empty string
+     * </ul>
+     * <p>
+     * Otherwise, the parameter is required.
      *
-     * @return true if the argument is required
+     * @return {@code false} to make the parameter not required
      */
     boolean required() default true;
 
@@ -86,7 +95,9 @@ public @interface PromptArg {
      * <p>
      * The value should be provided as a string and will be converted to the
      * appropriate type by the framework implementation.
-     * </p>
+     * <p>
+     * Setting a default value causes the parameter to not be required, regardless of the value of
+     * {@link #required()}.
      *
      * @return the default value as a string
      */

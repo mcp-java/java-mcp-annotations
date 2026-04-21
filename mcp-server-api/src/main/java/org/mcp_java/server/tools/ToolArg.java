@@ -13,13 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations.tools;
+package org.mcp_java.server.tools;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 /**
  * Configures a parameter of a {@link Tool} method.
@@ -30,7 +34,8 @@ import java.lang.annotation.Target;
  * </p>
  *
  * @see Tool
- * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools">MCP Specification - Tools</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools">MCP
+ * Specification - Tools</a>
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
@@ -38,7 +43,8 @@ import java.lang.annotation.Target;
 public @interface ToolArg {
 
     /**
-     * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
+     * Constant value for {@link #name()} indicating that the annotated element's name should be
+     * used as-is.
      */
     String ELEMENT_NAME = "<<element name>>";
 
@@ -67,12 +73,17 @@ public @interface ToolArg {
     /**
      * Whether this parameter is required.
      * <p>
-     * An argument is required by default unless no annotation value is set explicitly and
-     * the type of the annotated parameter is Optional, or the default value is set with
-     * {@link #defaultValue()}.
-     * </p>
+     * A parameter is not required if:
+     * <ul>
+     * <li>{@code required} is set to {@code false}, or
+     * <li>the parameter type is {@link Optional}, {@link OptionalDouble}, {@link OptionalInt} or
+     * {@link OptionalLong}, or
+     * <li>{@link #defaultValue()} is set to a non-empty string
+     * </ul>
+     * <p>
+     * Otherwise, the parameter is required.
      *
-     * @return true if the parameter is required
+     * @return {@code false} to make the parameter not required
      */
     boolean required() default true;
 
@@ -83,7 +94,9 @@ public @interface ToolArg {
      * appropriate type by the framework implementation. String, primitive types and
      * their wrappers, and enums are typically converted automatically. For other
      * parameter types, framework-specific converters may be required.
-     * </p>
+     * <p>
+     * Setting a default value causes the parameter to not be required, regardless of the value of
+     * {@link #required()}.
      *
      * @return the default value as a string
      */

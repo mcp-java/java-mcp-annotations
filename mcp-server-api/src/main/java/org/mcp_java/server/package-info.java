@@ -15,16 +15,16 @@
  */
 
 /**
- * Core APIs for writing MCP servers.
+ * Core annotations and APIs for building Model Context Protocol (MCP) servers.
  *
  * <ul>
+ * <li>{@link org.mcp_java.server.McpServer @McpServer} - Marks a class as an MCP server component</li>
+ * <li>{@link org.mcp_java.server.MetaField @MetaField} - Adds custom metadata fields to MCP definitions</li>
  * <li>{@link org.mcp_java.server.Cancellation} - Request cancellation handling</li>
  * <li>{@link org.mcp_java.server.ContentEncoder} - Custom content encoding</li>
  * <li>{@link org.mcp_java.server.McpException} - Base MCP exception</li>
  * <li>{@link org.mcp_java.server.McpConnection} - Connection metadata and status, including client capabilities</li>
  * <li>{@link org.mcp_java.server.McpLog} - Client-side logging</li>
- * <li>{@link org.mcp_java.server.progress.Progress} - Progress reporting for long-running
- * operations</li>
  * </ul>
  */
 package org.mcp_java.server;

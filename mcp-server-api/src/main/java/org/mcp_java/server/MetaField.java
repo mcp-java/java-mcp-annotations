@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations;
+package org.mcp_java.server;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -25,10 +25,10 @@ import java.lang.annotation.Target;
 /**
  * Adds custom metadata fields to the {@code _meta} object in MCP definitions.
  * <p>
- * This annotation can be used on {@link org.mcp_java.annotations.tools.Tool @Tool},
- * {@link org.mcp_java.annotations.prompts.Prompt @Prompt},
- * {@link org.mcp_java.annotations.resources.Resource @Resource},
- * or {@link org.mcp_java.annotations.resources.ResourceTemplate @ResourceTemplate} methods to add custom metadata that will be
+ * This annotation can be used on {@link org.mcp_java.server.tools.Tool @Tool},
+ * {@link org.mcp_java.server.prompts.Prompt @Prompt},
+ * {@link org.mcp_java.server.resources.Resource @Resource},
+ * or {@link org.mcp_java.server.resources.ResourceTemplate @ResourceTemplate} methods to add custom metadata that will be
  * included in the {@code _meta} field of the definition sent to clients.
  * </p>
  * <p>

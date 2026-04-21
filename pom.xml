@@ -37,7 +37,6 @@
 
     <modules>
         <module>mcp-model</module>
-        <module>mcp-annotations</module>
         <module>mcp-server-api</module>
     </modules>
 

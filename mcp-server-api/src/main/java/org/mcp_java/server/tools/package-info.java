@@ -15,10 +15,16 @@
  */
 
 /**
- * Build responses to tool calls
+ * Define MCP tools.
+ * <p>
+ * Tools are executable functions that can be invoked by MCP clients.
+ * Use {@link org.mcp_java.server.tools.Tool @Tool} to mark methods as tools
+ * and {@link org.mcp_java.server.tools.ToolArg @ToolArg} to configure their parameters.
  * <p>
  * Use {@link org.mcp_java.server.tools.Tools Tools} to start building
  * {@link org.mcp_java.server.tools.ToolResponse ToolResponses} which can be returned from
  * {@code @Tool} annotated methods.
+ * 
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools">MCP Specification - Tools</a>
  */
 package org.mcp_java.server.tools;
