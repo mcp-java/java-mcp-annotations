@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations.tools;
+package org.mcp_java.server.prompts;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -22,20 +22,19 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Configures a parameter of a {@link Tool} method.
+ * Configures a parameter of a {@link Prompt} method.
  * <p>
- * This annotation allows you to provide additional metadata about tool parameters,
- * such as custom names and descriptions that will be included in the tool's
- * JSON Schema definition.
+ * This annotation allows you to provide metadata about prompt arguments,
+ * such as names, descriptions, and whether they are required.
  * </p>
  *
- * @see Tool
- * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools">MCP Specification - Tools</a>
+ * @see Prompt
+ * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts">MCP Specification - Prompts</a>
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface ToolArg {
+public @interface PromptArg {
 
     /**
      * Constant value for {@link #name()} indicating that the annotated element's name should be used as-is.
@@ -43,46 +42,50 @@ public @interface ToolArg {
     String ELEMENT_NAME = "<<element name>>";
 
     /**
-     * The name of the parameter as it appears in the tool's JSON Schema.
+     * The name of the argument.
      * <p>
      * By default, the parameter name from the method signature will be used
      * (requires compilation with the {@code -parameters} flag).
      * </p>
      *
-     * @return the parameter name
+     * @return the argument name
      */
     String name() default ELEMENT_NAME;
 
     /**
-     * A human-readable description of the parameter.
+     * A human-readable title for the argument.
      * <p>
-     * This description will be included in the tool's JSON Schema to help
-     * clients understand what this parameter is for.
+     * This is a short, user-friendly display name for the argument.
      * </p>
      *
-     * @return the parameter description
+     * @return the argument title
+     */
+    String title() default "";
+
+    /**
+     * A human-readable description of the argument.
+     *
+     * @return the argument description
      */
     String description() default "";
 
     /**
-     * Whether this parameter is required.
+     * Whether this argument is required.
      * <p>
-     * An argument is required by default unless no annotation value is set explicitly and
-     * the type of the annotated parameter is Optional, or the default value is set with
-     * {@link #defaultValue()}.
+     * An argument is required by default. However, if the annotated parameter type is
+     * Optional and no annotation value is set explicitly, the argument may be treated
+     * as not required by some framework implementations.
      * </p>
      *
-     * @return true if the parameter is required
+     * @return true if the argument is required
      */
     boolean required() default true;
 
     /**
-     * Default value for this parameter when not provided by the client.
+     * Default value for this argument when not provided.
      * <p>
      * The value should be provided as a string and will be converted to the
-     * appropriate type by the framework implementation. String, primitive types and
-     * their wrappers, and enums are typically converted automatically. For other
-     * parameter types, framework-specific converters may be required.
+     * appropriate type by the framework implementation.
      * </p>
      *
      * @return the default value as a string

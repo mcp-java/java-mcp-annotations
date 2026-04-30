@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.annotations.completion;
+package org.mcp_java.server.completion;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -34,7 +34,7 @@ import java.lang.annotation.Target;
  * <ul>
  * <li>{@code String} - single completion value</li>
  * <li>{@code List<String>} - multiple completion values</li>
- * <li>{@code CompletionResponse} - full completion response with metadata</li>
+ * <li>{@link CompletionResult} - full completion response with metadata</li>
  * </ul>
  * <p>
  * Example:

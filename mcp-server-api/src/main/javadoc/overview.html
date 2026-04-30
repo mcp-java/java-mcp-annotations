@@ -42,15 +42,16 @@ limitations under the License.
         <li>{@link org.mcp_java.server.roots.Roots} - Access to client's root directories</li>
     </ul>
 
-    <h1>Responses for server features</h1>
-    <p>These APIs are intended for use with the corresponding annotations.
+    <h1>Defining server features</h1>
     <ul>
-        <li>{@link org.mcp_java.server.prompts.Prompts} - Build responses to prompt requests</li>
-        <li>{@link org.mcp_java.server.resources.Resources} - Build responses to resource requests</li>
-        <li>{@link org.mcp_java.server.tools.Tools} - Build responses to tool calls</li>
-        <li>{@link org.mcp_java.server.content.Contents} - Build content blocks for inclusion in resources and tool call
-            responses</li>
-        <li>{@link org.mcp_java.server.completion.Completions} - Build responses to completion requests</li>
+        <li>{@link org.mcp_java.server.prompts.Prompt} - Define MCP prompts</li>
+        <li>{@link org.mcp_java.server.resources.Resource} - Define MCP resources</li>
+        <li>{@link org.mcp_java.server.resources.ResourceTemplate} - Define MCP resource templates</li>
+        <li>{@link org.mcp_java.server.tools.Tool} - Define MCP tools</li>
+        <li>{@link org.mcp_java.server.completion.CompletePrompt} - Provide completion for MCP prompt
+            arguments</li>
+        <li>{@link org.mcp_java.server.completion.CompleteResourceTemplate} - Provide completion for MCP
+            resource template arguments</li>
     </ul>
 
     <h1>Framework-Agnostic Design</h1>

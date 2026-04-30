@@ -27,7 +27,7 @@ import org.mcp_java.server.content.ContentBlock;
  * The result can represent either success or an error. In both cases it can contain structured and
  * unstructured content.
  * <p>
- * Returning a {@code ToolResponse} from a {@code @Tool} annotated method gives more control over the
+ * Returning a {@code ToolResponse} from a {@link Tool}-annotated method gives more control over the
  * response that's returned to the client.
  * <p>
  * Instances can be created using {@link Tools}.

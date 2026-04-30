@@ -20,7 +20,7 @@ import org.mcp_java.server.content.TextContent;
 /**
  * Provides access to builders for Tool responses
  * <p>
- * This class can be injected as a parameter to a {@code @Tool}-annotated method, or using framework-specific mechanisms.
+ * This class can be injected as a parameter to a {@link Tool}-annotated method, or using framework-specific mechanisms.
  */
 public interface Tools {
 
