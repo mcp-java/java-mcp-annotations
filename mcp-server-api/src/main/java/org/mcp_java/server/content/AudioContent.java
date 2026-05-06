@@ -15,6 +15,8 @@
  */
 package org.mcp_java.server.content;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import java.util.Optional;
 
 import org.mcp_java.server.MetaCarrier;
@@ -44,6 +46,28 @@ public non-sealed interface AudioContent extends ContentBlock, SamplingMessageCo
      * @return the annotations
      */
     Optional<Annotations> annotations();
+
+    /**
+     * Creates a new builder for an {@link AudioContent}
+     * 
+     * @param data the audio data
+     * @param mimeType the MIME type of the audio data
+     * @return the audio content builder
+     */
+    static AudioContent.Builder builder(byte[] data, String mimeType) {
+        return getSPI().audioContentBuilder(data, mimeType);
+    }
+
+    /**
+     * Creates a new {@code AudioContent}
+     * 
+     * @param data the audio data
+     * @param mimeType the MIME type of the audio data
+     * @return the new audio content
+     */
+    static AudioContent of(byte[] data, String mimeType) {
+        return getSPI().newAudioContent(data, mimeType);
+    }
 
     /**
      * Builder for creating audio contents

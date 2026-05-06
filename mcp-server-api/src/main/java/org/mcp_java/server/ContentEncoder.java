@@ -16,7 +16,6 @@
 package org.mcp_java.server;
 
 import org.mcp_java.server.content.ContentBlock;
-import org.mcp_java.server.content.Contents;
 
 /**
  * Encodes an object into MCP content.
@@ -33,10 +32,9 @@ public interface ContentEncoder<T> {
      * Encode the given object into MCP content.
      *
      * @param object the object to encode
-     * @param contents provides methods for creating content blocks
      * @return the encoded content
      */
-    ContentBlock encode(T object, Contents contents);
+    ContentBlock encode(T object);
 
     /**
      * Returns the type this encoder handles.

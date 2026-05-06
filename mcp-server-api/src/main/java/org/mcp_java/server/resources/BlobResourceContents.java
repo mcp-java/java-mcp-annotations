@@ -15,12 +15,12 @@
  */
 package org.mcp_java.server.resources;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import org.mcp_java.server.MetaCarrier;
 
 /**
  * The content of a resource which contains binary data.
- * <p>
- * Instances of this interface can be created using {@link Resources}.
  */
 public non-sealed interface BlobResourceContents extends MetaCarrier, ResourceContents {
 
@@ -30,11 +30,34 @@ public non-sealed interface BlobResourceContents extends MetaCarrier, ResourceCo
      * @return the data
      */
     byte[] blob();
+    
+    /**
+     * Creates a new {@code BlobResourceContents} with a URI and data.
+     * 
+     * @param uri the resource URI
+     * @param data the binary content
+     * @return the new blob resource
+     */
+    static BlobResourceContents of(String uri, byte[] data) {
+        return getSPI().newBlobResourceContent(uri, data);
+    }
+    
+    /**
+     * Creates a builder for a {@code BlobResourceContents}
+     * 
+     * @param uri the resource URI
+     * @param data the binary content
+     * @return the new blob resource builder
+     */
+    static BlobResourceContents.Builder builder(String uri, byte[] data) {
+        return getSPI().blobResourceContentsBuilder(uri, data);
+    }
+
 
     /**
      * Builder for creating binary resource contents.
      */
-    interface Builder extends MetaCarrier.Builder<Builder> {
+    interface Builder extends ResourceContents.Builder<Builder> {
 
         /**
          * Builds the resource content object.

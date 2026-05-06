@@ -15,9 +15,6 @@
  */
 
 /**
- * Create content blocks for inclusion in resources and tool call responses.
- * <p>
- * Use {@link org.mcp_java.server.content.Contents Contents} to start building content blocks to
- * include in resource and tool call responses.
+ * Content blocks, for inclusion in resources and tool call responses.
  */
 package org.mcp_java.server.content;
