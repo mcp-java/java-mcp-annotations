@@ -72,7 +72,9 @@ public interface McpLog {
      * @param format the format string
      * @param params the format parameters
      */
-    void debug(String format, Object... params);
+    default void debug(String format, Object... params) {
+        send(LogLevel.DEBUG, format, params);
+    }
 
     /**
      * Logs an info message and sends it to the client.
@@ -80,7 +82,29 @@ public interface McpLog {
      * @param format the format string
      * @param params the format parameters
      */
-    void info(String format, Object... params);
+    default void info(String format, Object... params) {
+        send(LogLevel.INFO, format, params);
+    }
+
+    /**
+     * Logs a notice message and sends it to the client.
+     *
+     * @param format the format string
+     * @param params the format parameters
+     */
+    default void notice(String format, Object... params) {
+        send(LogLevel.NOTICE, format, params);
+    }
+
+    /**
+     * Logs a warning message and sends it to the client.
+     *
+     * @param format the format string
+     * @param params the format parameters
+     */
+    default void warning(String format, Object... params) {
+        send(LogLevel.WARNING, format, params);
+    }
 
     /**
      * Logs an error message and sends it to the client.
@@ -88,7 +112,9 @@ public interface McpLog {
      * @param format the format string
      * @param params the format parameters
      */
-    void error(String format, Object... params);
+    default void error(String format, Object... params) {
+        send(LogLevel.ERROR, format, params);
+    }
 
     /**
      * Logs an error message with throwable and sends it to the client.
@@ -97,7 +123,42 @@ public interface McpLog {
      * @param format the format string
      * @param params the format parameters
      */
-    void error(Throwable t, String format, Object... params);
+    default void error(Throwable t, String format, Object... params) {
+        String formatted = params.length > 0 ? String.format(format, params) : format;
+        String detail = t.toString();
+        String errorMessage = formatted + ": " + detail;
+        send(LogLevel.ERROR, errorMessage);
+    }
+
+    /**
+     * Logs a critical message and sends it to the client.
+     *
+     * @param format the format string
+     * @param params the format parameters
+     */
+    default void critical(String format, Object... params) {
+        send(LogLevel.CRITICAL, format, params);
+    }
+
+    /**
+     * Logs an alert message and sends it to the client.
+     *
+     * @param format the format string
+     * @param params the format parameters
+     */
+    default void alert(String format, Object... params) {
+        send(LogLevel.ALERT, format, params);
+    }
+
+    /**
+     * Logs an emergency message and sends it to the client.
+     *
+     * @param format the format string
+     * @param params the format parameters
+     */
+    default void emergency(String format, Object... params) {
+        send(LogLevel.EMERGENCY, format, params);
+    }
 
     /**
      * Log levels as defined by the MCP specification.
