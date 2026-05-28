@@ -24,7 +24,7 @@ import org.mcp_java.server.MetaCarrier;
 /**
  * Text content
  */
-public non-sealed interface TextContent extends ContentBlock, SamplingMessageContentBlock {
+public non-sealed interface TextContent extends ContentBlock {
 
     /**
      * Returns the text

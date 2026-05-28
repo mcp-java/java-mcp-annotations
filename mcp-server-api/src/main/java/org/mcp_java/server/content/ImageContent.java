@@ -24,7 +24,7 @@ import org.mcp_java.server.MetaCarrier;
 /**
  * Image data content
  */
-public non-sealed interface ImageContent extends ContentBlock, SamplingMessageContentBlock {
+public non-sealed interface ImageContent extends ContentBlock {
 
     /**
      * Returns the image data

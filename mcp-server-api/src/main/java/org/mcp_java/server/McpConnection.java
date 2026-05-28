@@ -19,8 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.mcp_java.server.sampling.Sampling;
-
 /**
  * Represents a connection from an MCP client to the server.
  * <p>
@@ -68,8 +66,6 @@ public interface McpConnection {
 
     /**
      * Gets the capabilities which the client supports.
-     * <p>
-     * Usually the information in this map should be queried via other mechanisms. E.g. {@link Sampling#isSupported()}
      * 
      * @return the raw map of supported capabilities reported by the client
      */
