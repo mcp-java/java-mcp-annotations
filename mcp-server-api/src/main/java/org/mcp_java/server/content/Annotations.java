@@ -100,5 +100,12 @@ public interface Annotations {
          * @return this builder
          */
         Builder setLastModified(Instant lastModified);
+
+        /**
+         * Builds the resource annotations
+         * 
+         * @return the new annotations object
+         */
+        Annotations build();
     }
 }
