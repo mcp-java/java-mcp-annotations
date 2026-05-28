@@ -36,7 +36,6 @@
     </scm>
 
     <modules>
-        <module>mcp-model</module>
         <module>mcp-server-api</module>
     </modules>
 
@@ -65,16 +64,6 @@
     <dependencyManagement>
         <dependencies>
             <!-- Internal modules -->
-            <dependency>
-                <groupId>org.mcp-java</groupId>
-                <artifactId>mcp-model</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mcp-java</groupId>
-                <artifactId>mcp-annotations</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.mcp-java</groupId>
                 <artifactId>mcp-server-api</artifactId>

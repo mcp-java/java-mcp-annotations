@@ -12,21 +12,6 @@ The Model Context Protocol (MCP) is an open protocol that standardizes how appli
 
 ## Project Structure
 
-This repository is organized into three core modules:
-
-### `mcp-model`
-Complete Java model representing the MCP protocol specification:
-- **JSON-RPC**: Request, response, notification, and error types
-- **Tools**: Tool definitions, call requests/results, schemas
-- **Prompts**: Prompt messages, arguments, and responses
-- **Resources**: Resource contents, templates, and subscriptions
-- **Content**: Text, image, audio, and embedded resource content types
-- **Completion**: Auto-completion support for prompts and resources
-- **Sampling & Elicitation**: LLM sampling and user interaction requests
-- **Common types**: Roles, roots, icons, metadata, progress tracking
-
-Package: `org.mcp_java.model.*`
-
 ### `mcp-annotations`
 Framework-agnostic annotations for declaratively building MCP servers:
 
@@ -81,21 +66,9 @@ Package: `org.mcp_java.server`
 - **Standards-Based**: Fully aligned with the official MCP specification
 - **Modern Java**: Uses Java 17+ features (records, sealed interfaces, etc.)
 
-## Module Dependency Graph
-
-```
-mcp-server-api
-    ↓ (depends on)
-mcp-annotations
-    ↓ (depends on)
-mcp-model
-```
-
-Framework implementations (Quarkus, Spring, etc.) typically depend on all three modules.
-
 ## Getting Started
 
-> **Note**: This project provides the foundational annotations and models. Framework-specific runtime implementations (connection handling, JSON-RPC processing, etc.) are provided by separate projects like [Quarkus MCP Server](https://github.com/quarkiverse/quarkus-mcp-server).
+> **Note**: This project provides the foundational annotations and interfaces. Framework-specific runtime implementations (connection handling, JSON-RPC processing, etc.) are provided by separate projects like [Quarkus MCP Server](https://github.com/quarkiverse/quarkus-mcp-server).
 
 ### Requirements
 
