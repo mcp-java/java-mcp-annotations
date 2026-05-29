@@ -25,7 +25,7 @@
  * <li>{@link org.mcp_java.server.Icons @Icons} - Assigns icons to tools, resources and prompts</li>
  * <li>{@link org.mcp_java.server.McpException} - Base MCP exception</li>
  * <li>{@link org.mcp_java.server.McpConnection} - Connection metadata and status, including client capabilities</li>
- * <li>{@link org.mcp_java.server.McpLog} - Client-side logging</li>
+ * <li>{@link org.mcp_java.server.Meta} - Access to request {@code _meta} field</li>
  * </ul>
  */
 package org.mcp_java.server;
