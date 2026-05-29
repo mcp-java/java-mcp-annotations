@@ -41,18 +41,26 @@ public interface MetaCarrier {
 
         /**
          * Adds a key value pair to the {@code _meta} entry of the object created by this builder.
+         * <p>
+         * Note that the Model Context Protocol defines <a href="https://modelcontextprotocol.org/specification/2025-11-25/basic#_meta">rules for the format of the key name</a>.
+         * Implementations may validate the key name against these rules.
          * 
          * @param key the key
          * @param value the value
          * @return this builder
+         * @throws IllegalArgumentException if {@code key} is not a valid metadata key name
          */
         THIS putMetadata(String key, Object value);
 
         /**
          * Sets the metadata, replacing any previously added metadata entries.
+         * <p>
+         * Note that the Model Context Protocol defines <a href="https://modelcontextprotocol.org/specification/2025-11-25/basic#_meta">rules for the format of the key name</a>.
+         * Implementations may validate the key names against these rules.
          *
          * @param metadata the metadata map
          * @return this builder
+         * @throws IllegalArgumentException if any of the keys of {@code metadata} are not valid metadata key names
          */
         THIS setMetadata(Map<String, Object> metadata);
     }
