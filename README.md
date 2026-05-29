@@ -12,56 +12,48 @@ The Model Context Protocol (MCP) is an open protocol that standardizes how appli
 
 ## Project Structure
 
-### `mcp-annotations`
-Framework-agnostic annotations for declaratively building MCP servers:
+### `mcp-server-api`
+Framework-agnostic annotations and interfaces for declaratively building MCP servers:
 
 **Tools**:
 - `@Tool` - Mark methods as MCP tools
 - `@ToolArg` - Configure tool parameters
 
-Package: `org.mcp_java.annotations.tools`
+Package: `org.mcp_java.server.tools`
 
 **Resources**:
 - `@Resource` - Expose static resources
 - `@ResourceTemplate` - Expose dynamic resources with URI templates
 - `@ResourceTemplateArg` - Configure template URI variables
 
-Package: `org.mcp_java.annotations.resources`
+Package: `org.mcp_java.server.resources`
 
 **Prompts**:
 - `@Prompt` - Define reusable prompt templates
 - `@PromptArg` - Configure prompt arguments
 
-Package: `org.mcp_java.annotations.prompts`
+Package: `org.mcp_java.server.prompts`
 
 **Completion**:
-- `@CompleteArg` - Customize completion argument names
 - `@CompletePrompt` - Provide completion for prompt arguments
 - `@CompleteResourceTemplate` - Provide completion for resource template URIs
+- `@CompleteArg` - Customize completion argument names
 
-Package: `org.mcp_java.annotations.completion`
+Package: `org.mcp_java.server.completion`
 
 **Core**:
 - `@McpServer` - Mark classes as MCP server components
 - `@MetaField` - Add custom metadata to definitions
-
-Package: `org.mcp_java.annotations`
-
-### `mcp-server-api`
-Basic framework-agnostic runtime APIs for MCP server implementations:
 - `Cancellation` - Interface for handling request cancellation
-- `ClientCapability` - Representation of client capabilities
 - `ContentEncoder<T>` - Interface for custom content encoding
-- `McpException` - Base exception for MCP-related errors
-- Package documentation and contracts
+- `ClientCapability` - Representation of client capabilities
 
 Package: `org.mcp_java.server`
 
 ## Design Principles
 
 - **Framework Agnostic**: Zero dependencies on Spring, Quarkus, or other frameworks
-- **Portable**: Use these annotations and models with any Java runtime
-- **Clean Separation**: Annotations, models, and server APIs in separate modules
+- **Portable**: Use these annotations and interfaces with any Java runtime
 - **Extensible**: Framework-specific implementations can build on these foundations
 - **Standards-Based**: Fully aligned with the official MCP specification
 - **Modern Java**: Uses Java 17+ features (records, sealed interfaces, etc.)
@@ -92,12 +84,12 @@ mvn test
 Here's a simple example of using the annotations:
 
 ```java
-import org.mcp_java.annotations.McpServer;
-import org.mcp_java.annotations.tools.Tool;
-import org.mcp_java.annotations.tools.ToolArg;
-import org.mcp_java.annotations.resources.Resource;
-import org.mcp_java.annotations.prompts.Prompt;
-import org.mcp_java.annotations.prompts.PromptArg;
+import org.mcp_java.server.McpServer;
+import org.mcp_java.server.tools.Tool;
+import org.mcp_java.server.tools.ToolArg;
+import org.mcp_java.server.resources.Resource;
+import org.mcp_java.server.prompts.Prompt;
+import org.mcp_java.server.prompts.PromptArg;
 
 @McpServer(name = "my-server", description = "Example MCP server")
 public class MyMcpServer {
