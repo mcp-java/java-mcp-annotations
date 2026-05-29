@@ -79,13 +79,6 @@ public interface McpConnection {
     ImplementationInfo clientInfo();
 
     /**
-     * Gets the current log level for this connection.
-     *
-     * @return the log level
-     */
-    McpLog.LogLevel logLevel();
-
-    /**
      * The status of an MCP connection.
      */
     enum Status {
