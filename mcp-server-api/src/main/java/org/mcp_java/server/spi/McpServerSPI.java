@@ -19,6 +19,8 @@ package org.mcp_java.server.spi;
 import java.util.List;
 import java.util.ServiceLoader;
 
+import org.mcp_java.server.Icon;
+import org.mcp_java.server.Icon.Builder;
 import org.mcp_java.server.Role;
 import org.mcp_java.server.completion.CompletionResult;
 import org.mcp_java.server.content.Annotations;
@@ -350,6 +352,26 @@ public interface McpServerSPI {
         return toolResponseBuilder().setStructuredContent(structuredContent)
                                     .setError(false)
                                     .build();
+    }
+
+    /**
+     * Creates a builder for a new {@link Icon}
+     * 
+     * @param uri the icon URI
+     * @return the {@code Icon} builder
+     */
+    Builder iconBuilder(String uri);
+
+    /**
+     * Creates a new {@link Icon}
+     *
+     * @param uri the icon URI
+     * @param mimeType the icon MIME type
+     * @return the new {@code Icon}
+     */
+    default Icon newIcon(String uri, String mimeType) {
+        return iconBuilder(uri).setMimeType(mimeType)
+                               .build();
     }
 
 }
