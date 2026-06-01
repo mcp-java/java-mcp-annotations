@@ -15,6 +15,8 @@
  */
 package org.mcp_java.server;
 
+import static org.mcp_java.server.spi.McpServerSPILoader.getSPI;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -54,14 +56,84 @@ public interface Icon {
     /**
      * The theme for an icon
      */
-    public enum Theme {
+    enum Theme {
         /**
-         * Indicates this icon is appropriate for a light theme
+         * Indicates this icon is appropriate for use with a light background
          */
         LIGHT,
         /**
-         * Indicates this icon is appropriate for a dark theme
+         * Indicates this icon is appropriate for use with a dark background
          */
         DARK
+    }
+
+    /**
+     * Creates a new {@code Icon}.
+     * 
+     * @param uri the icon URI
+     * @param mimeType the icon MIME type
+     * @return the new icon
+     */
+    static Icon of(String uri, String mimeType) {
+        return getSPI().newIcon(uri, mimeType);
+    }
+
+    /**
+     * Creates a builder for an {@code Icon}.
+     * 
+     * @param uri the icon URI
+     * @return the new icon builder
+     */
+    static Icon.Builder builder(String uri) {
+        return getSPI().iconBuilder(uri);
+    }
+
+    /**
+     * Builder for creating icons.
+     */
+    interface Builder {
+
+        /**
+         * Sets the MIME type of the icon
+         * 
+         * @param mimeType the MIME type
+         * @return this builder
+         */
+        Builder setMimeType(String mimeType);
+
+        /**
+         * Adds a size that this icon can be displayed at.
+         * <p>
+         * May not be used with {@link #setAnySize()}.
+         * 
+         * @param width the width
+         * @param height the height
+         * @return this builder
+         */
+        Builder addSize(int width, int height);
+
+        /**
+         * Sets that the icon may be used at any size. Usually for scalable icons.
+         * <p>
+         * May not be used with {@link #addSize(int, int)}.
+         * 
+         * @return this builder
+         */
+        Builder setAnySize();
+
+        /**
+         * Sets the theme that this icon is designed for.
+         * 
+         * @param theme the theme
+         * @return this builder
+         */
+        Builder setTheme(Theme theme);
+
+        /**
+         * Builds the icon
+         * 
+         * @return the new icon
+         */
+        Icon build();
     }
 }
