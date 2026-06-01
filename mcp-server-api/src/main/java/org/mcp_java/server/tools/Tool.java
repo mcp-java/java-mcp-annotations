@@ -101,13 +101,6 @@ public @interface Tool {
     String description() default "";
 
     /**
-     * Icon for the tool.
-     *
-     * @return the icon configuration
-     */
-    Icon icon() default @Icon;
-
-    /**
      * Behavioral hints and annotations for this tool.
      * <p>
      * These provide additional hints to clients about the tool's behavior and characteristics.
@@ -152,34 +145,6 @@ public @interface Tool {
      * @see #structuredContent()
      */
     OutputSchema outputSchema() default @OutputSchema;
-
-    /**
-     * Nested annotation for tool icons.
-     */
-    @Target(ElementType.ANNOTATION_TYPE)
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface Icon {
-        /**
-         * The icon source (URI).
-         *
-         * @return the icon source
-         */
-        String src() default "";
-
-        /**
-         * The MIME type of the icon.
-         *
-         * @return the MIME type
-         */
-        String mimeType() default "";
-
-        /**
-         * Theme for the icon (light or dark).
-         *
-         * @return the theme
-         */
-        String theme() default "";
-    }
 
     /**
      * Nested annotation for tool behavioral hints.
