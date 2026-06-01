@@ -21,16 +21,32 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.mcp_java.server.Cancellation;
+import org.mcp_java.server.McpConnection;
+import org.mcp_java.server.progress.Progress;
+import org.mcp_java.server.resources.ResourceTemplate;
+
 /**
  * Marks a method as providing completion suggestions for a resource template URI expression.
  * <p>
  * The annotated method returns completion values for URI template variables.
+ * 
+ * <h2>Parameters</h2>
  * <p>
- * The method must consume exactly one {@link String} argument representing the
- * partial value that needs to be completed.
- * <p>
- * The method may consume a {@link CompletionContext} argument to access values
- * already chosen for other arguments.
+ * Resource template completion methods may have parameters of the following types:
+ * <ul>
+ * <li>{@link String} - the method must have exactly one {@code String} parameter representing
+ * the partial value that needs to be completed. In most cases it must be annotated with {@link CompleteArg}
+ * with the {@link CompleteArg#name() name} attribute set, unless the code was compiled with the
+ * {@code -parameters} option. The name must match the name of one of the arguments of the related resource template.
+ * <li>{@link CompletionContext} - to access values already chosen for other arguments
+ * <li>{@link McpConnection} - to access information about the MCP connection
+ * <li>{@link Cancellation} - to allow processing to be stopped if the client cancels the tool call
+ * <li>{@link Progress} - to send progress reports back to the client
+ * <li>Implementations may define additional types that can be used as parameters
+ * </ul>
+ * 
+ * <h2>Return Type Handling</h2>
  * <p>
  * Return types can be:
  * </p>
@@ -38,13 +54,14 @@ import java.lang.annotation.Target;
  * <li>{@code String} - single completion value</li>
  * <li>{@code List<String>} - multiple completion values</li>
  * <li>{@link CompletionResult} - full completion response with metadata</li>
+ * <li>Other types - Encoded according to framework-specific rules</li>
  * </ul>
  * <p>
  * Example:
  * </p>
  * <pre>
  * &#64;CompleteResourceTemplate("fileTemplate")
- * public List&lt;String&gt; completeFilePath(&#64;CompleteArg String partialPath) {
+ * public List&lt;String&gt; completeFilePath(&#64;CompleteArg(name = "path") String partialPath) {
  *     // Return matching file paths
  *     return findMatchingPaths(partialPath);
  * }
@@ -58,7 +75,7 @@ public @interface CompleteResourceTemplate {
     /**
      * The name of the resource template this completion method is for.
      * <p>
-     * This must reference an existing {@code @ResourceTemplate} annotation's name.
+     * This must reference an existing {@link ResourceTemplate @ResourceTemplate} annotation's name.
      * </p>
      *
      * @return the resource template name

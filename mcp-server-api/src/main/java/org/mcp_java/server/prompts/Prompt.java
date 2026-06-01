@@ -21,10 +21,29 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.mcp_java.server.Cancellation;
+import org.mcp_java.server.McpConnection;
+import org.mcp_java.server.progress.Progress;
+
 /**
  * Marks a method as providing an MCP prompt template.
- * <p>
  * Prompts are reusable message templates that can be used by MCP clients.
+ * 
+ * <h2>Parameters</h2>
+ * Prompt methods may have parameters of the following types:
+ * <ul>
+ * <li>{@link String} - each {@code String} parameter is treated as an argument to the prompt.
+ * In most cases these parameters must be annotated with {@link PromptArg} with the {@link PromptArg#name() name}
+ * attribute set, unless the code was compiled with the {@code -parameters} option.
+ * {@code PromptArg} also allows other properties of the argument to be configured.
+ * <li>{@link McpConnection} - to access information about the MCP connection
+ * <li>{@link Cancellation} - to allow processing to be stopped if the client cancels the prompt request
+ * <li>{@link Progress} - to send progress reports back to the client
+ * <li>Implementations may define additional types that can be used as parameters
+ * </ul>
+ * 
+ * <h2>Return Type Handling</h2>
+ * <p>
  * The annotated method can return various types that will be converted to prompt responses:
  * </p>
  * <ul>
@@ -33,10 +52,6 @@ import java.lang.annotation.Target;
  * <li>{@link PromptResponse} - Full response with description and messages</li>
  * <li>Other types - Encoded according to framework-specific rules</li>
  * </ul>
- * <p>
- * Method parameters can be configured using {@link PromptArg} annotations to define
- * the prompt's argument schema.
- * </p>
  *
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/prompts">MCP Specification - Prompts</a>
  * @see PromptArg
