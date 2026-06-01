@@ -24,10 +24,13 @@ import java.lang.annotation.Target;
 /**
  * Marks a method as providing completion suggestions for a resource template URI expression.
  * <p>
- * The annotated method should return completion values for URI template variables.
+ * The annotated method returns completion values for URI template variables.
+ * <p>
  * The method must consume exactly one {@link String} argument representing the
  * partial value that needs to be completed.
- * </p>
+ * <p>
+ * The method may consume a {@link CompletionContext} argument to access values
+ * already chosen for other arguments.
  * <p>
  * Return types can be:
  * </p>

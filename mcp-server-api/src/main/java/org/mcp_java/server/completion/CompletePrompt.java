@@ -26,13 +26,15 @@ import org.mcp_java.server.prompts.Prompt;
 /**
  * Marks a method as providing completion suggestions for a prompt argument.
  * <p>
- * The annotated method should return completion values for a specific prompt argument.
+ * The annotated method returns completion values for a specific prompt argument.
+ * <p>
  * The method must consume exactly one {@link String} argument representing the
  * partial value that needs to be completed.
- * </p>
+ * <p>
+ * The method may consume a {@link CompletionContext} argument to access values
+ * already chosen for other arguments.
  * <p>
  * Return types can be:
- * </p>
  * <ul>
  * <li>{@code String} - single completion value</li>
  * <li>{@code List<String>} - multiple completion values</li>
