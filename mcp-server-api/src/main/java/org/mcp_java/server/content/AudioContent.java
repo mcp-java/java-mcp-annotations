@@ -24,7 +24,7 @@ import org.mcp_java.server.MetaCarrier;
 /**
  * Audio data content
  */
-public non-sealed interface AudioContent extends ContentBlock, SamplingMessageContentBlock {
+public non-sealed interface AudioContent extends ContentBlock {
 
     /**
      * Returns the audio data
