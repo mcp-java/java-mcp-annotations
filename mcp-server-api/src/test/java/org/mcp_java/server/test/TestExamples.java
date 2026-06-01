@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 the original author or authors.
+ * Copyright 2026 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.mcp_java.model.common;
+package org.mcp_java.server.test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
 
 /**
- * An opaque token used for pagination.
- *
- * @param value the cursor value
- * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/utilities/pagination">MCP Specification - Pagination</a>
+ * Test that example code used in documentation compiles
  */
-public record Cursor(String value) {
-    /** Creates a new cursor, validating the value is not null or blank. */
-    public Cursor {
-        if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("Cursor value cannot be null or blank");
-        }
+public class TestExamples {
+
+    @Test
+    public void testMyMcpServerExample() {
+        // As this is just an API, we're only interested in whether the example compiles
+        assertNotNull(MyMcpServer.class);
     }
 }
