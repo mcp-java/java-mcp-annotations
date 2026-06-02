@@ -21,10 +21,29 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.mcp_java.server.Cancellation;
+import org.mcp_java.server.McpConnection;
 import org.mcp_java.server.Role;
+import org.mcp_java.server.progress.Progress;
 
 /**
  * Marks a method as providing dynamic MCP resources via URI templates.
+ * 
+ * <h2>Parameters</h2>
+ * <p>
+ * Resource template methods may have parameters of the following types:
+ * <ul>
+ * <li>{@link String} - the method must have one {@code String} parameter for each variable in the {@link #uriTemplate uriTemplate}.
+ * In most cases these parameters must be annotated with{@link ResourceTemplateArg} with the {@link ResourceTemplateArg#name() name}
+ * attribute set, unless the code was compiled with the {@code -parameters} option.
+ * {@code ResourceTemplateArg} also allows other properties of the argument to be configured.
+ * <li>{@link McpConnection} - to access information about the MCP connection
+ * <li>{@link Cancellation} - to allow processing to be stopped if the client cancels the tool call
+ * <li>{@link Progress} - to send progress reports back to the client
+ * <li>Implementations may define additional types that can be used as parameters
+ * </ul>
+ * 
+ * <h2>Return Type Handling</h2>
  * <p>
  * The result of a "resource read" operation is represented as a resource response.
  * The annotated method can return various types that will be converted according to

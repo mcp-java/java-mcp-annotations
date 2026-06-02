@@ -21,7 +21,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.mcp_java.server.Cancellation;
+import org.mcp_java.server.McpConnection;
 import org.mcp_java.server.content.ContentBlock;
+import org.mcp_java.server.progress.Progress;
 
 /**
  * Marks a method as an MCP tool that can be invoked by clients.
@@ -30,9 +33,21 @@ import org.mcp_java.server.content.ContentBlock;
  * explicitly specified via the {@link #name()} attribute, or will be derived from
  * the method name if not specified.
  * </p>
+ * 
+ * <h2>Parameters</h2>
  * <p>
- * Method parameters can be further configured using {@link ToolArg} annotations.
- * </p>
+ * Tool methods may have parameters of the following types:
+ * <ul>
+ * <li>{@link McpConnection} - to access information about the MCP connection
+ * <li>{@link Cancellation} - to allow processing to be stopped if the client cancels the tool call
+ * <li>{@link Progress} - to send progress reports back to the client
+ * <li>Implementations may define additional types that can be used as parameters
+ * <li><strong>All other parameters</strong> are treated as arguments to the tool.
+ * In most cases these parameters must be annotated with {@link ToolArg} with the
+ * {@link ToolArg#name() name} attribute set, unless the code was compiled with the
+ * {@code -parameters} option.
+ * {@code ToolArg} also allows other properties of the argument to be configured.
+ * </ul>
  *
  * <h2>Return Type Handling</h2>
  * <p>
