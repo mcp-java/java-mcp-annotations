@@ -23,6 +23,7 @@ import java.lang.annotation.Target;
 
 import org.mcp_java.server.Cancellation;
 import org.mcp_java.server.McpConnection;
+import org.mcp_java.server.Meta;
 import org.mcp_java.server.progress.Progress;
 import org.mcp_java.server.resources.ResourceTemplate;
 
@@ -43,6 +44,7 @@ import org.mcp_java.server.resources.ResourceTemplate;
  * <li>{@link McpConnection} - to access information about the MCP connection
  * <li>{@link Cancellation} - to allow processing to be stopped if the client cancels the tool call
  * <li>{@link Progress} - to send progress reports back to the client
+ * <li>{@link Meta} - to access additional metadata sent in the request
  * <li>Implementations may define additional types that can be used as parameters
  * </ul>
  * 
