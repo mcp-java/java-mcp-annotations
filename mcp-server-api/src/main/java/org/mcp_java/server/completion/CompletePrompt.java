@@ -23,6 +23,7 @@ import java.lang.annotation.Target;
 
 import org.mcp_java.server.Cancellation;
 import org.mcp_java.server.McpConnection;
+import org.mcp_java.server.RequestId;
 import org.mcp_java.server.progress.Progress;
 import org.mcp_java.server.prompts.Prompt;
 
@@ -41,6 +42,7 @@ import org.mcp_java.server.prompts.Prompt;
  * {@code -parameters} option. The name must match the name of one of the arguments of the related prompt.
  * <li>{@link CompletionContext} - to access values already chosen for other arguments
  * <li>{@link McpConnection} - to access information about the MCP connection
+ * <li>{@link RequestId} - to access the request ID
  * <li>{@link Cancellation} - to allow processing to be stopped if the client cancels the tool call
  * <li>{@link Progress} - to send progress reports back to the client
  * <li>Implementations may define additional types that can be used as parameters

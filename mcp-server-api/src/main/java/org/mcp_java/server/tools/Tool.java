@@ -23,6 +23,7 @@ import java.lang.annotation.Target;
 
 import org.mcp_java.server.Cancellation;
 import org.mcp_java.server.McpConnection;
+import org.mcp_java.server.RequestId;
 import org.mcp_java.server.content.ContentBlock;
 import org.mcp_java.server.progress.Progress;
 
@@ -39,6 +40,7 @@ import org.mcp_java.server.progress.Progress;
  * Tool methods may have parameters of the following types:
  * <ul>
  * <li>{@link McpConnection} - to access information about the MCP connection
+ * <li>{@link RequestId} - to access the request ID
  * <li>{@link Cancellation} - to allow processing to be stopped if the client cancels the tool call
  * <li>{@link Progress} - to send progress reports back to the client
  * <li>Implementations may define additional types that can be used as parameters
