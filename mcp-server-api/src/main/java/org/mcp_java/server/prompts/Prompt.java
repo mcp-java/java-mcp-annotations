@@ -23,6 +23,7 @@ import java.lang.annotation.Target;
 
 import org.mcp_java.server.Cancellation;
 import org.mcp_java.server.McpRequest;
+import org.mcp_java.server.Role;
 import org.mcp_java.server.progress.Progress;
 
 /**
@@ -47,6 +48,7 @@ import org.mcp_java.server.progress.Progress;
  * The annotated method can return various types that will be converted to prompt responses:
  * </p>
  * <ul>
+ * <li>{@link String} - Single text message with role {@link Role#USER USER} in the response</li>
  * <li>{@link PromptMessage} - Single message in the response</li>
  * <li>List of {@link PromptMessage} - Multiple messages in the response</li>
  * <li>{@link PromptResponse} - Full response with description and messages</li>
