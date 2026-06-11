@@ -25,13 +25,8 @@ import java.lang.annotation.Target;
 /**
  * Binds features (tools, prompts, resources) to a named MCP server configuration.
  * <p>
- * Features can be bound to multiple server configurations by declaring this annotation multiple times.
- * <p>
- * When declared on a class, all feature methods that do not declare this annotation
- * share the specified server configurations.
- * <p>
- * When declared on a method, it overrides any class-level server binding for that
- * specific feature.
+ * A feature can be bound to multiple server configurations. The set of bindings includes all values
+ * declared on the feature method and all values defined on the declaring class of the feature.
  * <p>
  * How MCP server configurations are declared and specified is implementation dependent.
  * It's expected that implementations will provide some way of configuring the name,
