@@ -23,6 +23,7 @@ import java.lang.annotation.Target;
 
 import org.mcp_java.server.Cancellation;
 import org.mcp_java.server.McpRequest;
+import org.mcp_java.server.McpServer;
 import org.mcp_java.server.Role;
 import org.mcp_java.server.progress.Progress;
 
@@ -83,9 +84,9 @@ public @interface ResourceTemplate {
     /**
      * The unique name of the resource template.
      * <p>
-     * Each resource template must have a unique name. This is intended for programmatic or logical
-     * use,
-     * but may be used for UI display as a fallback if {@link #title()} is not present.
+     * Each resource template bound to the same {@linkplain McpServer MCP server configuration} must have a unique name.
+     * This is intended for programmatic or logical use, but may be used for UI display as a fallback if
+     * {@link #title()} is not present.
      * </p>
      * <p>
      * By default, the name is derived from the annotated method name.

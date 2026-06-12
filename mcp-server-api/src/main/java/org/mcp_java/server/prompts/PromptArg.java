@@ -48,9 +48,10 @@ public @interface PromptArg {
     /**
      * The name of the argument.
      * <p>
+     * Each argument to a prompt must have a unique name.
+     * <p>
      * By default, the parameter name from the method signature will be used
      * (requires compilation with the {@code -parameters} flag).
-     * </p>
      *
      * @return the argument name
      */

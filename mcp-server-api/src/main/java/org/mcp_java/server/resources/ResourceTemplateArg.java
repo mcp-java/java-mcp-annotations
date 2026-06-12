@@ -43,6 +43,9 @@ public @interface ResourceTemplateArg {
     /**
      * The name of the URI template variable.
      * <p>
+     * Each argument to a resource template must have a unique name and must match one of the variables
+     * included in the {@link ResourceTemplate#uriTemplate() uriTemplate}.
+     * <p>
      * By default, the parameter name from the method signature will be used
      * (requires compilation with the {@code -parameters} flag).
      * </p>
