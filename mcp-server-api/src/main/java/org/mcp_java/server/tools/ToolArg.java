@@ -51,9 +51,10 @@ public @interface ToolArg {
     /**
      * The name of the parameter as it appears in the tool's JSON Schema.
      * <p>
+     * Each argument to a tool must have a unique name.
+     * <p>
      * By default, the parameter name from the method signature will be used
      * (requires compilation with the {@code -parameters} flag).
-     * </p>
      *
      * @return the parameter name
      */
