@@ -15,17 +15,15 @@
  */
 package org.mcp_java.server.test;
 
-import org.mcp_java.server.McpServer;
-import org.mcp_java.server.tools.Tool;
-import org.mcp_java.server.tools.ToolArg;
-import org.mcp_java.server.resources.Resource;
 import org.mcp_java.server.prompts.Prompt;
 import org.mcp_java.server.prompts.PromptArg;
+import org.mcp_java.server.resources.Resource;
+import org.mcp_java.server.tools.Tool;
+import org.mcp_java.server.tools.ToolArg;
 
 /**
  * Example code from README
  */
-@McpServer(name = "my-server", description = "Example MCP server")
 public class MyMcpServer {
 
     @Tool(

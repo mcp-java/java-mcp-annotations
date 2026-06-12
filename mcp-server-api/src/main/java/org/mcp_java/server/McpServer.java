@@ -17,33 +17,30 @@ package org.mcp_java.server;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Binds features (tools, prompts, resources) to a specific MCP server configuration.
+ * Binds features (tools, prompts, resources) to a named MCP server configuration.
  * <p>
- * When declared on a class, all feature methods that do not declare this annotation
- * share the specified server configuration.
- * </p>
+ * A feature can be bound to multiple server configurations. The set of bindings includes all values
+ * declared on the feature method and all values defined on the declaring class of the feature.
  * <p>
- * When declared on a method, it overrides any class-level server binding for that
- * specific feature.
- * </p>
- * <p>
- * Classes annotated with {@code @McpServer} will be scanned for MCP feature annotations
- * by framework implementations.
- * </p>
+ * How MCP server configurations are declared and specified is implementation dependent.
+ * It's expected that implementations will provide some way of configuring the name,
+ * description and path of each MCP server configuration.
  *
  * @see org.mcp_java.server.tools.Tool
  * @see org.mcp_java.server.prompts.Prompt
  * @see org.mcp_java.server.resources.Resource
  * @see org.mcp_java.server.resources.ResourceTemplate
  */
-@Target({ElementType.TYPE, ElementType.METHOD})
+@Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
+@Repeatable(McpServer.McpServers.class)
 public @interface McpServer {
 
     /**
@@ -52,41 +49,21 @@ public @interface McpServer {
     String DEFAULT = "<default>";
 
     /**
-     * The name of the server.
+     * The name of the server configuration the annotated features are bound to.
      * <p>
-     * This is an alias for {@link #name()}. If both are specified, {@code value()} takes precedence.
-     * </p>
-     * <p>
-     * If not specified, a name will be derived from the class name or framework configuration,
-     * or {@link #DEFAULT} will be used.
-     * </p>
+     * If not specified, they will be linked to the default configuration.
      *
-     * @return the server name
+     * @return the server configuration name
      */
     String value() default DEFAULT;
-
+    
     /**
-     * The name of the server.
-     * <p>
-     * If not specified, a name will be derived from the class name or
-     * framework configuration, or {@link #DEFAULT} will be used.
-     * </p>
-     *
-     * @return the server name
+     * Container annotation for {@link McpServer}
      */
-    String name() default "";
-
-    /**
-     * A description of what this server provides.
-     *
-     * @return the server description
-     */
-    String description() default "";
-
-    /**
-     * The version of this server.
-     *
-     * @return the server version
-     */
-    String version() default "";
+    @Target({ ElementType.TYPE, ElementType.METHOD })
+    @Retention(RetentionPolicy.RUNTIME)
+    @Documented
+    @interface McpServers {
+        McpServer[] value();
+    }
 }

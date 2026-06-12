@@ -84,14 +84,12 @@ mvn test
 Here's a simple example of using the annotations:
 
 ```java
-import org.mcp_java.server.McpServer;
-import org.mcp_java.server.tools.Tool;
-import org.mcp_java.server.tools.ToolArg;
-import org.mcp_java.server.resources.Resource;
 import org.mcp_java.server.prompts.Prompt;
 import org.mcp_java.server.prompts.PromptArg;
+import org.mcp_java.server.resources.Resource;
+import org.mcp_java.server.tools.Tool;
+import org.mcp_java.server.tools.ToolArg;
 
-@McpServer(name = "my-server", description = "Example MCP server")
 public class MyMcpServer {
 
     @Tool(
