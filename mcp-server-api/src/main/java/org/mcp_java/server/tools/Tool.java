@@ -62,12 +62,6 @@ import org.mcp_java.server.progress.Progress;
  * <li>Other types - Encoded according to framework-specific rules (typically as JSON)</li>
  * </ul>
  *
- * <h2>Schema Generation</h2>
- * <p>
- * Input and output schemas can be automatically generated from method signatures or
- * explicitly configured using {@link #inputSchema()} and {@link #outputSchema()}.
- * </p>
- *
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools">MCP Specification - Tools</a>
  * @see ToolArg
  */
@@ -132,36 +126,28 @@ public @interface Tool {
      * If set to {@code true}, the method return value is converted to JSON and used as
      * structured content in the result.
      * <p>
-     * When enabled, the output schema is also generated automatically from the return type.
+     * When enabled, the output schema is generated automatically from the return type,
+     * or from {@link #outputSchemaFrom()} if set.
      * </p>
      *
      * @return true if structured content should be used
-     * @see #outputSchema()
+     * @see #outputSchemaFrom()
      */
     boolean structuredContent() default false;
 
     /**
-     * Configuration for input schema generation and validation.
+     * The class to use to generate the output schema for structured content.
      * <p>
-     * The input schema defines the expected structure of tool arguments and can be used
-     * for validation by clients.
-     * </p>
-     *
-     * @return the input schema configuration
-     */
-    InputSchema inputSchema() default @InputSchema;
-
-    /**
-     * Configuration for output schema generation and validation.
+     * If a tool returns {@linkplain #structuredContent() structured content}, this method can
+     * be used to override the type used to generate the output schema. This is necessary for
+     * tool methods that return {@link ToolResponse} and want to include structured content.
      * <p>
-     * The output schema defines the structure of tool results with structured content.
-     * This is particularly useful when a tool method returns complex objects directly.
-     * </p>
-     *
-     * @return the output schema configuration
+     * By default, the output schema is generated from the method return type.
+     * 
+     * @return the class to use to generate the output schema
      * @see #structuredContent()
      */
-    OutputSchema outputSchema() default @OutputSchema;
+    Class<?> outputSchemaFrom() default Void.class;
 
     /**
      * Nested annotation for tool behavioral hints.
@@ -221,56 +207,5 @@ public @interface Tool {
          * @return true if open world
          */
         boolean openWorldHint() default true;
-    }
-
-    /**
-     * Configuration for input schema generation.
-     * <p>
-     * The input schema is generated from the tool method's parameter types
-     * and can be customized using this annotation.
-     * </p>
-     */
-    @Target(ElementType.ANNOTATION_TYPE)
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface InputSchema {
-        /**
-         * The generator class. Implementation classes must be CDI beans. Qualifiers are ignored.
-         * <p>
-         * By default, the built-in generator is used.
-         * </p>
-         *
-         * @return the generator class name
-         */
-        String generator() default "";
-    }
-
-    /**
-     * Configuration for output schema generation.
-     * <p>
-     * The output schema defines the structure of structured content returned by the tool.
-     * </p>
-     */
-    @Target(ElementType.ANNOTATION_TYPE)
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface OutputSchema {
-        /**
-         * The class from which the schema is generated.
-         * <p>
-         * If {@link Tool#structuredContent()} is set to {@code true} then the return type may be used for schema generation.
-         * </p>
-         *
-         * @return the class to use for schema generation
-         */
-        Class<?> from() default OutputSchema.class;
-
-        /**
-         * The generator class. Implementation classes must be CDI beans. Qualifiers are ignored.
-         * <p>
-         * By default, the built-in generator is used.
-         * </p>
-         *
-         * @return the generator class name
-         */
-        String generator() default "";
     }
 }
