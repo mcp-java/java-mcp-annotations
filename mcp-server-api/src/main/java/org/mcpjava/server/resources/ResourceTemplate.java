@@ -1,0 +1,186 @@
+/*
+ * Copyright 2025 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.mcpjava.server.resources;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import org.mcpjava.server.Cancellation;
+import org.mcpjava.server.McpRequest;
+import org.mcpjava.server.McpServer;
+import org.mcpjava.server.Role;
+import org.mcpjava.server.progress.Progress;
+
+/**
+ * Marks a method as providing dynamic MCP resources via URI templates.
+ * 
+ * <h2>Parameters</h2>
+ * <p>
+ * Resource template methods may have parameters of the following types:
+ * <ul>
+ * <li>{@link String} - the method must have one {@code String} parameter for each variable in the {@link #uriTemplate uriTemplate}.
+ * In most cases these parameters must be annotated with{@link ResourceTemplateArg} with the {@link ResourceTemplateArg#name() name}
+ * attribute set, unless the code was compiled with the {@code -parameters} option.
+ * {@code ResourceTemplateArg} also allows other properties of the argument to be configured.
+ * <li>{@link McpRequest} - to access information about the request
+ * <li>{@link Cancellation} - to allow processing to be stopped if the client cancels the tool call
+ * <li>{@link Progress} - to send progress reports back to the client
+ * <li>Implementations may define additional types that can be used as parameters
+ * </ul>
+ * 
+ * <h2>Return Type Handling</h2>
+ * <p>
+ * The result of a "resource read" operation is represented as a resource response.
+ * The annotated method can return various types that will be converted according to
+ * framework-specific rules:
+ * </p>
+ * <ul>
+ * <li>{@code String} - Converted to text resource contents</li>
+ * <li>{@code byte[]} - Converted to blob resource contents</li>
+ * <li>{@link ResourceContents} implementations - Used directly in the response</li>
+ * <li>List of {@link ResourceContents} - Multiple content items in the response</li>
+ * <li>{@link ResourceResponse} - Used directly as the response</li>
+ * <li>Other types - Encoded according to framework-specific rules (typically as JSON)</li>
+ * </ul>
+ * <p>
+ * Resource templates use Level 1 RFC 6570 URI template syntax to support dynamic
+ * resources where parts of the URI are variable.
+ * Method parameters can be configured using {@link ResourceTemplateArg} annotations.
+ * </p>
+ *
+ * @see <a
+ * href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources/#resource-templates">MCP Specification - Resource Templates</a>
+ * @see <a href="https://datatracker.ietf.org/doc/html/rfc6570#section-1.2">RFC 6570 - URI Template</a>
+ * @see Resource
+ * @see ResourceTemplateArg
+ */
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface ResourceTemplate {
+
+    /**
+     * Constant value for {@link #name()} indicating that the annotated element's name should be
+     * used as-is.
+     */
+    String ELEMENT_NAME = "<<element name>>";
+
+    /**
+     * The unique name of the resource template.
+     * <p>
+     * Each resource template bound to the same {@linkplain McpServer MCP server configuration} must have a unique name.
+     * This is intended for programmatic or logical use, but may be used for UI display as a fallback if
+     * {@link #title()} is not present.
+     * </p>
+     * <p>
+     * By default, the name is derived from the annotated method name.
+     * </p>
+     *
+     * @return the template name
+     */
+    String name() default ELEMENT_NAME;
+
+    /**
+     * A human-readable title for the resource template.
+     * <p>
+     * This is a short, user-friendly display name for the template.
+     * </p>
+     *
+     * @return the template title
+     */
+    String title() default "";
+
+    /**
+     * A description of what this resource template represents.
+     *
+     * @return the template description
+     */
+    String description() default "";
+
+    /**
+     * The Level 1 URI template that can be used to construct resource URIs.
+     * <p>
+     * Examples:
+     * </p>
+     * <ul>
+     * <li>{@code "file:///{path}"}</li>
+     * <li>{@code "db:///{database}/tables/{table}"}</li>
+     * <li>{@code "api:///{version}/users/{userId}"}</li>
+     * </ul>
+     *
+     * @return the URI template
+     * @see <a href="https://datatracker.ietf.org/doc/html/rfc6570#section-1.2">RFC 6570</a>
+     */
+    String uriTemplate();
+
+    /**
+     * The MIME type of this resource template.
+     * <p>
+     * Examples: {@code "text/plain"}, {@code "application/json"}, {@code "image/png"}
+     * </p>
+     *
+     * @return the MIME type
+     */
+    String mimeType() default "";
+
+    /**
+     * Optional annotations for the client.
+     * <p>
+     * These provide additional hints to clients about the resource template's metadata.
+     * Note that annotations must be declared explicitly to be included in resource metadata.
+     * </p>
+     *
+     * @return the template annotations
+     */
+    Annotations annotations() default @Annotations(audience = Role.USER, lastModified = "", priority = 0.5);
+
+    /**
+     * Nested annotation for resource template metadata annotations.
+     * <p>
+     * These provide hints to clients about resources from this template.
+     * </p>
+     */
+    @Target(ElementType.ANNOTATION_TYPE)
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface Annotations {
+        /**
+         * The intended audience for resources from this template.
+         *
+         * @return the intended audience role
+         */
+        Role audience();
+
+        /**
+         * The last modification timestamp in ISO 8601 format.
+         *
+         * @return the last modified timestamp
+         */
+        String lastModified() default "";
+
+        /**
+         * The priority of resources from this template.
+         * <p>
+         * Higher values indicate higher priority.
+         * </p>
+         *
+         * @return the priority value
+         */
+        double priority() default 0.5;
+    }
+}
