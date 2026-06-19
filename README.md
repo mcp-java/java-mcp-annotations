@@ -19,27 +19,27 @@ Framework-agnostic annotations and interfaces for declaratively building MCP ser
 - `@Tool` - Mark methods as MCP tools
 - `@ToolArg` - Configure tool parameters
 
-Package: `org.mcp_java.server.tools`
+Package: `org.mcpjava.server.tools`
 
 **Resources**:
 - `@Resource` - Expose static resources
 - `@ResourceTemplate` - Expose dynamic resources with URI templates
 - `@ResourceTemplateArg` - Configure template URI variables
 
-Package: `org.mcp_java.server.resources`
+Package: `org.mcpjava.server.resources`
 
 **Prompts**:
 - `@Prompt` - Define reusable prompt templates
 - `@PromptArg` - Configure prompt arguments
 
-Package: `org.mcp_java.server.prompts`
+Package: `org.mcpjava.server.prompts`
 
 **Completion**:
 - `@CompletePrompt` - Provide completion for prompt arguments
 - `@CompleteResourceTemplate` - Provide completion for resource template URIs
 - `@CompleteArg` - Customize completion argument names
 
-Package: `org.mcp_java.server.completion`
+Package: `org.mcpjava.server.completion`
 
 **Core**:
 - `@McpServer` - Mark classes as MCP server components
@@ -48,7 +48,7 @@ Package: `org.mcp_java.server.completion`
 - `ContentEncoder<T>` - Interface for custom content encoding
 - `ClientCapability` - Representation of client capabilities
 
-Package: `org.mcp_java.server`
+Package: `org.mcpjava.server`
 
 ## Design Principles
 
@@ -84,11 +84,11 @@ mvn test
 Here's a simple example of using the annotations:
 
 ```java
-import org.mcp_java.server.prompts.Prompt;
-import org.mcp_java.server.prompts.PromptArg;
-import org.mcp_java.server.resources.Resource;
-import org.mcp_java.server.tools.Tool;
-import org.mcp_java.server.tools.ToolArg;
+import org.mcpjava.server.prompts.Prompt;
+import org.mcpjava.server.prompts.PromptArg;
+import org.mcpjava.server.resources.Resource;
+import org.mcpjava.server.tools.Tool;
+import org.mcpjava.server.tools.ToolArg;
 
 public class MyMcpServer {
 
