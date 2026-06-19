@@ -9,7 +9,7 @@
 
     <name>Java MCP Annotations</name>
     <description>Framework-agnostic Java library for implementing Model Context Protocol (MCP) servers and clients</description>
-    <url>https://github.com/clement/java-mcp-annotations</url>
+    <url>https://github.com/mcp-java/java-mcp-annotations</url>
 
     <licenses>
         <license>
