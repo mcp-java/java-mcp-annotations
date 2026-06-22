@@ -23,16 +23,6 @@ limitations under the License.
         implemented by any Java-based MCP server framework.
     </p>
 
-    <h1>Core APIs</h1>
-    <ul>
-        <li>{@link org.mcpjava.server.Cancellation} - Request cancellation handling</li>
-        <li>{@link org.mcpjava.server.ContentEncoder} - Custom content encoding</li>
-        <li>{@link org.mcpjava.server.McpException} - Base MCP exception</li>
-        <li>{@link org.mcpjava.server.McpRequest} - Request metadata</li>
-        <li>{@link org.mcpjava.server.progress.Progress} - Progress reporting for long-running
-            operations</li>
-    </ul>
-
     <h1>Defining server features</h1>
     <ul>
         <li>{@link org.mcpjava.server.prompts.Prompt} - Define MCP prompts</li>
@@ -43,6 +33,16 @@ limitations under the License.
             arguments</li>
         <li>{@link org.mcpjava.server.completion.CompleteResourceTemplate} - Provide completion for MCP
             resource template arguments</li>
+    </ul>
+
+    <h1>Common APIs</h1>
+    <ul>
+        <li>{@link org.mcpjava.server.Cancellation} - Request cancellation handling</li>
+        <li>{@link org.mcpjava.server.ContentEncoder} - Custom content encoding</li>
+        <li>{@link org.mcpjava.server.McpException} - Base MCP exception</li>
+        <li>{@link org.mcpjava.server.McpRequest} - Request metadata</li>
+        <li>{@link org.mcpjava.server.progress.Progress} - Progress reporting for long-running
+            operations</li>
     </ul>
 
     <h1>Framework-Agnostic Design</h1>
@@ -57,7 +57,7 @@ limitations under the License.
     </ul>
 
     @see <a href="https://modelcontextprotocol.io">Model Context Protocol</a>
-    @see <a href="https://spec.modelcontextprotocol.io">MCP Specification</a>
+    @see <a href="https://modelcontextprotocol.io/specification/">MCP Specification</a>
 </body>
 
 </html>

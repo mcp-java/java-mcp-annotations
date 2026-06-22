@@ -35,7 +35,7 @@ import org.mcpjava.server.progress.Progress;
  * Resource template methods may have parameters of the following types:
  * <ul>
  * <li>{@link String} - the method must have one {@code String} parameter for each variable in the {@link #uriTemplate uriTemplate}.
- * In most cases these parameters must be annotated with{@link ResourceTemplateArg} with the {@link ResourceTemplateArg#name() name}
+ * In most cases these parameters must be annotated with {@link ResourceTemplateArg} with the {@link ResourceTemplateArg#name() name}
  * attribute set, unless the code was compiled with the {@code -parameters} option.
  * {@code ResourceTemplateArg} also allows other properties of the argument to be configured.
  * <li>{@link McpRequest} - to access information about the request

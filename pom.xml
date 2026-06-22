@@ -9,7 +9,7 @@
 
     <name>Java MCP Annotations</name>
     <description>Framework-agnostic Java library for implementing Model Context Protocol (MCP) servers and clients</description>
-    <url>https://github.com/clement/java-mcp-annotations</url>
+    <url>https://github.com/mcp-java/java-mcp-annotations</url>
 
     <licenses>
         <license>
@@ -31,7 +31,7 @@
     <scm>
         <connection>scm:git:git@github.com:mcp-java/java-mcp-annotations.git</connection>
         <developerConnection>scm:git:git@github.com:mcp-java/java-mcp-annotations.git</developerConnection>
-        <tag>1.0.0-Beta1</tag>
+        <tag>main</tag>
         <url>https://github.com/mcp-java/java-mcp-annotations</url>
     </scm>
 
@@ -47,18 +47,16 @@
         <maven.compiler.release>17</maven.compiler.release>
 
         <!-- Dependency versions -->
-        <junit.version>5.10.2</junit.version>
-        <assertj.version>3.25.3</assertj.version>
-        <mockito.version>5.11.0</mockito.version>
+        <junit.version>5.14.4</junit.version>
 
         <!-- Plugin versions -->
-        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
-        <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
         <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
         <maven-release-plugin.version>3.3.1</maven-release-plugin.version>
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
-        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.5.6</maven-surefire-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -75,18 +73,6 @@
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
                 <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.assertj</groupId>
-                <artifactId>assertj-core</artifactId>
-                <version>${assertj.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
