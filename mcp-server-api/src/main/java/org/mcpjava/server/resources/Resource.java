@@ -151,9 +151,9 @@ public @interface Resource {
         /**
          * The intended audience for this resource.
          *
-         * @return the intended audience role
+         * @return the intended audience roles
          */
-        Role audience();
+        Role[] audience();
 
         /**
          * The last modification timestamp in ISO 8601 format.
