@@ -136,7 +136,7 @@ public @interface Resource {
      *
      * @return the resource annotations
      */
-    Annotations annotations() default @Annotations(audience = Role.USER, lastModified = "", priority = 0.5);
+    Annotations annotations() default @Annotations;
 
     /**
      * Nested annotation for resource metadata annotations.
@@ -151,25 +151,25 @@ public @interface Resource {
         /**
          * The intended audience for this resource.
          *
-         * @return the intended audience roles
+         * @return the intended audience roles, or an empty array to indicate no value
          */
-        Role[] audience();
+        Role[] audience() default {};
 
         /**
          * The last modification timestamp in ISO 8601 format.
          *
-         * @return the last modified timestamp
+         * @return the last modified timestamp, or an empty string to indicate no value
          */
         String lastModified() default "";
 
         /**
          * The priority of this resource.
          * <p>
-         * Higher values indicate higher priority.
+         * 1.0 represents the highest priority, and 0.0 represents the lowest priority.
          * </p>
          *
-         * @return the priority value
+         * @return the priority value between 0.0 and 1.0, or -1 to indicate no value
          */
-        double priority() default 0.5;
+        double priority() default -1;
     }
 }

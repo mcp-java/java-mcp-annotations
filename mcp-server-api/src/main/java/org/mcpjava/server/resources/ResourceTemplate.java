@@ -24,8 +24,8 @@ import java.lang.annotation.Target;
 import org.mcpjava.server.Cancellation;
 import org.mcpjava.server.McpRequest;
 import org.mcpjava.server.McpServer;
-import org.mcpjava.server.Role;
 import org.mcpjava.server.progress.Progress;
+import org.mcpjava.server.resources.Resource.Annotations;
 
 /**
  * Marks a method as providing dynamic MCP resources via URI templates.
@@ -148,39 +148,5 @@ public @interface ResourceTemplate {
      *
      * @return the template annotations
      */
-    Annotations annotations() default @Annotations(audience = Role.USER, lastModified = "", priority = 0.5);
-
-    /**
-     * Nested annotation for resource template metadata annotations.
-     * <p>
-     * These provide hints to clients about resources from this template.
-     * </p>
-     */
-    @Target(ElementType.ANNOTATION_TYPE)
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface Annotations {
-        /**
-         * The intended audience for resources from this template.
-         *
-         * @return the intended audience roles
-         */
-        Role[] audience();
-
-        /**
-         * The last modification timestamp in ISO 8601 format.
-         *
-         * @return the last modified timestamp
-         */
-        String lastModified() default "";
-
-        /**
-         * The priority of resources from this template.
-         * <p>
-         * Higher values indicate higher priority.
-         * </p>
-         *
-         * @return the priority value
-         */
-        double priority() default 0.5;
-    }
+    Annotations annotations() default @Annotations;
 }
