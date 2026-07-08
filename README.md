@@ -18,6 +18,7 @@ Framework-agnostic annotations and interfaces for declaratively building MCP ser
 **Tools**:
 - `@Tool` - Mark methods as MCP tools
 - `@ToolArg` - Configure tool parameters
+- `ToolResponse` - Full control over tool call responses (content, structured content, error status)
 
 Package: `org.mcpjava.server.tools`
 
@@ -25,12 +26,18 @@ Package: `org.mcpjava.server.tools`
 - `@Resource` - Expose static resources
 - `@ResourceTemplate` - Expose dynamic resources with URI templates
 - `@ResourceTemplateArg` - Configure template URI variables
+- `ResourceResponse` - Full control over resource read responses
+- `ResourceContents` - Sealed interface for resource content (text or binary)
+- `TextResourceContents` - Text resource content
+- `BlobResourceContents` - Binary resource content
 
 Package: `org.mcpjava.server.resources`
 
 **Prompts**:
 - `@Prompt` - Define reusable prompt templates
 - `@PromptArg` - Configure prompt arguments
+- `PromptResponse` - Full control over prompt responses
+- `PromptMessage` - A single message within a prompt (role + content)
 
 Package: `org.mcpjava.server.prompts`
 
@@ -38,17 +45,52 @@ Package: `org.mcpjava.server.prompts`
 - `@CompletePrompt` - Provide completion for prompt arguments
 - `@CompleteResourceTemplate` - Provide completion for resource template URIs
 - `@CompleteArg` - Customize completion argument names
+- `CompletionResult` - Completion response with suggestions, total count, and pagination
+- `CompletionContext` - Access to other argument values already provided by the user
 
 Package: `org.mcpjava.server.completion`
+
+**Content**:
+- `ContentBlock` - Sealed interface for content in responses (text, image, audio, embedded resource, resource link)
+- `TextContent` - Text content block
+- `ImageContent` - Image data content block
+- `AudioContent` - Audio data content block
+- `EmbeddedResource` - Content block embedding a resource with its data
+- `ResourceLink` - Content block linking to a resource by URI
+- `Annotations` - Metadata annotations for content and resources (audience, priority, last modified)
+
+Package: `org.mcpjava.server.content`
+
+**Progress**:
+- `Progress` - Access to progress reporting capabilities, injectable into tool/prompt/resource methods
+- `ProgressTracker` - Thread-safe stateful progress tracker with automatic notifications
+- `ProgressNotification` - Individual progress notification message
+- `ProgressToken` - Progress token from the client request
+
+Package: `org.mcpjava.server.progress`
 
 **Core**:
 - `@McpServer` - Mark classes as MCP server components
 - `@MetaField` - Add custom metadata to definitions
+- `@Icons` - Associate an `IconProvider` with a tool, resource, or prompt
 - `Cancellation` - Interface for handling request cancellation
 - `ContentEncoder<T>` - Interface for custom content encoding
-- `ClientCapability` - Representation of client capabilities
+- `McpRequest` - Access request information (ID, session, protocol version, client capabilities)
+- `McpException` - Base exception for MCP-related errors
+- `ImplementationInfo` - Information about a client or server MCP implementation
+- `MetaCarrier` - Interface for types that carry `_meta` field data
+- `Role` - Message sender/receiver role (`USER`, `ASSISTANT`)
+- `FeatureType` - Enum of MCP feature types (tool, resource, resource template, prompt)
+- `Icon` - Icon associated with tools, resources, or prompts
+- `IconProvider` - Interface for providing icons dynamically
 
 Package: `org.mcpjava.server`
+
+**SPI**:
+- `McpServerSPI` - Service provider interface for framework implementations to provide factories for API data objects
+- `McpServerSPILoader` - Loads the `McpServerSPI` implementation via `ServiceLoader`
+
+Package: `org.mcpjava.server.spi`
 
 ## Design Principles
 
@@ -61,6 +103,18 @@ Package: `org.mcpjava.server`
 ## Getting Started
 
 > **Note**: This project provides the foundational annotations and interfaces. Framework-specific runtime implementations (connection handling, JSON-RPC processing, etc.) are provided by separate projects like [Quarkus MCP Server](https://github.com/quarkiverse/quarkus-mcp-server).
+
+### Maven Dependency
+
+```xml
+<dependency>
+    <groupId>org.mcpjava</groupId>
+    <artifactId>mcp-server-api</artifactId>
+    <version>${mcp-server-api.version}</version>
+</dependency>
+```
+
+Where `mcp-server-api.version` is currently `1.0.0-SNAPSHOT`.
 
 ### Requirements
 
