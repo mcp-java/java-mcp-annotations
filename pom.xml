@@ -175,7 +175,7 @@
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>
-                            <autoPublish>false</autoPublish>
+                            <autoPublish>true</autoPublish>
                             <waitMaxTime>1800</waitMaxTime>
                         </configuration>
                     </plugin>
