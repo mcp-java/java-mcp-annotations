@@ -22,84 +22,44 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Designates a parameter of a {@link Tool} method whose value clients must mirror into an HTTP
- * request header.
+ * Tells clients to mirror a tool argument into an HTTP request header. This annotation must be added to a parameter of a tool method,
+ * usually alongside {@link ToolArg}.
  * <p>
- * The designation is published in the tool's JSON Schema as the {@code x-mcp-header} keyword on
- * the parameter's property schema. When a client calls the tool over the Streamable HTTP
- * transport, it sends the argument value in the {@code Mcp-Param-<value>} header in addition to
- * the request body, so that intermediaries such as gateways and load balancers can route or
- * inspect the call without parsing the body.
+ * When this annotation is used, the server sets the property {@code x-mcp-header} to {@link #value()}
+ * in the parameter schema. This instructs clients to include a {@code Mcp-Param-<value>} HTTP
+ * header with the value of this parameter when calling the tool.
  * <p>
- * This annotation only affects the Streamable HTTP transport, and only when the client and server
- * have negotiated a protocol version that supports it. It is kept separate from {@link ToolArg}
- * for that reason, and the two sit on the same parameter. {@link ToolArg} describes the property
- * — its name, its description, whether it is required — and this annotation adds the
- * {@code x-mcp-header} keyword to that same property. Neither is restated here, so that each
- * field of a property's schema has exactly one source.
+ * This can be used to allow intermediaries such as gateways and load balancers to route or inspect
+ * the call without parsing the body.
+ * <p>
+ * The annotated parameter must have a type that is represented as a {@code string}, {@code integer} or {@code boolean}. Integer values
+ * must be in the range -2<sup>53</sup>+1 to 2<sup>53</sup>-1 (the range of integers that can be represented exactly by an IEEE 754
+ * double). Note that this is smaller than the range allowed by {@code long}.
+ * <p>
+ * This functionality is only available when using the <strong>Streamable HTTP transport</strong> and <strong>protocol version
+ * {@code 2026-07-28} or later</strong>. Behaviour when using a different transport or protocol version is framework-specific.
+ * <p>
+ * Avoid annotating parameters that carry sensitive data, such as passwords, API keys, tokens or
+ * personal information, since intermediaries may store and log the value.
+ *
+ * <h2>Example</h2>
  *
  * <pre>{@code
- * @Tool(name = "execute_sql", description = "Execute SQL on Google Cloud Spanner")
- * List<Row> executeSql(
- *         @ToolArg(description = "The region to execute the query in")
- *         @McpParamHeader("Region") String region,
- *         @ToolArg(description = "The SQL query to execute") String query) {
- *     ...
+ * @Tool(name = "runQuery")
+ * List<Row> runQuery(
+ *     @ToolArg(name = "region", description = "The region to execute the query in")
+ *     @McpParamHeader("Region") String region,
+ *     @ToolArg(name = "query") String query) {
+ *     // ...
  * }
  * }</pre>
- *
- * is published as:
- *
- * <pre>{@code
- * {
- *   "name": "execute_sql",
- *   "description": "Execute SQL on Google Cloud Spanner",
- *   "inputSchema": {
- *     "type": "object",
- *     "properties": {
- *       "region": {
- *         "type": "string",
- *         "description": "The region to execute the query in",
- *         "x-mcp-header": "Region"
- *       },
- *       "query": {
- *         "type": "string",
- *         "description": "The SQL query to execute"
- *       }
- *     },
- *     "required": ["region", "query"]
- *   }
- * }
- * }</pre>
- *
- * Both parameters appear in {@code required} because {@link ToolArg#required()} defaults to
- * {@code true}, and {@code region} carries its description and its header designation from the
- * two annotations it is given.
- *
- * <h2>Constraints</h2>
- * The specification places the following constraints on the designation:
- * <ul>
- * <li>{@link #value()} must not be empty;
- * <li>{@link #value()} must contain only ASCII characters, excluding space and {@code :};
- * <li>{@link #value()} must be unique, ignoring case, among the parameters of a single tool;
- * <li>the annotated parameter must be of a primitive JSON Schema type: {@code integer},
- * {@code string} or {@code boolean}. {@code number} is not permitted, so parameters of type
- * {@code float}, {@code double} or {@link java.math.BigDecimal}, for example, cannot be
- * designated.
- * </ul>
  * <p>
- * Clients must exclude a tool whose designation violates these constraints from the tools they
- * make available, rather than report an error. Implementations should therefore validate the
- * designation when the tool is registered, so that a mistake is reported to the developer instead
- * of the tool silently disappearing from clients.
- * <p>
- * The header value travels in plain view of every intermediary, which may log it. Avoid
- * designating parameters that carry sensitive data, such as passwords, API keys, tokens or
- * personal information.
+ * If a client called this tool with {@code region} set to {@code "eu1"}, it would also send an HTTP header {@code Mcp-Param-Region: eu1}.
  *
  * @see ToolArg
- * @see <a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools#custom-headers">MCP
- * Specification - Tools - Custom Headers</a>
+ * @see <a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools#x-mcp-header">MCP
+ * Specification - Tools - x-mcp-header</a>
+ * @since 1.1
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
@@ -117,6 +77,9 @@ public @interface McpParamHeader {
      * <li>A valid HTTP header name (see <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-5.1">RFC 9110 Section 5.1</a>)
      * <li>Case-insensitively unique among the parameters of the tool
      * </ul>
+     * <p>
+     * Clients using Streamable HTTP must exclude tools with invalid {@code x-mcp-header} properties. Implementations should therefore
+     * validate designations when registering tools, so developers can identify mistakes early.
      *
      * @return the header name suffix
      */
