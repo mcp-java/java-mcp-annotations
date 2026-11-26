@@ -20,6 +20,8 @@
  * Tools are executable functions that can be invoked by MCP clients.
  * Use {@link org.mcpjava.server.tools.Tool @Tool} to mark methods as tools
  * and {@link org.mcpjava.server.tools.ToolArg @ToolArg} to configure their parameters.
+ * Use {@link org.mcpjava.server.tools.McpParamHeader @McpParamHeader} to have clients mirror a
+ * parameter's value into an HTTP request header.
  * <p>
  * {@link org.mcpjava.server.tools.ToolResponse ToolResponses} can be returned from
  * {@link org.mcpjava.server.tools.Tool @Tool}-annotated methods.

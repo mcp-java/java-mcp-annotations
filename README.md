@@ -18,6 +18,7 @@ Framework-agnostic annotations and interfaces for declaratively building MCP ser
 **Tools**:
 - `@Tool` - Mark methods as MCP tools
 - `@ToolArg` - Configure tool parameters
+- `@McpParamHeader` - Have clients mirror a tool parameter into an HTTP request header
 - `ToolResponse` - Full control over tool call responses (content, structured content, error status)
 
 Package: `org.mcpjava.server.tools`

@@ -32,8 +32,13 @@ import java.util.OptionalLong;
  * such as custom names and descriptions that will be included in the tool's
  * JSON Schema definition.
  * </p>
+ * <p>
+ * To have clients mirror a parameter's value into an HTTP request header, annotate the parameter
+ * with {@link McpParamHeader} as well.
+ * </p>
  *
  * @see Tool
+ * @see McpParamHeader
  * @see <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools">MCP
  * Specification - Tools</a>
  */
