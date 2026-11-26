@@ -181,8 +181,11 @@ Framework implementations will process these annotations and expose them via the
 ## Relationship to Other Projects
 
 This library is inspired by and designed to be compatible with:
+- [LangChain4J CDI MCP Server](https://github.com/langchain4j/langchain4j-cdi/blob/main/langchain4j-cdi-mcp/) - Jakarta EE MCP implementation
 - [Quarkus MCP Server](https://github.com/quarkiverse/quarkus-mcp-server) - Quarkus-specific MCP implementation
+- [Open Liberty MCP feature](https://openliberty.io/docs/latest/liberty-mcp-server.html) - OpenLiberty-specific MCP implementation
 - [OpenMCPTools](https://github.com/OpenMCPTools) - Collection of MCP tools and integrations
+- [WildFly AI Feature Pack](https://github.com/wildfly/wildfly-ai-feature-pack) - WildFly-specific MCP implementation
 
 Framework-specific extensions can build on these core annotations to provide runtime-specific features like dependency injection, lifecycle management, and protocol handling.
 
